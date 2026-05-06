@@ -207,6 +207,7 @@ export const router = createBrowserRouter([
       // Legacy routes - preserve old URLs by redirecting to canonical ones.
       { path: legacyRoutePatterns.marketWildcard.slice(1), element: <LegacySectionRedirect from={legacyRoutes.marketBase} to="/marketplace" /> },
       { path: 'foundry/*', element: <LegacySectionRedirect from="/foundry" to="/factory" /> },
+      { path: '*', element: <Navigate to="/" replace /> },
     ]
   }
 ]);
