@@ -1,0 +1,210 @@
+{
+  "version": "v2",
+  "views": {
+    "consumer": {
+      "label": "消费",
+      "subRoles": [
+        { "key": "business", "label": "业务运营" },
+        { "key": "algorithm", "label": "算法同学" }
+      ],
+      "nav": [
+        {
+          "group": "市集中心",
+          "stage": "market",
+          "items": [
+            { "type": "sectionTitle", "label": "推荐工作台", "subRole": ["business"] },
+            { "label": "市集首页", "path": "/marketplace", "subRole": ["business"] },
+            { "label": "智能推荐", "path": "/marketplace/recommend", "subRole": ["business"] },
+            { "label": "Agent 推荐结果", "path": "/marketplace/agent", "subRole": ["business"], "hiddenInNav": true, "activeParentPath": "/marketplace/recommend" },
+            {
+              "label": "最近访问",
+              "path": "/marketplace",
+              "subRole": ["business"],
+              "recentDynamic": { "bucket": "consumer-market-recent" }
+            },
+            { "label": "人群诊断", "path": "/marketplace/crowd/:id", "subRole": ["business"], "dynamic": true, "hiddenInNav": true, "activeParentPath": "/marketplace" },
+            { "label": "资产详情", "path": "/marketplace/asset/:id", "subRole": ["business"], "dynamic": true, "hiddenInNav": true, "activeParentPath": "/marketplace" },
+            { "type": "sectionTitle", "label": "执行动作", "subRole": ["business"] },
+            { "label": "下游消费方打通页", "path": "/marketplace/workbench", "subRole": ["business"] },
+            { "label": "新建动作", "path": "/marketplace/action/new", "subRole": ["business"], "hiddenInNav": true, "activeParentPath": "/marketplace/workbench" },
+            { "label": "任务监控", "path": "/marketplace/tasks", "subRole": ["business"], "hiddenInNav": true, "activeParentPath": "/marketplace/workbench" },
+            { "label": "动作配置", "path": "/marketplace/action/:id", "subRole": ["business"], "dynamic": true, "hiddenInNav": true, "activeParentPath": "/marketplace/workbench" }
+          ]
+        },
+        {
+          "group": "算法工坊",
+          "stage": "workshop",
+          "items": [
+            { "type": "sectionTitle", "label": "基础能力", "subRole": ["algorithm"] },
+            { "label": "Pack 组装", "path": "/factory/pack", "subRole": ["algorithm"] },
+            {
+              "type": "collapsible",
+              "label": "算法工具",
+              "subRole": ["algorithm"],
+              "children": [
+                { "label": "相似特征检索", "path": "/factory/similarity-search" },
+                { "label": "订阅追踪", "path": "/factory/tracking" },
+                { "label": "Pack 对比结果", "path": "/factory/result/:packId", "dynamic": true, "hiddenInNav": true },
+                { "label": "特征详情", "path": "/factory/feature/:id", "dynamic": true, "hiddenInNav": true },
+                { "label": "AB 导出", "path": "/factory/export/:packId", "dynamic": true, "hiddenInNav": true }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "质量查验",
+          "items": [
+            { "label": "Precheck", "path": "/quality/precheck" },
+            { "label": "质量徽章", "path": "/quality/badges" }
+          ]
+        },
+        {
+          "group": "我的",
+          "stage": "neutral",
+          "items": [
+            { "label": "个人中心", "path": "/my" },
+            { "label": "我的订阅资产", "path": "/catalog/my-assets", "query": { "scope": "subscribed" }, "badgeKey": "subscriptions_count" }
+          ]
+        }
+      ]
+    },
+    "producer": {
+      "label": "供给",
+      "nav": [
+        {
+          "group": "工作台",
+          "items": [
+            { "label": "大盘首页", "path": "/dashboard" },
+            { "label": "大盘健康", "path": "/dashboard/health", "hiddenInNav": true },
+            { "label": "机会下钻", "path": "/dashboard/opp/:id", "dynamic": true, "hiddenInNav": true }
+          ]
+        },
+        {
+          "group": "需求洞察",
+          "items": [
+            { "label": "缺口分析", "path": "/recommender/gap-analysis" }
+          ]
+        },
+        {
+          "group": "注册与发布",
+          "stage": "workshop",
+          "items": [
+            { "type": "sectionTitle", "label": "上架工作台" },
+            { "label": "资产目录", "path": "/catalog/my-assets", "badgeKey": "owned_assets_count" },
+            { "label": "新建特征", "path": "/catalog/features/new", "hiddenInNav": true },
+            { "label": "编辑特征", "path": "/catalog/features/:id/edit", "dynamic": true, "hiddenInNav": true },
+            { "label": "发布流程", "path": "/catalog/features/:id/publish-flow", "dynamic": true, "hiddenInNav": true },
+            { "label": "评测详情", "path": "/catalog/evaluations/:eval_id", "dynamic": true, "hiddenInNav": true }
+          ]
+        },
+        {
+          "group": "生产流水线",
+          "stage": "workshop",
+          "items": [
+            { "label": "流水线", "path": "/factory/pipelines" },
+            { "label": "特征配置", "path": "/factory/features/:id/config", "dynamic": true, "hiddenInNav": true }
+          ]
+        },
+        {
+          "group": "资产诊断",
+          "items": [
+            { "label": "资产归因", "path": "/drilldown/:id", "dynamic": true, "hiddenInNav": true },
+            { "label": "特征归因", "path": "/drilldown/features/:id", "dynamic": true, "hiddenInNav": true }
+          ]
+        },
+        {
+          "group": "质量治理",
+          "items": [
+            { "type": "sectionTitle", "label": "治理与归因" },
+            {
+              "type": "collapsible",
+              "label": "工单与归因",
+              "children": [
+                { "label": "治理总览", "path": "/quality/governance" },
+                { "label": "工单列表", "path": "/quality/tickets", "badgeKey": "unresolved_tickets" },
+                { "label": "归因总览", "path": "/quality/attribution" },
+                { "label": "工单详情", "path": "/quality/tickets/:id", "dynamic": true, "hiddenInNav": true },
+                { "label": "特征归因", "path": "/quality/attribution/:feature_id", "dynamic": true, "hiddenInNav": true },
+                { "label": "健康度分解", "path": "/quality/health-score/:feature_id", "dynamic": true, "hiddenInNav": true }
+              ]
+            },
+            { "type": "sectionTitle", "label": "评测工具" },
+            {
+              "type": "collapsible",
+              "label": "评测工具箱",
+              "children": [
+                { "label": "自动回测", "path": "/quality/auto-backtest" },
+                { "label": "自评", "path": "/quality/self-review" },
+                { "label": "LLM 评测", "path": "/quality/llm-judge" },
+                { "label": "LLM 模板", "path": "/quality/llm-judge/templates" },
+                { "label": "问卷评测", "path": "/quality/survey" },
+                { "label": "人工评测", "path": "/quality/human-eval" },
+                { "label": "评测编排", "path": "/quality/eval-orchestrator" }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "我的",
+          "stage": "neutral",
+          "items": [
+            { "label": "个人中心", "path": "/my" }
+          ]
+        }
+      ]
+    }
+  },
+  "userMenu": {
+    "consumer": {
+      "identity": {
+        "showSubRoleSwitcher": true,
+        "subRoles": ["business", "algorithm"]
+      },
+      "groups": [
+        {
+          "label": "我的消费",
+          "items": [
+            { "label": "我的收藏", "path": "/my/favorites", "badge": { "source": "favorites_count", "style": "number" } },
+            { "label": "我的订阅", "path": "/my/subscriptions", "badge": { "source": "subscriptions_count", "style": "number" } },
+            { "label": "我的策略", "path": "/my/strategies", "badge": { "source": "strategies_count", "style": "number" } },
+            { "label": "历史会话", "path": "/my/agent-history" }
+          ]
+        }
+      ]
+    },
+    "producer": {
+      "identity": { "showSubRoleSwitcher": false },
+      "groups": [
+        {
+          "label": "我的供给",
+          "items": [
+            { "label": "我的资产", "path": "/catalog/my-assets", "query": { "owner": "me" }, "badge": { "source": "owned_assets_count", "style": "number" } },
+            { "label": "我负责的工单", "path": "/quality/tickets", "query": { "assignee": "me" }, "badge": { "source": "unresolved_tickets", "style": "dot-number", "severity": "warn" } },
+            { "label": "我的归因报告", "path": "/my/attribution" },
+            { "label": "我的订阅者", "path": "/my/subscribers", "badge": { "source": "new_subscribers_7d", "style": "number-new" } }
+          ]
+        }
+      ]
+    },
+    "common": {
+      "groups": [
+        {
+          "label": "个人",
+          "items": [
+            { "label": "个人中心", "path": "/my" },
+            { "label": "切换视角", "action": "toggleRole" },
+            { "label": "登出", "action": "logout", "variant": "danger" }
+          ]
+        }
+      ]
+    }
+  },
+  "excludedFromNav": [
+    "/monitor",
+    "/monitor/*",
+    "/dashboard/health",
+    "/market/*",
+    "/foundry/*",
+    "/placeholder/:module"
+  ]
+}

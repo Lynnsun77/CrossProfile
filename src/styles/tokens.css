@@ -1,0 +1,74 @@
+:root {
+  --color-bg: #f7f9fc;
+  --color-surface: #ffffff;
+  --color-border: #e5e8f0;
+  --color-text-1: #0b1220;
+  --color-text-2: #4b5565;
+  --color-text-3: #8a94a6;
+
+  --brand-500: #5b7cfa;
+  --brand-gradient: linear-gradient(135deg, #4e7bff 0%, #8b5cf6 100%);
+  --brand-soft: rgba(91, 124, 250, 0.08);
+
+  --module-market: #4e7bff;
+  --module-workshop: #8b5cf6;
+  --module-dashboard: #10b981;
+
+  --asset-crowd: #4e7bff;
+  --asset-tag: #06b6d4;
+  --asset-feature: #8b5cf6;
+
+  --semantic-good: #10b981;
+  --semantic-bad: #ef4444;
+  --semantic-neutral: #8a94a6;
+
+  --glow-ai: 0 0 0 1px rgba(139, 92, 246, 0.25), 0 0 12px rgba(78, 123, 255, 0.18);
+  --glow-kpi: 0 0 0 1px rgba(78, 123, 255, 0.18), 0 6px 20px rgba(78, 123, 255, 0.08);
+
+  --radius-chip: 6px;
+  --radius-card: 10px;
+  --radius-ai: 14px;
+
+  --market-brand: var(--module-market);
+  --market-brand-strong: #305fe8;
+  --market-brand-soft: rgba(78, 123, 255, 0.1);
+  --market-brand-softer: rgba(78, 123, 255, 0.05);
+  --market-brand-border-soft: rgba(78, 123, 255, 0.24);
+  --market-brand-border-active: rgba(78, 123, 255, 0.28);
+  --market-brand-shadow-sm: 0 2px 8px rgba(78, 123, 255, 0.25);
+  --market-brand-shadow-md: 0 6px 16px rgba(78, 123, 255, 0.2);
+  --market-brand-border-subtle: rgba(78, 123, 255, 0.16);
+
+  --market-accent: var(--module-workshop);
+  --market-accent-soft: rgba(139, 92, 246, 0.12);
+  --market-accent-border: rgba(139, 92, 246, 0.28);
+  --market-accent-shadow-soft: 0 0 20px rgba(139, 92, 246, 0.06);
+  --market-accent-ring: rgba(139, 92, 246, 0.45);
+  --market-surface-elevated: rgba(255, 255, 255, 0.88);
+  --market-surface-muted: rgba(247, 249, 252, 0.96);
+  --market-surface-card-top: rgba(245, 243, 255, 0.96);
+  --market-shadow-card: 0 10px 30px rgba(11, 18, 32, 0.06);
+  --market-shadow-ai: 0 18px 50px rgba(78, 123, 255, 0.12);
+  --market-focus-ring: 0 0 0 3px rgba(78, 123, 255, 0.2);
+  --market-semantic-positive: var(--semantic-good);
+  --market-semantic-positive-bg: rgba(16, 185, 129, 0.1);
+  --market-semantic-positive-border: rgba(16, 185, 129, 0.2);
+  --market-semantic-negative: var(--semantic-bad);
+  --market-semantic-negative-bg: rgba(239, 68, 68, 0.1);
+  --market-semantic-neutral-text: var(--color-text-2);
+  --market-semantic-neutral-bg: rgba(138, 148, 166, 0.12);
+  --market-disabled-bg: rgba(138, 148, 166, 0.18);
+  --market-divider: rgba(229, 232, 240, 0.9);
+
+  --page-header-glow-market: 0 0 0 1px rgba(78, 123, 255, 0.25), 0 0 12px rgba(78, 123, 255, 0.12);
+  --page-header-glow-foundry: 0 0 0 1px rgba(139, 92, 246, 0.25), 0 0 12px rgba(139, 92, 246, 0.12);
+  --page-header-glow-dashboard: 0 0 0 1px rgba(16, 185, 129, 0.25), 0 0 12px rgba(16, 185, 129, 0.12);
+
+  --assistant-shell-fill: #f0f3ff;
+  --assistant-shell-stroke: var(--market-brand);
+  --assistant-face-fill: #ffffff;
+  --assistant-panel-fill: #e6f0ff;
+  --assistant-limb-fill: #93c5fd;
+  --assistant-eye-fill: var(--color-text-1);
+  --dashboard-primary: var(--module-dashboard);
+}

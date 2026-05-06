@@ -1,0 +1,44 @@
+[
+  {
+    "step": 1,
+    "user": "帮我找本月复购潜力最高的人群"
+  },
+  {
+    "step": 2,
+    "tool": "recommend_crowd",
+    "toolOutput": {
+      "assetId": "aid_004"
+    }
+  },
+  {
+    "step": 3,
+    "assistant": "推荐「电商复购人群模板」, 规模 124 万, 历史收益 ¥340 万"
+  },
+  {
+    "step": 4,
+    "user": "看看这群人画像"
+  },
+  {
+    "step": 5,
+    "tool": "diagnose_crowd",
+    "toolOutput": {
+      "radarUrl": "/marketplace/crowd/aid_004"
+    }
+  },
+  {
+    "step": 6,
+    "assistant": "价格敏感度、生服高频维度显著高于基线, 建议配券动作。"
+  },
+  {
+    "step": 7,
+    "tool": "recommend_action",
+    "toolOutput": {
+      "actionId": "act_03",
+      "estimatedGmv": 820000
+    }
+  },
+  {
+    "step": 8,
+    "assistant": "已备好动作, 预估 GMV +82 万 [立即下发 ▶]"
+  }
+]

@@ -1,0 +1,196 @@
+[
+  {
+    "id": "crowd_001",
+    "asset_id": "aid_001",
+    "size": 28470000,
+    "overlap": 0.64,
+    "radar_ecommerce": { "consume": 85, "active": 72, "category": 68, "marketing": 76, "lifecycle": 80 },
+    "radar_lifestyle": { "consume": 78, "active": 88, "category": 90, "marketing": 70, "lifecycle": 75 },
+    "contrib": [
+      { "tag_name": "双域生命周期", "weight": 0.41 },
+      { "tag_name": "餐饮 POI 亲和度", "weight": 0.33 },
+      { "tag_name": "券敏感度", "weight": 0.26 }
+    ],
+    "demo": {
+      "gender": { "男": 0.42, "女": 0.58 },
+      "age": { "18-24": 0.12, "25-34": 0.46, "35-44": 0.28, "45+": 0.14 },
+      "city": { "一线": 0.38, "新一线": 0.32, "二线": 0.18, "其他": 0.12 },
+      "consume_level": { "L5": 0.22, "L4": 0.48, "L3": 0.22, "L2": 0.08 }
+    },
+    "history_roi": 2.4
+  },
+  {
+    "id": "crowd_002",
+    "asset_id": "aid_002",
+    "size": 15600000,
+    "overlap": 0.72,
+    "radar_ecommerce": { "consume": 75, "active": 68, "category": 72, "marketing": 80, "lifecycle": 65 },
+    "radar_lifestyle": { "consume": 82, "active": 90, "category": 85, "marketing": 75, "lifecycle": 70 },
+    "contrib": [
+      { "tag_name": "双域生命周期", "weight": 0.55 },
+      { "tag_name": "电商消费力", "weight": 0.25 },
+      { "tag_name": "生服活跃度", "weight": 0.20 }
+    ],
+    "demo": {
+      "gender": { "男": 0.45, "女": 0.55 },
+      "age": { "18-24": 0.15, "25-34": 0.52, "35-44": 0.25, "45+": 0.08 },
+      "city": { "一线": 0.42, "新一线": 0.35, "二线": 0.15, "其他": 0.08 },
+      "consume_level": { "L5": 0.18, "L4": 0.45, "L3": 0.28, "L2": 0.09 }
+    },
+    "history_roi": 2.1
+  },
+  {
+    "id": "crowd_003",
+    "asset_id": "aid_003",
+    "size": 8900000,
+    "overlap": 0.45,
+    "radar_ecommerce": { "consume": 65, "active": 58, "category": 62, "marketing": 78, "lifecycle": 55 },
+    "radar_lifestyle": { "consume": 88, "active": 92, "category": 95, "marketing": 82, "lifecycle": 85 },
+    "contrib": [
+      { "tag_name": "餐饮 POI 亲和度", "weight": 0.62 },
+      { "tag_name": "生服活跃度", "weight": 0.28 },
+      { "tag_name": "券敏感度", "weight": 0.10 }
+    ],
+    "demo": {
+      "gender": { "男": 0.48, "女": 0.52 },
+      "age": { "18-24": 0.18, "25-34": 0.55, "35-44": 0.20, "45+": 0.07 },
+      "city": { "一线": 0.35, "新一线": 0.38, "二线": 0.18, "其他": 0.09 },
+      "consume_level": { "L5": 0.12, "L4": 0.35, "L3": 0.38, "L2": 0.15 }
+    },
+    "history_roi": 1.8
+  },
+  {
+    "id": "crowd_004",
+    "asset_id": "aid_004",
+    "size": 21500000,
+    "overlap": 0.38,
+    "radar_ecommerce": { "consume": 92, "active": 85, "category": 78, "marketing": 65, "lifecycle": 88 },
+    "radar_lifestyle": { "consume": 68, "active": 72, "category": 65, "marketing": 70, "lifecycle": 72 },
+    "contrib": [
+      { "tag_name": "电商消费力等级", "weight": 0.75 },
+      { "tag_name": "电商活跃度", "weight": 0.25 }
+    ],
+    "demo": {
+      "gender": { "男": 0.52, "女": 0.48 },
+      "age": { "18-24": 0.10, "25-34": 0.45, "35-44": 0.35, "45+": 0.10 },
+      "city": { "一线": 0.45, "新一线": 0.32, "二线": 0.15, "其他": 0.08 },
+      "consume_level": { "L5": 0.35, "L4": 0.45, "L3": 0.18, "L2": 0.02 }
+    },
+    "history_roi": 2.6
+  },
+  {
+    "id": "crowd_005",
+    "asset_id": "aid_005",
+    "size": 12800000,
+    "overlap": 0.68,
+    "radar_ecommerce": { "consume": 78, "active": 75, "category": 70, "marketing": 90, "lifecycle": 72 },
+    "radar_lifestyle": { "consume": 82, "active": 80, "category": 75, "marketing": 88, "lifecycle": 78 },
+    "contrib": [
+      { "tag_name": "券敏感度", "weight": 0.55 },
+      { "tag_name": "双域生命周期", "weight": 0.25 },
+      { "tag_name": "电商消费力", "weight": 0.20 }
+    ],
+    "demo": {
+      "gender": { "男": 0.46, "女": 0.54 },
+      "age": { "18-24": 0.22, "25-34": 0.50, "35-44": 0.20, "45+": 0.08 },
+      "city": { "一线": 0.30, "新一线": 0.35, "二线": 0.25, "其他": 0.10 },
+      "consume_level": { "L5": 0.15, "L4": 0.35, "L3": 0.40, "L2": 0.10 }
+    },
+    "history_roi": 2.0
+  },
+  {
+    "id": "crowd_006",
+    "asset_id": "aid_006",
+    "size": 6700000,
+    "overlap": 0.42,
+    "radar_ecommerce": { "consume": 62, "active": 55, "category": 60, "marketing": 72, "lifecycle": 58 },
+    "radar_lifestyle": { "consume": 90, "active": 95, "category": 92, "marketing": 78, "lifecycle": 88 },
+    "contrib": [
+      { "tag_name": "生服活跃度", "weight": 0.68 },
+      { "tag_name": "餐饮 POI 亲和度", "weight": 0.32 }
+    ],
+    "demo": {
+      "gender": { "男": 0.49, "女": 0.51 },
+      "age": { "18-24": 0.20, "25-34": 0.55, "35-44": 0.20, "45+": 0.05 },
+      "city": { "一线": 0.40, "新一线": 0.35, "二线": 0.18, "其他": 0.07 },
+      "consume_level": { "L5": 0.10, "L4": 0.30, "L3": 0.45, "L2": 0.15 }
+    },
+    "history_roi": 1.7
+  },
+  {
+    "id": "crowd_007",
+    "asset_id": "aid_007",
+    "size": 9800000,
+    "overlap": 0.35,
+    "radar_ecommerce": { "consume": 82, "active": 88, "category": 85, "marketing": 75, "lifecycle": 82 },
+    "radar_lifestyle": { "consume": 65, "active": 68, "category": 62, "marketing": 60, "lifecycle": 65 },
+    "contrib": [
+      { "tag_name": "电商新品偏好", "weight": 0.70 },
+      { "tag_name": "电商活跃度", "weight": 0.30 }
+    ],
+    "demo": {
+      "gender": { "男": 0.40, "女": 0.60 },
+      "age": { "18-24": 0.35, "25-34": 0.45, "35-44": 0.15, "45+": 0.05 },
+      "city": { "一线": 0.42, "新一线": 0.38, "二线": 0.15, "其他": 0.05 },
+      "consume_level": { "L5": 0.20, "L4": 0.40, "L3": 0.30, "L2": 0.10 }
+    },
+    "history_roi": 1.9
+  },
+  {
+    "id": "crowd_008",
+    "asset_id": "aid_008",
+    "size": 14500000,
+    "overlap": 0.75,
+    "radar_ecommerce": { "consume": 55, "active": 45, "category": 50, "marketing": 85, "lifecycle": 40 },
+    "radar_lifestyle": { "consume": 58, "active": 48, "category": 52, "marketing": 80, "lifecycle": 42 },
+    "contrib": [
+      { "tag_name": "双域生命周期", "weight": 0.80 },
+      { "tag_name": "券敏感度", "weight": 0.20 }
+    ],
+    "demo": {
+      "gender": { "男": 0.50, "女": 0.50 },
+      "age": { "18-24": 0.15, "25-34": 0.40, "35-44": 0.30, "45+": 0.15 },
+      "city": { "一线": 0.30, "新一线": 0.35, "二线": 0.25, "其他": 0.10 },
+      "consume_level": { "L5": 0.12, "L4": 0.30, "L3": 0.40, "L2": 0.18 }
+    },
+    "history_roi": 1.6
+  },
+  {
+    "id": "crowd_009",
+    "asset_id": "aid_009",
+    "size": 7200000,
+    "overlap": 0.40,
+    "radar_ecommerce": { "consume": 68, "active": 62, "category": 65, "marketing": 70, "lifecycle": 60 },
+    "radar_lifestyle": { "consume": 85, "active": 90, "category": 88, "marketing": 75, "lifecycle": 82 },
+    "contrib": [
+      { "tag_name": "生服到店转化", "weight": 0.75 },
+      { "tag_name": "生服活跃度", "weight": 0.25 }
+    ],
+    "demo": {
+      "gender": { "男": 0.47, "女": 0.53 },
+      "age": { "18-24": 0.18, "25-34": 0.52, "35-44": 0.22, "45+": 0.08 },
+      "city": { "一线": 0.38, "新一线": 0.35, "二线": 0.20, "其他": 0.07 },
+      "consume_level": { "L5": 0.15, "L4": 0.35, "L3": 0.40, "L2": 0.10 }
+    },
+    "history_roi": 1.7
+  },
+  {
+    "id": "crowd_010",
+    "asset_id": "aid_010",
+    "size": 18900000,
+    "overlap": 0.32,
+    "radar_ecommerce": { "consume": 88, "active": 90, "category": 82, "marketing": 68, "lifecycle": 90 },
+    "radar_lifestyle": { "consume": 62, "active": 65, "category": 60, "marketing": 65, "lifecycle": 68 },
+    "contrib": [
+      { "tag_name": "电商活跃度", "weight": 0.60 },
+      { "tag_name": "电商消费力", "weight": 0.40 }
+    ],
+    "demo": {
+      "gender": { "男": 0.45, "女": 0.55 },
+      "age": { "18-24": 0.12, "25-34": 0.48, "35-44": 0.30, "45+": 0.10 },
+      "city": { "一线": 0.38, "新一线": 0.35, "二线": 0.20, "其他": 0.07 },
+      "consume_level": { "L5": 0.25, "L4": 0.45, "L3": 0.25, "L2": 0.05 }
+    },
+    "history_roi": 2.2
+  }
+]

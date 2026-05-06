@@ -1,0 +1,83 @@
+[
+  {
+    "id": "opp_001",
+    "title": "电商沉默用户 × 生服餐饮高频",
+    "description": "1.96 亿电商沉默用户中,380 万为生服餐饮高频,建议本周重点触达",
+    "urgency": "high",
+    "priority": "high",
+    "crowd_size": 3800000,
+    "expected": { "gmv": 0.004, "mac": -0.08 },
+    "owner_suggest": "生服用增-小王",
+    "recommender": { "name": "生服用增-小王", "role": "运营" },
+    "related_tags": ["双域生命周期","餐饮 POI 亲和","券敏感度"],
+    "estimatedRevenue": 850000,
+    "validUntil": "2024-12-31",
+    "preset_action": {
+      "touchpoints": ["push","lifestyle_home"],
+      "subsidy_level": "mid",
+      "budget": 500000,
+      "copywriting_choice": "本周必吃"
+    }
+  },
+  {
+    "id": "opp_002",
+    "title": "婚庆跨域联动机会",
+    "description": "生服搜婚纱摄影近 30 日活跃 120 万,电商备婚品类渗透仅 18%",
+    "urgency": "mid",
+    "priority": "mid",
+    "crowd_size": 1200000,
+    "expected": { "gmv": 0.002, "order": 0.006 },
+    "owner_suggest": "电商类目-小李",
+    "recommender": { "name": "电商类目-小李", "role": "产品" },
+    "related_tags": ["人生阶段","品类映射偏好"]
+  },
+  {
+    "id": "opp_003",
+    "title": "高消费力女性 618 跨域触达",
+    "description": "L4-L5 女性用户电商+生服双活,建议 618 前 2 周预热",
+    "urgency": "mid",
+    "priority": "mid",
+    "crowd_size": 8600000,
+    "expected": { "gmv": 0.006 },
+    "owner_suggest": "电商营销-小陈",
+    "recommender": { "name": "电商营销-小陈", "role": "营销" },
+    "related_tags": ["消费力等级","性别","营销敏感度"]
+  },
+  {
+    "id": "opp_004",
+    "title": "小端(豆包)AI 问答到生服餐饮引流",
+    "description": "豆包问'附近好吃'的用户 240 万,当前生服转化率仅 4%",
+    "urgency": "low",
+    "priority": "low",
+    "crowd_size": 2400000,
+    "expected": { "order": 0.003 },
+    "owner_suggest": "生服产品-小赵",
+    "recommender": { "name": "生服产品-小赵", "role": "产品" },
+    "related_tags": ["小端意图","POI 亲和"]
+  },
+  {
+    "id": "opp_005",
+    "title": "跨域流失用户召回",
+    "description": "同时在电商、生服均 60 日无下单的 5400 万用户,UE 向量识别出 420 万高召回概率",
+    "urgency": "high",
+    "priority": "high",
+    "crowd_size": 4200000,
+    "expected": { "mac": -0.1, "order": 0.002 },
+    "owner_suggest": "跨端用增-小孙",
+    "recommender": { "name": "跨端用增-小孙", "role": "运营" },
+    "related_tags": ["流失预测","UE 向量","券敏感度"],
+    "estimatedRevenue": 1200000
+  },
+  {
+    "id": "opp_006",
+    "title": "这是一个非常非常长的标题用来测试截断功能是否正常工作，特别是在中英混合、包含括号和其他特殊字符的情况下",
+    "description": "这也是一个非常非常长的描述文本，用来测试描述的两行截断功能，确保即使描述很长，也能正确显示并在需要时显示 tooltip 来查看完整内容。",
+    "urgency": "high",
+    "priority": "high",
+    "crowd_size": 196000000,
+    "expected": { "gmv": 0.005 },
+    "owner_suggest": "市场策略部-超级长的部门名字-测试截断",
+    "recommender": { "name": "市场策略部-超级长的部门名字-测试截断", "role": "策略" },
+    "related_tags": ["测试","截断"]
+  }
+]

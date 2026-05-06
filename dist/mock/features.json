@@ -1,0 +1,262 @@
+[
+  {
+    "id": "feat_001",
+    "name": "电商消费力等级规则",
+    "namespace": "trade.ecommerce.*",
+    "type": "rule",
+    "description": "基于电商消费金额和频次的消费力等级划分规则",
+    "health": {
+      "score": 92,
+      "level": "excellent",
+      "accuracy": 0.94,
+      "coverage": 0.96,
+      "freshness": "T+1",
+      "lift": 0.13
+    },
+    "lineage": {
+      "upstream": ["order_data", "payment_data"],
+      "downstream": ["aid_004", "crowd_004"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.93, "coverage": 0.95 },
+      { "date": "2024-03-23", "accuracy": 0.93, "coverage": 0.95 },
+      { "date": "2024-03-24", "accuracy": 0.94, "coverage": 0.96 },
+      { "date": "2024-03-25", "accuracy": 0.94, "coverage": 0.96 },
+      { "date": "2024-03-26", "accuracy": 0.94, "coverage": 0.96 }
+    ]
+  },
+  {
+    "id": "feat_002",
+    "name": "生服餐饮 POI 亲和度",
+    "namespace": "trade.lifestyle.*",
+    "type": "algo",
+    "description": "基于生服餐饮 POI 访问和消费行为的亲和度算法",
+    "health": {
+      "score": 89,
+      "level": "good",
+      "accuracy": 0.91,
+      "coverage": 0.93,
+      "freshness": "T+1",
+      "lift": 0.11
+    },
+    "lineage": {
+      "upstream": ["poi_visit", "dining_order"],
+      "downstream": ["aid_003", "crowd_003"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.90, "coverage": 0.92 },
+      { "date": "2024-03-23", "accuracy": 0.90, "coverage": 0.92 },
+      { "date": "2024-03-24", "accuracy": 0.91, "coverage": 0.93 },
+      { "date": "2024-03-25", "accuracy": 0.91, "coverage": 0.93 },
+      { "date": "2024-03-26", "accuracy": 0.91, "coverage": 0.93 }
+    ]
+  },
+  {
+    "id": "feat_003",
+    "name": "双域生命周期序列",
+    "namespace": "trade.cross.*",
+    "type": "sequence",
+    "description": "电商和生服的用户生命周期序列特征",
+    "health": {
+      "score": 90,
+      "level": "excellent",
+      "accuracy": 0.92,
+      "coverage": 0.94,
+      "freshness": "T+1",
+      "lift": 0.14
+    },
+    "lineage": {
+      "upstream": ["ecommerce_activity", "lifestyle_activity"],
+      "downstream": ["aid_002", "crowd_002"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.91, "coverage": 0.93 },
+      { "date": "2024-03-23", "accuracy": 0.91, "coverage": 0.93 },
+      { "date": "2024-03-24", "accuracy": 0.92, "coverage": 0.94 },
+      { "date": "2024-03-25", "accuracy": 0.92, "coverage": 0.94 },
+      { "date": "2024-03-26", "accuracy": 0.92, "coverage": 0.94 }
+    ]
+  },
+  {
+    "id": "feat_004",
+    "name": "券敏感度向量",
+    "namespace": "trade.cross.*",
+    "type": "vector",
+    "description": "对电商和生服优惠券的敏感度向量特征",
+    "health": {
+      "score": 85,
+      "level": "good",
+      "accuracy": 0.88,
+      "coverage": 0.90,
+      "freshness": "T+1",
+      "lift": 0.10
+    },
+    "lineage": {
+      "upstream": ["coupon_usage", "price_sensitivity"],
+      "downstream": ["aid_005", "crowd_005"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.87, "coverage": 0.89 },
+      { "date": "2024-03-23", "accuracy": 0.87, "coverage": 0.89 },
+      { "date": "2024-03-24", "accuracy": 0.88, "coverage": 0.90 },
+      { "date": "2024-03-25", "accuracy": 0.88, "coverage": 0.90 },
+      { "date": "2024-03-26", "accuracy": 0.88, "coverage": 0.90 }
+    ]
+  },
+  {
+    "id": "feat_005",
+    "name": "生服活跃度规则",
+    "namespace": "trade.lifestyle.*",
+    "type": "rule",
+    "description": "基于生服活跃频次和时长的活跃度规则",
+    "health": {
+      "score": 88,
+      "level": "good",
+      "accuracy": 0.90,
+      "coverage": 0.92,
+      "freshness": "T+1",
+      "lift": 0.11
+    },
+    "lineage": {
+      "upstream": ["lifestyle_activity", "poi_visit"],
+      "downstream": ["aid_006", "crowd_006"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.89, "coverage": 0.91 },
+      { "date": "2024-03-23", "accuracy": 0.89, "coverage": 0.91 },
+      { "date": "2024-03-24", "accuracy": 0.90, "coverage": 0.92 },
+      { "date": "2024-03-25", "accuracy": 0.90, "coverage": 0.92 },
+      { "date": "2024-03-26", "accuracy": 0.90, "coverage": 0.92 }
+    ]
+  },
+  {
+    "id": "feat_006",
+    "name": "电商新品偏好算法",
+    "namespace": "trade.ecommerce.*",
+    "type": "algo",
+    "description": "基于电商新品浏览和购买行为的偏好算法",
+    "health": {
+      "score": 82,
+      "level": "qualified",
+      "accuracy": 0.86,
+      "coverage": 0.88,
+      "freshness": "T+1",
+      "lift": 0.09
+    },
+    "lineage": {
+      "upstream": ["product_view", "order_data"],
+      "downstream": ["aid_007", "crowd_007"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.85, "coverage": 0.87 },
+      { "date": "2024-03-23", "accuracy": 0.85, "coverage": 0.87 },
+      { "date": "2024-03-24", "accuracy": 0.86, "coverage": 0.88 },
+      { "date": "2024-03-25", "accuracy": 0.86, "coverage": 0.88 },
+      { "date": "2024-03-26", "accuracy": 0.86, "coverage": 0.88 }
+    ]
+  },
+  {
+    "id": "feat_007",
+    "name": "流失预测向量",
+    "namespace": "trade.cross.*",
+    "type": "vector",
+    "description": "基于电商和生服行为的流失预测向量特征",
+    "health": {
+      "score": 86,
+      "level": "good",
+      "accuracy": 0.89,
+      "coverage": 0.91,
+      "freshness": "T+1",
+      "lift": 0.11
+    },
+    "lineage": {
+      "upstream": ["ecommerce_activity", "lifestyle_activity", "churn_history"],
+      "downstream": ["aid_008", "crowd_008"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.88, "coverage": 0.90 },
+      { "date": "2024-03-23", "accuracy": 0.88, "coverage": 0.90 },
+      { "date": "2024-03-24", "accuracy": 0.89, "coverage": 0.91 },
+      { "date": "2024-03-25", "accuracy": 0.89, "coverage": 0.91 },
+      { "date": "2024-03-26", "accuracy": 0.89, "coverage": 0.91 }
+    ]
+  },
+  {
+    "id": "feat_008",
+    "name": "生服到店转化规则",
+    "namespace": "trade.lifestyle.*",
+    "type": "rule",
+    "description": "基于生服浏览到到店消费的转化行为规则",
+    "health": {
+      "score": 84,
+      "level": "good",
+      "accuracy": 0.87,
+      "coverage": 0.89,
+      "freshness": "T+1",
+      "lift": 0.10
+    },
+    "lineage": {
+      "upstream": ["poi_view", "dining_order"],
+      "downstream": ["aid_009", "crowd_009"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.86, "coverage": 0.88 },
+      { "date": "2024-03-23", "accuracy": 0.86, "coverage": 0.88 },
+      { "date": "2024-03-24", "accuracy": 0.87, "coverage": 0.89 },
+      { "date": "2024-03-25", "accuracy": 0.87, "coverage": 0.89 },
+      { "date": "2024-03-26", "accuracy": 0.87, "coverage": 0.89 }
+    ]
+  },
+  {
+    "id": "feat_009",
+    "name": "电商复购算法",
+    "namespace": "trade.ecommerce.*",
+    "type": "algo",
+    "description": "基于电商历史购买行为的复购预测算法",
+    "health": {
+      "score": 87,
+      "level": "good",
+      "accuracy": 0.90,
+      "coverage": 0.92,
+      "freshness": "T+1",
+      "lift": 0.12
+    },
+    "lineage": {
+      "upstream": ["order_history", "product_category"],
+      "downstream": ["aid_010", "crowd_010"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.89, "coverage": 0.91 },
+      { "date": "2024-03-23", "accuracy": 0.89, "coverage": 0.91 },
+      { "date": "2024-03-24", "accuracy": 0.90, "coverage": 0.92 },
+      { "date": "2024-03-25", "accuracy": 0.90, "coverage": 0.92 },
+      { "date": "2024-03-26", "accuracy": 0.90, "coverage": 0.92 }
+    ]
+  },
+  {
+    "id": "feat_010",
+    "name": "小端意图 LLM",
+    "namespace": "trade.cross.*",
+    "type": "llm_intent",
+    "description": "基于豆包等小端 AI 问答的用户意图识别",
+    "health": {
+      "score": 83,
+      "level": "qualified",
+      "accuracy": 0.85,
+      "coverage": 0.87,
+      "freshness": "T+1",
+      "lift": 0.09
+    },
+    "lineage": {
+      "upstream": ["ai_chat_history", "search_queries"],
+      "downstream": ["opp_004"]
+    },
+    "trend_30d": [
+      { "date": "2024-03-22", "accuracy": 0.84, "coverage": 0.86 },
+      { "date": "2024-03-23", "accuracy": 0.84, "coverage": 0.86 },
+      { "date": "2024-03-24", "accuracy": 0.85, "coverage": 0.87 },
+      { "date": "2024-03-25", "accuracy": 0.85, "coverage": 0.87 },
+      { "date": "2024-03-26", "accuracy": 0.85, "coverage": 0.87 }
+    ]
+  }
+]

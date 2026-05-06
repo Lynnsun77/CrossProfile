@@ -1,0 +1,284 @@
+[
+  {
+    "id": "pack_001",
+    "name": "跨域序列特征组",
+    "features": [
+      "电商特征_1",
+      "生服特征_2",
+      "跨域特征_3",
+      "电商特征_4",
+      "生服特征_5",
+      "跨域特征_6"
+    ],
+    "feature_ids": [
+      "feat_001",
+      "feat_002",
+      "feat_003",
+      "feat_004",
+      "feat_005",
+      "feat_006"
+    ],
+    "auc": 0.73,
+    "lift": 0.08,
+    "ks": 0.21,
+    "est_lift": [
+      {
+        "metric": "CVR",
+        "value": 0.012
+      },
+      {
+        "metric": "MAC",
+        "value": 0.008
+      }
+    ],
+    "ab_history": [
+      {
+        "ab_name": "exp_1_a",
+        "metric": "CVR",
+        "result": 0.01,
+        "adopted": true
+      },
+      {
+        "ab_name": "exp_1_b",
+        "metric": "GMV",
+        "result": 0.008,
+        "adopted": true
+      }
+    ]
+  },
+  {
+    "id": "pack_002",
+    "name": "价格敏感度增强包",
+    "features": [
+      "跨域特征_6",
+      "电商特征_7",
+      "生服特征_8",
+      "跨域特征_9",
+      "电商特征_10",
+      "生服特征_11"
+    ],
+    "feature_ids": [
+      "feat_006",
+      "feat_007",
+      "feat_008",
+      "feat_009",
+      "feat_010",
+      "feat_011"
+    ],
+    "auc": 0.755,
+    "lift": 0.098,
+    "ks": 0.24,
+    "est_lift": [
+      {
+        "metric": "CVR",
+        "value": 0.016
+      },
+      {
+        "metric": "MAC",
+        "value": 0.011
+      }
+    ],
+    "ab_history": [
+      {
+        "ab_name": "exp_2_a",
+        "metric": "CVR",
+        "result": 0.013,
+        "adopted": true
+      },
+      {
+        "ab_name": "exp_2_b",
+        "metric": "GMV",
+        "result": 0.01,
+        "adopted": false
+      }
+    ]
+  },
+  {
+    "id": "pack_003",
+    "name": "统一交易意图包",
+    "features": [
+      "生服特征_11",
+      "跨域特征_12",
+      "电商特征_13",
+      "生服特征_14",
+      "跨域特征_15",
+      "电商特征_16"
+    ],
+    "feature_ids": [
+      "feat_011",
+      "feat_012",
+      "feat_013",
+      "feat_014",
+      "feat_015",
+      "feat_016"
+    ],
+    "auc": 0.78,
+    "lift": 0.116,
+    "ks": 0.27,
+    "est_lift": [
+      {
+        "metric": "CVR",
+        "value": 0.02
+      },
+      {
+        "metric": "MAC",
+        "value": 0.014
+      }
+    ],
+    "ab_history": [
+      {
+        "ab_name": "exp_3_a",
+        "metric": "CVR",
+        "result": 0.016,
+        "adopted": true
+      },
+      {
+        "ab_name": "exp_3_b",
+        "metric": "GMV",
+        "result": 0.012,
+        "adopted": true
+      }
+    ]
+  },
+  {
+    "id": "pack_004",
+    "name": "沉默召回特征组",
+    "features": [
+      "电商特征_16",
+      "生服特征_17",
+      "跨域特征_18",
+      "电商特征_19",
+      "生服特征_20",
+      "跨域特征_21"
+    ],
+    "feature_ids": [
+      "feat_016",
+      "feat_017",
+      "feat_018",
+      "feat_019",
+      "feat_020",
+      "feat_021"
+    ],
+    "auc": 0.805,
+    "lift": 0.134,
+    "ks": 0.3,
+    "est_lift": [
+      {
+        "metric": "CVR",
+        "value": 0.024
+      },
+      {
+        "metric": "MAC",
+        "value": 0.017
+      }
+    ],
+    "ab_history": [
+      {
+        "ab_name": "exp_4_a",
+        "metric": "CVR",
+        "result": 0.019,
+        "adopted": true
+      },
+      {
+        "ab_name": "exp_4_b",
+        "metric": "GMV",
+        "result": 0.014,
+        "adopted": false
+      }
+    ]
+  },
+  {
+    "id": "pack_005",
+    "name": "酒旅高值包",
+    "features": [
+      "跨域特征_21",
+      "电商特征_22",
+      "生服特征_23",
+      "跨域特征_24",
+      "电商特征_25",
+      "生服特征_26"
+    ],
+    "feature_ids": [
+      "feat_021",
+      "feat_022",
+      "feat_023",
+      "feat_024",
+      "feat_025",
+      "feat_026"
+    ],
+    "auc": 0.83,
+    "lift": 0.152,
+    "ks": 0.33,
+    "est_lift": [
+      {
+        "metric": "CVR",
+        "value": 0.028
+      },
+      {
+        "metric": "MAC",
+        "value": 0.02
+      }
+    ],
+    "ab_history": [
+      {
+        "ab_name": "exp_5_a",
+        "metric": "CVR",
+        "result": 0.022,
+        "adopted": true
+      },
+      {
+        "ab_name": "exp_5_b",
+        "metric": "GMV",
+        "result": 0.016,
+        "adopted": true
+      }
+    ]
+  },
+  {
+    "id": "pack_006",
+    "name": "会员升级策略包",
+    "features": [
+      "生服特征_26",
+      "跨域特征_27",
+      "电商特征_28",
+      "生服特征_29",
+      "跨域特征_30",
+      "电商特征_31"
+    ],
+    "feature_ids": [
+      "feat_026",
+      "feat_027",
+      "feat_028",
+      "feat_029",
+      "feat_030",
+      "feat_031"
+    ],
+    "auc": 0.855,
+    "lift": 0.17,
+    "ks": 0.36,
+    "est_lift": [
+      {
+        "metric": "CVR",
+        "value": 0.032
+      },
+      {
+        "metric": "MAC",
+        "value": 0.023
+      }
+    ],
+    "ab_history": [
+      {
+        "ab_name": "exp_6_a",
+        "metric": "CVR",
+        "result": 0.025,
+        "adopted": true
+      },
+      {
+        "ab_name": "exp_6_b",
+        "metric": "GMV",
+        "result": 0.018,
+        "adopted": false
+      }
+    ]
+  }
+]

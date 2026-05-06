@@ -1,0 +1,1 @@
+export { AssetDiagnosticDetailPage } from './AssetDiagnosticDetailPage';

@@ -1,0 +1,317 @@
+[
+  {
+    "id": "crowd_001",
+    "asset_id": "aid_001",
+    "size": 28400000,
+    "overlap": 0.64,
+    "radar_ecommerce": {
+      "consume": 78,
+      "active": 72,
+      "category": 66,
+      "marketing": 80,
+      "lifecycle": 74
+    },
+    "radar_lifestyle": {
+      "consume": 74,
+      "active": 81,
+      "category": 76,
+      "marketing": 72,
+      "lifecycle": 70
+    },
+    "contrib": [
+      {
+        "tag_name": "双域生命周期",
+        "weight": 0.32
+      },
+      {
+        "tag_name": "券敏感度",
+        "weight": 0.28
+      },
+      {
+        "tag_name": "价格敏感度",
+        "weight": 0.21
+      },
+      {
+        "tag_name": "生服高频",
+        "weight": 0.19
+      }
+    ],
+    "demo": {
+      "gender": {
+        "男": 0.46,
+        "女": 0.54
+      },
+      "age": {
+        "18-24": 0.18,
+        "25-34": 0.46,
+        "35-44": 0.26,
+        "45+": 0.1
+      },
+      "city": {
+        "一线": 0.34,
+        "新一线": 0.36,
+        "二线": 0.2,
+        "其他": 0.1
+      },
+      "consume_level": {
+        "L5": 0.18,
+        "L4": 0.38,
+        "L3": 0.31,
+        "L2": 0.13
+      }
+    },
+    "history_roi": 1.8
+  },
+  {
+    "id": "crowd_002",
+    "asset_id": "aid_004",
+    "size": 12400000,
+    "overlap": 0.42,
+    "radar_ecommerce": {
+      "consume": 81,
+      "active": 74,
+      "category": 70,
+      "marketing": 82,
+      "lifecycle": 77
+    },
+    "radar_lifestyle": {
+      "consume": 78,
+      "active": 83,
+      "category": 79,
+      "marketing": 75,
+      "lifecycle": 72
+    },
+    "contrib": [
+      {
+        "tag_name": "双域生命周期",
+        "weight": 0.32
+      },
+      {
+        "tag_name": "券敏感度",
+        "weight": 0.28
+      },
+      {
+        "tag_name": "价格敏感度",
+        "weight": 0.21
+      },
+      {
+        "tag_name": "生服高频",
+        "weight": 0.19
+      }
+    ],
+    "demo": {
+      "gender": {
+        "男": 0.46,
+        "女": 0.54
+      },
+      "age": {
+        "18-24": 0.18,
+        "25-34": 0.46,
+        "35-44": 0.26,
+        "45+": 0.1
+      },
+      "city": {
+        "一线": 0.34,
+        "新一线": 0.36,
+        "二线": 0.2,
+        "其他": 0.1
+      },
+      "consume_level": {
+        "L5": 0.18,
+        "L4": 0.38,
+        "L3": 0.31,
+        "L2": 0.13
+      }
+    },
+    "history_roi": 2
+  },
+  {
+    "id": "crowd_003",
+    "asset_id": "aid_005",
+    "size": 12800000,
+    "overlap": 0.68,
+    "radar_ecommerce": {
+      "consume": 84,
+      "active": 76,
+      "category": 74,
+      "marketing": 84,
+      "lifecycle": 80
+    },
+    "radar_lifestyle": {
+      "consume": 82,
+      "active": 85,
+      "category": 82,
+      "marketing": 78,
+      "lifecycle": 74
+    },
+    "contrib": [
+      {
+        "tag_name": "双域生命周期",
+        "weight": 0.32
+      },
+      {
+        "tag_name": "券敏感度",
+        "weight": 0.28
+      },
+      {
+        "tag_name": "价格敏感度",
+        "weight": 0.21
+      },
+      {
+        "tag_name": "生服高频",
+        "weight": 0.19
+      }
+    ],
+    "demo": {
+      "gender": {
+        "男": 0.46,
+        "女": 0.54
+      },
+      "age": {
+        "18-24": 0.18,
+        "25-34": 0.46,
+        "35-44": 0.26,
+        "45+": 0.1
+      },
+      "city": {
+        "一线": 0.34,
+        "新一线": 0.36,
+        "二线": 0.2,
+        "其他": 0.1
+      },
+      "consume_level": {
+        "L5": 0.18,
+        "L4": 0.38,
+        "L3": 0.31,
+        "L2": 0.13
+      }
+    },
+    "history_roi": 2.2
+  },
+  {
+    "id": "crowd_004",
+    "asset_id": "aid_008",
+    "size": 9600000,
+    "overlap": 0.73,
+    "radar_ecommerce": {
+      "consume": 87,
+      "active": 78,
+      "category": 78,
+      "marketing": 86,
+      "lifecycle": 83
+    },
+    "radar_lifestyle": {
+      "consume": 86,
+      "active": 87,
+      "category": 85,
+      "marketing": 81,
+      "lifecycle": 76
+    },
+    "contrib": [
+      {
+        "tag_name": "双域生命周期",
+        "weight": 0.32
+      },
+      {
+        "tag_name": "券敏感度",
+        "weight": 0.28
+      },
+      {
+        "tag_name": "价格敏感度",
+        "weight": 0.21
+      },
+      {
+        "tag_name": "生服高频",
+        "weight": 0.19
+      }
+    ],
+    "demo": {
+      "gender": {
+        "男": 0.46,
+        "女": 0.54
+      },
+      "age": {
+        "18-24": 0.18,
+        "25-34": 0.46,
+        "35-44": 0.26,
+        "45+": 0.1
+      },
+      "city": {
+        "一线": 0.34,
+        "新一线": 0.36,
+        "二线": 0.2,
+        "其他": 0.1
+      },
+      "consume_level": {
+        "L5": 0.18,
+        "L4": 0.38,
+        "L3": 0.31,
+        "L2": 0.13
+      }
+    },
+    "history_roi": 2.3
+  },
+  {
+    "id": "crowd_005",
+    "asset_id": "aid_012",
+    "size": 4200000,
+    "overlap": 0.51,
+    "radar_ecommerce": {
+      "consume": 90,
+      "active": 80,
+      "category": 82,
+      "marketing": 88,
+      "lifecycle": 86
+    },
+    "radar_lifestyle": {
+      "consume": 90,
+      "active": 89,
+      "category": 88,
+      "marketing": 84,
+      "lifecycle": 78
+    },
+    "contrib": [
+      {
+        "tag_name": "双域生命周期",
+        "weight": 0.32
+      },
+      {
+        "tag_name": "券敏感度",
+        "weight": 0.28
+      },
+      {
+        "tag_name": "价格敏感度",
+        "weight": 0.21
+      },
+      {
+        "tag_name": "生服高频",
+        "weight": 0.19
+      }
+    ],
+    "demo": {
+      "gender": {
+        "男": 0.46,
+        "女": 0.54
+      },
+      "age": {
+        "18-24": 0.18,
+        "25-34": 0.46,
+        "35-44": 0.26,
+        "45+": 0.1
+      },
+      "city": {
+        "一线": 0.34,
+        "新一线": 0.36,
+        "二线": 0.2,
+        "其他": 0.1
+      },
+      "consume_level": {
+        "L5": 0.18,
+        "L4": 0.38,
+        "L3": 0.31,
+        "L2": 0.13
+      }
+    },
+    "history_roi": 2.5
+  }
+]

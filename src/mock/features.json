@@ -1,0 +1,3102 @@
+[
+  {
+    "id": "feat_001",
+    "name": "电商特征_1",
+    "namespace": "trade.ecommerce.*",
+    "type": "rule",
+    "description": "用于电商增长的特征能力 1",
+    "health": {
+      "score": 80,
+      "level": "qualified",
+      "accuracy": 0.82,
+      "coverage": 0.78,
+      "freshness": "T+7",
+      "lift": 0.05
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_001",
+        "pack_001"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.79,
+        "coverage": 0.76
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.794,
+        "coverage": 0.763
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.798,
+        "coverage": 0.766
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.802,
+        "coverage": 0.769
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.806,
+        "coverage": 0.772
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.81,
+        "coverage": 0.775
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.814,
+        "coverage": 0.778
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.818,
+        "coverage": 0.781
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.822,
+        "coverage": 0.784
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.826,
+        "coverage": 0.787
+      }
+    ]
+  },
+  {
+    "id": "feat_002",
+    "name": "生服特征_2",
+    "namespace": "trade.lifestyle.*",
+    "type": "sequence",
+    "description": "用于生服增长的特征能力 2",
+    "health": {
+      "score": 82,
+      "level": "qualified",
+      "accuracy": 0.835,
+      "coverage": 0.8,
+      "freshness": "T+1",
+      "lift": 0.06
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_002",
+        "pack_002"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.805,
+        "coverage": 0.78
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.809,
+        "coverage": 0.783
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.813,
+        "coverage": 0.786
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.817,
+        "coverage": 0.789
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.821,
+        "coverage": 0.792
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.825,
+        "coverage": 0.795
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.829,
+        "coverage": 0.798
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.833,
+        "coverage": 0.801
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.837,
+        "coverage": 0.804
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.841,
+        "coverage": 0.807
+      }
+    ]
+  },
+  {
+    "id": "feat_003",
+    "name": "跨域特征_3",
+    "namespace": "trade.cross.*",
+    "type": "algo",
+    "description": "用于跨域统一交易的特征能力 3",
+    "health": {
+      "score": 84,
+      "level": "qualified",
+      "accuracy": 0.85,
+      "coverage": 0.82,
+      "freshness": "T+1",
+      "lift": 0.07
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_003",
+        "pack_003"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.82,
+        "coverage": 0.8
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.824,
+        "coverage": 0.803
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.828,
+        "coverage": 0.806
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.832,
+        "coverage": 0.809
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.836,
+        "coverage": 0.812
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.84,
+        "coverage": 0.815
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.844,
+        "coverage": 0.818
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.848,
+        "coverage": 0.821
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.852,
+        "coverage": 0.824
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.856,
+        "coverage": 0.827
+      }
+    ]
+  },
+  {
+    "id": "feat_004",
+    "name": "电商特征_4",
+    "namespace": "trade.ecommerce.*",
+    "type": "vector",
+    "description": "用于电商增长的特征能力 4",
+    "health": {
+      "score": 85,
+      "level": "good",
+      "accuracy": 0.865,
+      "coverage": 0.84,
+      "freshness": "T+1",
+      "lift": 0.08
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_004",
+        "pack_004"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.835,
+        "coverage": 0.82
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.839,
+        "coverage": 0.823
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.843,
+        "coverage": 0.826
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.847,
+        "coverage": 0.829
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.851,
+        "coverage": 0.832
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.855,
+        "coverage": 0.835
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.859,
+        "coverage": 0.838
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.863,
+        "coverage": 0.841
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.867,
+        "coverage": 0.844
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.871,
+        "coverage": 0.847
+      }
+    ]
+  },
+  {
+    "id": "feat_005",
+    "name": "生服特征_5",
+    "namespace": "trade.lifestyle.*",
+    "type": "llm_intent",
+    "description": "用于生服增长的特征能力 5",
+    "health": {
+      "score": 87,
+      "level": "good",
+      "accuracy": 0.88,
+      "coverage": 0.86,
+      "freshness": "T+1",
+      "lift": 0.09
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_005",
+        "pack_005"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.85,
+        "coverage": 0.84
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.854,
+        "coverage": 0.843
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.858,
+        "coverage": 0.846
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.862,
+        "coverage": 0.849
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.866,
+        "coverage": 0.852
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.87,
+        "coverage": 0.855
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.874,
+        "coverage": 0.858
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.878,
+        "coverage": 0.861
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.882,
+        "coverage": 0.864
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.886,
+        "coverage": 0.867
+      }
+    ]
+  },
+  {
+    "id": "feat_006",
+    "name": "跨域特征_6",
+    "namespace": "trade.cross.*",
+    "type": "rule",
+    "description": "用于跨域统一交易的特征能力 6",
+    "health": {
+      "score": 89,
+      "level": "good",
+      "accuracy": 0.895,
+      "coverage": 0.88,
+      "freshness": "T+1",
+      "lift": 0.1
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_006",
+        "pack_006"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.865,
+        "coverage": 0.86
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.869,
+        "coverage": 0.863
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.873,
+        "coverage": 0.866
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.877,
+        "coverage": 0.869
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.881,
+        "coverage": 0.872
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.885,
+        "coverage": 0.875
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.889,
+        "coverage": 0.878
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.893,
+        "coverage": 0.881
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.897,
+        "coverage": 0.884
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.901,
+        "coverage": 0.887
+      }
+    ]
+  },
+  {
+    "id": "feat_007",
+    "name": "电商特征_7",
+    "namespace": "trade.ecommerce.*",
+    "type": "sequence",
+    "description": "用于电商增长的特征能力 7",
+    "health": {
+      "score": 85,
+      "level": "excellent",
+      "accuracy": 0.91,
+      "coverage": 0.78,
+      "freshness": "T+1",
+      "lift": 0.11
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_007",
+        "pack_001"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.88,
+        "coverage": 0.76
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.884,
+        "coverage": 0.763
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.888,
+        "coverage": 0.766
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.892,
+        "coverage": 0.769
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.896,
+        "coverage": 0.772
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.9,
+        "coverage": 0.775
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.904,
+        "coverage": 0.778
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.908,
+        "coverage": 0.781
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.912,
+        "coverage": 0.784
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.916,
+        "coverage": 0.787
+      }
+    ]
+  },
+  {
+    "id": "feat_008",
+    "name": "生服特征_8",
+    "namespace": "trade.lifestyle.*",
+    "type": "algo",
+    "description": "用于生服增长的特征能力 8",
+    "health": {
+      "score": 81,
+      "level": "qualified",
+      "accuracy": 0.82,
+      "coverage": 0.8,
+      "freshness": "T+1",
+      "lift": 0.12
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_008",
+        "pack_002"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.79,
+        "coverage": 0.78
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.794,
+        "coverage": 0.783
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.798,
+        "coverage": 0.786
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.802,
+        "coverage": 0.789
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.806,
+        "coverage": 0.792
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.81,
+        "coverage": 0.795
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.814,
+        "coverage": 0.798
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.818,
+        "coverage": 0.801
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.822,
+        "coverage": 0.804
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.826,
+        "coverage": 0.807
+      }
+    ]
+  },
+  {
+    "id": "feat_009",
+    "name": "跨域特征_9",
+    "namespace": "trade.cross.*",
+    "type": "vector",
+    "description": "用于跨域统一交易的特征能力 9",
+    "health": {
+      "score": 83,
+      "level": "qualified",
+      "accuracy": 0.835,
+      "coverage": 0.82,
+      "freshness": "T+7",
+      "lift": 0.05
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_009",
+        "pack_003"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.805,
+        "coverage": 0.8
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.809,
+        "coverage": 0.803
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.813,
+        "coverage": 0.806
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.817,
+        "coverage": 0.809
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.821,
+        "coverage": 0.812
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.825,
+        "coverage": 0.815
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.829,
+        "coverage": 0.818
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.833,
+        "coverage": 0.821
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.837,
+        "coverage": 0.824
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.841,
+        "coverage": 0.827
+      }
+    ]
+  },
+  {
+    "id": "feat_010",
+    "name": "电商特征_10",
+    "namespace": "trade.ecommerce.*",
+    "type": "llm_intent",
+    "description": "用于电商增长的特征能力 10",
+    "health": {
+      "score": 85,
+      "level": "qualified",
+      "accuracy": 0.85,
+      "coverage": 0.84,
+      "freshness": "T+1",
+      "lift": 0.06
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_010",
+        "pack_004"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.82,
+        "coverage": 0.82
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.824,
+        "coverage": 0.823
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.828,
+        "coverage": 0.826
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.832,
+        "coverage": 0.829
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.836,
+        "coverage": 0.832
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.84,
+        "coverage": 0.835
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.844,
+        "coverage": 0.838
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.848,
+        "coverage": 0.841
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.852,
+        "coverage": 0.844
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.856,
+        "coverage": 0.847
+      }
+    ]
+  },
+  {
+    "id": "feat_011",
+    "name": "生服特征_11",
+    "namespace": "trade.lifestyle.*",
+    "type": "rule",
+    "description": "用于生服增长的特征能力 11",
+    "health": {
+      "score": 86,
+      "level": "good",
+      "accuracy": 0.865,
+      "coverage": 0.86,
+      "freshness": "T+1",
+      "lift": 0.07
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_011",
+        "pack_005"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.835,
+        "coverage": 0.84
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.839,
+        "coverage": 0.843
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.843,
+        "coverage": 0.846
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.847,
+        "coverage": 0.849
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.851,
+        "coverage": 0.852
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.855,
+        "coverage": 0.855
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.859,
+        "coverage": 0.858
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.863,
+        "coverage": 0.861
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.867,
+        "coverage": 0.864
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.871,
+        "coverage": 0.867
+      }
+    ]
+  },
+  {
+    "id": "feat_012",
+    "name": "跨域特征_12",
+    "namespace": "trade.cross.*",
+    "type": "sequence",
+    "description": "用于跨域统一交易的特征能力 12",
+    "health": {
+      "score": 88,
+      "level": "good",
+      "accuracy": 0.88,
+      "coverage": 0.88,
+      "freshness": "T+1",
+      "lift": 0.08
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_012",
+        "pack_006"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.85,
+        "coverage": 0.86
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.854,
+        "coverage": 0.863
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.858,
+        "coverage": 0.866
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.862,
+        "coverage": 0.869
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.866,
+        "coverage": 0.872
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.87,
+        "coverage": 0.875
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.874,
+        "coverage": 0.878
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.878,
+        "coverage": 0.881
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.882,
+        "coverage": 0.884
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.886,
+        "coverage": 0.887
+      }
+    ]
+  },
+  {
+    "id": "feat_013",
+    "name": "电商特征_13",
+    "namespace": "trade.ecommerce.*",
+    "type": "algo",
+    "description": "用于电商增长的特征能力 13",
+    "health": {
+      "score": 84,
+      "level": "good",
+      "accuracy": 0.895,
+      "coverage": 0.78,
+      "freshness": "T+1",
+      "lift": 0.09
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_013",
+        "pack_001"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.865,
+        "coverage": 0.76
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.869,
+        "coverage": 0.763
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.873,
+        "coverage": 0.766
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.877,
+        "coverage": 0.769
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.881,
+        "coverage": 0.772
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.885,
+        "coverage": 0.775
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.889,
+        "coverage": 0.778
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.893,
+        "coverage": 0.781
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.897,
+        "coverage": 0.784
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.901,
+        "coverage": 0.787
+      }
+    ]
+  },
+  {
+    "id": "feat_014",
+    "name": "生服特征_14",
+    "namespace": "trade.lifestyle.*",
+    "type": "vector",
+    "description": "用于生服增长的特征能力 14",
+    "health": {
+      "score": 86,
+      "level": "excellent",
+      "accuracy": 0.91,
+      "coverage": 0.8,
+      "freshness": "T+1",
+      "lift": 0.1
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_014",
+        "pack_002"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.88,
+        "coverage": 0.78
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.884,
+        "coverage": 0.783
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.888,
+        "coverage": 0.786
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.892,
+        "coverage": 0.789
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.896,
+        "coverage": 0.792
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.9,
+        "coverage": 0.795
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.904,
+        "coverage": 0.798
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.908,
+        "coverage": 0.801
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.912,
+        "coverage": 0.804
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.916,
+        "coverage": 0.807
+      }
+    ]
+  },
+  {
+    "id": "feat_015",
+    "name": "跨域特征_15",
+    "namespace": "trade.cross.*",
+    "type": "llm_intent",
+    "description": "用于跨域统一交易的特征能力 15",
+    "health": {
+      "score": 82,
+      "level": "qualified",
+      "accuracy": 0.82,
+      "coverage": 0.82,
+      "freshness": "T+1",
+      "lift": 0.11
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_015",
+        "pack_003"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.79,
+        "coverage": 0.8
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.794,
+        "coverage": 0.803
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.798,
+        "coverage": 0.806
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.802,
+        "coverage": 0.809
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.806,
+        "coverage": 0.812
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.81,
+        "coverage": 0.815
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.814,
+        "coverage": 0.818
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.818,
+        "coverage": 0.821
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.822,
+        "coverage": 0.824
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.826,
+        "coverage": 0.827
+      }
+    ]
+  },
+  {
+    "id": "feat_016",
+    "name": "电商特征_16",
+    "namespace": "trade.ecommerce.*",
+    "type": "rule",
+    "description": "用于电商增长的特征能力 16",
+    "health": {
+      "score": 84,
+      "level": "qualified",
+      "accuracy": 0.835,
+      "coverage": 0.84,
+      "freshness": "T+1",
+      "lift": 0.12
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_016",
+        "pack_004"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.805,
+        "coverage": 0.82
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.809,
+        "coverage": 0.823
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.813,
+        "coverage": 0.826
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.817,
+        "coverage": 0.829
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.821,
+        "coverage": 0.832
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.825,
+        "coverage": 0.835
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.829,
+        "coverage": 0.838
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.833,
+        "coverage": 0.841
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.837,
+        "coverage": 0.844
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.841,
+        "coverage": 0.847
+      }
+    ]
+  },
+  {
+    "id": "feat_017",
+    "name": "生服特征_17",
+    "namespace": "trade.lifestyle.*",
+    "type": "sequence",
+    "description": "用于生服增长的特征能力 17",
+    "health": {
+      "score": 86,
+      "level": "qualified",
+      "accuracy": 0.85,
+      "coverage": 0.86,
+      "freshness": "T+7",
+      "lift": 0.05
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_017",
+        "pack_005"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.82,
+        "coverage": 0.84
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.824,
+        "coverage": 0.843
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.828,
+        "coverage": 0.846
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.832,
+        "coverage": 0.849
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.836,
+        "coverage": 0.852
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.84,
+        "coverage": 0.855
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.844,
+        "coverage": 0.858
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.848,
+        "coverage": 0.861
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.852,
+        "coverage": 0.864
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.856,
+        "coverage": 0.867
+      }
+    ]
+  },
+  {
+    "id": "feat_018",
+    "name": "跨域特征_18",
+    "namespace": "trade.cross.*",
+    "type": "algo",
+    "description": "用于跨域统一交易的特征能力 18",
+    "health": {
+      "score": 87,
+      "level": "good",
+      "accuracy": 0.865,
+      "coverage": 0.88,
+      "freshness": "T+1",
+      "lift": 0.06
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_018",
+        "pack_006"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.835,
+        "coverage": 0.86
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.839,
+        "coverage": 0.863
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.843,
+        "coverage": 0.866
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.847,
+        "coverage": 0.869
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.851,
+        "coverage": 0.872
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.855,
+        "coverage": 0.875
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.859,
+        "coverage": 0.878
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.863,
+        "coverage": 0.881
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.867,
+        "coverage": 0.884
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.871,
+        "coverage": 0.887
+      }
+    ]
+  },
+  {
+    "id": "feat_019",
+    "name": "电商特征_19",
+    "namespace": "trade.ecommerce.*",
+    "type": "vector",
+    "description": "用于电商增长的特征能力 19",
+    "health": {
+      "score": 83,
+      "level": "good",
+      "accuracy": 0.88,
+      "coverage": 0.78,
+      "freshness": "T+1",
+      "lift": 0.07
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_019",
+        "pack_001"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.85,
+        "coverage": 0.76
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.854,
+        "coverage": 0.763
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.858,
+        "coverage": 0.766
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.862,
+        "coverage": 0.769
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.866,
+        "coverage": 0.772
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.87,
+        "coverage": 0.775
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.874,
+        "coverage": 0.778
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.878,
+        "coverage": 0.781
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.882,
+        "coverage": 0.784
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.886,
+        "coverage": 0.787
+      }
+    ]
+  },
+  {
+    "id": "feat_020",
+    "name": "生服特征_20",
+    "namespace": "trade.lifestyle.*",
+    "type": "llm_intent",
+    "description": "用于生服增长的特征能力 20",
+    "health": {
+      "score": 85,
+      "level": "good",
+      "accuracy": 0.895,
+      "coverage": 0.8,
+      "freshness": "T+1",
+      "lift": 0.08
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_020",
+        "pack_002"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.865,
+        "coverage": 0.78
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.869,
+        "coverage": 0.783
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.873,
+        "coverage": 0.786
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.877,
+        "coverage": 0.789
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.881,
+        "coverage": 0.792
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.885,
+        "coverage": 0.795
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.889,
+        "coverage": 0.798
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.893,
+        "coverage": 0.801
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.897,
+        "coverage": 0.804
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.901,
+        "coverage": 0.807
+      }
+    ]
+  },
+  {
+    "id": "feat_021",
+    "name": "跨域特征_21",
+    "namespace": "trade.cross.*",
+    "type": "rule",
+    "description": "用于跨域统一交易的特征能力 21",
+    "health": {
+      "score": 87,
+      "level": "excellent",
+      "accuracy": 0.91,
+      "coverage": 0.82,
+      "freshness": "T+1",
+      "lift": 0.09
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_021",
+        "pack_003"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.88,
+        "coverage": 0.8
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.884,
+        "coverage": 0.803
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.888,
+        "coverage": 0.806
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.892,
+        "coverage": 0.809
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.896,
+        "coverage": 0.812
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.9,
+        "coverage": 0.815
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.904,
+        "coverage": 0.818
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.908,
+        "coverage": 0.821
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.912,
+        "coverage": 0.824
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.916,
+        "coverage": 0.827
+      }
+    ]
+  },
+  {
+    "id": "feat_022",
+    "name": "电商特征_22",
+    "namespace": "trade.ecommerce.*",
+    "type": "sequence",
+    "description": "用于电商增长的特征能力 22",
+    "health": {
+      "score": 83,
+      "level": "qualified",
+      "accuracy": 0.82,
+      "coverage": 0.84,
+      "freshness": "T+1",
+      "lift": 0.1
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_022",
+        "pack_004"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.79,
+        "coverage": 0.82
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.794,
+        "coverage": 0.823
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.798,
+        "coverage": 0.826
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.802,
+        "coverage": 0.829
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.806,
+        "coverage": 0.832
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.81,
+        "coverage": 0.835
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.814,
+        "coverage": 0.838
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.818,
+        "coverage": 0.841
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.822,
+        "coverage": 0.844
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.826,
+        "coverage": 0.847
+      }
+    ]
+  },
+  {
+    "id": "feat_023",
+    "name": "生服特征_23",
+    "namespace": "trade.lifestyle.*",
+    "type": "algo",
+    "description": "用于生服增长的特征能力 23",
+    "health": {
+      "score": 85,
+      "level": "qualified",
+      "accuracy": 0.835,
+      "coverage": 0.86,
+      "freshness": "T+1",
+      "lift": 0.11
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_023",
+        "pack_005"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.805,
+        "coverage": 0.84
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.809,
+        "coverage": 0.843
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.813,
+        "coverage": 0.846
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.817,
+        "coverage": 0.849
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.821,
+        "coverage": 0.852
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.825,
+        "coverage": 0.855
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.829,
+        "coverage": 0.858
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.833,
+        "coverage": 0.861
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.837,
+        "coverage": 0.864
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.841,
+        "coverage": 0.867
+      }
+    ]
+  },
+  {
+    "id": "feat_024",
+    "name": "跨域特征_24",
+    "namespace": "trade.cross.*",
+    "type": "vector",
+    "description": "用于跨域统一交易的特征能力 24",
+    "health": {
+      "score": 87,
+      "level": "qualified",
+      "accuracy": 0.85,
+      "coverage": 0.88,
+      "freshness": "T+1",
+      "lift": 0.12
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_024",
+        "pack_006"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.82,
+        "coverage": 0.86
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.824,
+        "coverage": 0.863
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.828,
+        "coverage": 0.866
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.832,
+        "coverage": 0.869
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.836,
+        "coverage": 0.872
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.84,
+        "coverage": 0.875
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.844,
+        "coverage": 0.878
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.848,
+        "coverage": 0.881
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.852,
+        "coverage": 0.884
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.856,
+        "coverage": 0.887
+      }
+    ]
+  },
+  {
+    "id": "feat_025",
+    "name": "电商特征_25",
+    "namespace": "trade.ecommerce.*",
+    "type": "llm_intent",
+    "description": "用于电商增长的特征能力 25",
+    "health": {
+      "score": 82,
+      "level": "good",
+      "accuracy": 0.865,
+      "coverage": 0.78,
+      "freshness": "T+7",
+      "lift": 0.05
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_001",
+        "pack_001"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.835,
+        "coverage": 0.76
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.839,
+        "coverage": 0.763
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.843,
+        "coverage": 0.766
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.847,
+        "coverage": 0.769
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.851,
+        "coverage": 0.772
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.855,
+        "coverage": 0.775
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.859,
+        "coverage": 0.778
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.863,
+        "coverage": 0.781
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.867,
+        "coverage": 0.784
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.871,
+        "coverage": 0.787
+      }
+    ]
+  },
+  {
+    "id": "feat_026",
+    "name": "生服特征_26",
+    "namespace": "trade.lifestyle.*",
+    "type": "rule",
+    "description": "用于生服增长的特征能力 26",
+    "health": {
+      "score": 84,
+      "level": "good",
+      "accuracy": 0.88,
+      "coverage": 0.8,
+      "freshness": "T+1",
+      "lift": 0.06
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_002",
+        "pack_002"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.85,
+        "coverage": 0.78
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.854,
+        "coverage": 0.783
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.858,
+        "coverage": 0.786
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.862,
+        "coverage": 0.789
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.866,
+        "coverage": 0.792
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.87,
+        "coverage": 0.795
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.874,
+        "coverage": 0.798
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.878,
+        "coverage": 0.801
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.882,
+        "coverage": 0.804
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.886,
+        "coverage": 0.807
+      }
+    ]
+  },
+  {
+    "id": "feat_027",
+    "name": "跨域特征_27",
+    "namespace": "trade.cross.*",
+    "type": "sequence",
+    "description": "用于跨域统一交易的特征能力 27",
+    "health": {
+      "score": 86,
+      "level": "good",
+      "accuracy": 0.895,
+      "coverage": 0.82,
+      "freshness": "T+1",
+      "lift": 0.07
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_003",
+        "pack_003"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.865,
+        "coverage": 0.8
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.869,
+        "coverage": 0.803
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.873,
+        "coverage": 0.806
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.877,
+        "coverage": 0.809
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.881,
+        "coverage": 0.812
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.885,
+        "coverage": 0.815
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.889,
+        "coverage": 0.818
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.893,
+        "coverage": 0.821
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.897,
+        "coverage": 0.824
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.901,
+        "coverage": 0.827
+      }
+    ]
+  },
+  {
+    "id": "feat_028",
+    "name": "电商特征_28",
+    "namespace": "trade.ecommerce.*",
+    "type": "algo",
+    "description": "用于电商增长的特征能力 28",
+    "health": {
+      "score": 88,
+      "level": "excellent",
+      "accuracy": 0.91,
+      "coverage": 0.84,
+      "freshness": "T+1",
+      "lift": 0.08
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_004",
+        "pack_004"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.88,
+        "coverage": 0.82
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.884,
+        "coverage": 0.823
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.888,
+        "coverage": 0.826
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.892,
+        "coverage": 0.829
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.896,
+        "coverage": 0.832
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.9,
+        "coverage": 0.835
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.904,
+        "coverage": 0.838
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.908,
+        "coverage": 0.841
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.912,
+        "coverage": 0.844
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.916,
+        "coverage": 0.847
+      }
+    ]
+  },
+  {
+    "id": "feat_029",
+    "name": "生服特征_29",
+    "namespace": "trade.lifestyle.*",
+    "type": "vector",
+    "description": "用于生服增长的特征能力 29",
+    "health": {
+      "score": 84,
+      "level": "qualified",
+      "accuracy": 0.82,
+      "coverage": 0.86,
+      "freshness": "T+1",
+      "lift": 0.09
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_005",
+        "pack_005"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.79,
+        "coverage": 0.84
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.794,
+        "coverage": 0.843
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.798,
+        "coverage": 0.846
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.802,
+        "coverage": 0.849
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.806,
+        "coverage": 0.852
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.81,
+        "coverage": 0.855
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.814,
+        "coverage": 0.858
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.818,
+        "coverage": 0.861
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.822,
+        "coverage": 0.864
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.826,
+        "coverage": 0.867
+      }
+    ]
+  },
+  {
+    "id": "feat_030",
+    "name": "跨域特征_30",
+    "namespace": "trade.cross.*",
+    "type": "llm_intent",
+    "description": "用于跨域统一交易的特征能力 30",
+    "health": {
+      "score": 86,
+      "level": "qualified",
+      "accuracy": 0.835,
+      "coverage": 0.88,
+      "freshness": "T+1",
+      "lift": 0.1
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_006",
+        "pack_006"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.805,
+        "coverage": 0.86
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.809,
+        "coverage": 0.863
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.813,
+        "coverage": 0.866
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.817,
+        "coverage": 0.869
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.821,
+        "coverage": 0.872
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.825,
+        "coverage": 0.875
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.829,
+        "coverage": 0.878
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.833,
+        "coverage": 0.881
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.837,
+        "coverage": 0.884
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.841,
+        "coverage": 0.887
+      }
+    ]
+  },
+  {
+    "id": "feat_031",
+    "name": "电商特征_31",
+    "namespace": "trade.ecommerce.*",
+    "type": "rule",
+    "description": "用于电商增长的特征能力 31",
+    "health": {
+      "score": 82,
+      "level": "qualified",
+      "accuracy": 0.85,
+      "coverage": 0.78,
+      "freshness": "T+1",
+      "lift": 0.11
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_007",
+        "pack_001"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.82,
+        "coverage": 0.76
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.824,
+        "coverage": 0.763
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.828,
+        "coverage": 0.766
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.832,
+        "coverage": 0.769
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.836,
+        "coverage": 0.772
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.84,
+        "coverage": 0.775
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.844,
+        "coverage": 0.778
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.848,
+        "coverage": 0.781
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.852,
+        "coverage": 0.784
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.856,
+        "coverage": 0.787
+      }
+    ]
+  },
+  {
+    "id": "feat_032",
+    "name": "生服特征_32",
+    "namespace": "trade.lifestyle.*",
+    "type": "sequence",
+    "description": "用于生服增长的特征能力 32",
+    "health": {
+      "score": 83,
+      "level": "good",
+      "accuracy": 0.865,
+      "coverage": 0.8,
+      "freshness": "T+1",
+      "lift": 0.12
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_008",
+        "pack_002"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.835,
+        "coverage": 0.78
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.839,
+        "coverage": 0.783
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.843,
+        "coverage": 0.786
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.847,
+        "coverage": 0.789
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.851,
+        "coverage": 0.792
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.855,
+        "coverage": 0.795
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.859,
+        "coverage": 0.798
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.863,
+        "coverage": 0.801
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.867,
+        "coverage": 0.804
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.871,
+        "coverage": 0.807
+      }
+    ]
+  },
+  {
+    "id": "feat_033",
+    "name": "跨域特征_33",
+    "namespace": "trade.cross.*",
+    "type": "algo",
+    "description": "用于跨域统一交易的特征能力 33",
+    "health": {
+      "score": 85,
+      "level": "good",
+      "accuracy": 0.88,
+      "coverage": 0.82,
+      "freshness": "T+7",
+      "lift": 0.05
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_009",
+        "pack_003"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.85,
+        "coverage": 0.8
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.854,
+        "coverage": 0.803
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.858,
+        "coverage": 0.806
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.862,
+        "coverage": 0.809
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.866,
+        "coverage": 0.812
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.87,
+        "coverage": 0.815
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.874,
+        "coverage": 0.818
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.878,
+        "coverage": 0.821
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.882,
+        "coverage": 0.824
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.886,
+        "coverage": 0.827
+      }
+    ]
+  },
+  {
+    "id": "feat_034",
+    "name": "电商特征_34",
+    "namespace": "trade.ecommerce.*",
+    "type": "vector",
+    "description": "用于电商增长的特征能力 34",
+    "health": {
+      "score": 87,
+      "level": "good",
+      "accuracy": 0.895,
+      "coverage": 0.84,
+      "freshness": "T+1",
+      "lift": 0.06
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_010",
+        "pack_004"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.865,
+        "coverage": 0.82
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.869,
+        "coverage": 0.823
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.873,
+        "coverage": 0.826
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.877,
+        "coverage": 0.829
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.881,
+        "coverage": 0.832
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.885,
+        "coverage": 0.835
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.889,
+        "coverage": 0.838
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.893,
+        "coverage": 0.841
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.897,
+        "coverage": 0.844
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.901,
+        "coverage": 0.847
+      }
+    ]
+  },
+  {
+    "id": "feat_035",
+    "name": "生服特征_35",
+    "namespace": "trade.lifestyle.*",
+    "type": "llm_intent",
+    "description": "用于生服增长的特征能力 35",
+    "health": {
+      "score": 89,
+      "level": "excellent",
+      "accuracy": 0.91,
+      "coverage": 0.86,
+      "freshness": "T+1",
+      "lift": 0.07
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_011",
+        "pack_005"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.88,
+        "coverage": 0.84
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.884,
+        "coverage": 0.843
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.888,
+        "coverage": 0.846
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.892,
+        "coverage": 0.849
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.896,
+        "coverage": 0.852
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.9,
+        "coverage": 0.855
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.904,
+        "coverage": 0.858
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.908,
+        "coverage": 0.861
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.912,
+        "coverage": 0.864
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.916,
+        "coverage": 0.867
+      }
+    ]
+  },
+  {
+    "id": "feat_036",
+    "name": "跨域特征_36",
+    "namespace": "trade.cross.*",
+    "type": "rule",
+    "description": "用于跨域统一交易的特征能力 36",
+    "health": {
+      "score": 85,
+      "level": "qualified",
+      "accuracy": 0.82,
+      "coverage": 0.88,
+      "freshness": "T+1",
+      "lift": 0.08
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_012",
+        "pack_006"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.79,
+        "coverage": 0.86
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.794,
+        "coverage": 0.863
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.798,
+        "coverage": 0.866
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.802,
+        "coverage": 0.869
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.806,
+        "coverage": 0.872
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.81,
+        "coverage": 0.875
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.814,
+        "coverage": 0.878
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.818,
+        "coverage": 0.881
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.822,
+        "coverage": 0.884
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.826,
+        "coverage": 0.887
+      }
+    ]
+  },
+  {
+    "id": "feat_037",
+    "name": "电商特征_37",
+    "namespace": "trade.ecommerce.*",
+    "type": "sequence",
+    "description": "用于电商增长的特征能力 37",
+    "health": {
+      "score": 81,
+      "level": "qualified",
+      "accuracy": 0.835,
+      "coverage": 0.78,
+      "freshness": "T+1",
+      "lift": 0.09
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_013",
+        "pack_001"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.805,
+        "coverage": 0.76
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.809,
+        "coverage": 0.763
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.813,
+        "coverage": 0.766
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.817,
+        "coverage": 0.769
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.821,
+        "coverage": 0.772
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.825,
+        "coverage": 0.775
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.829,
+        "coverage": 0.778
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.833,
+        "coverage": 0.781
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.837,
+        "coverage": 0.784
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.841,
+        "coverage": 0.787
+      }
+    ]
+  },
+  {
+    "id": "feat_038",
+    "name": "生服特征_38",
+    "namespace": "trade.lifestyle.*",
+    "type": "algo",
+    "description": "用于生服增长的特征能力 38",
+    "health": {
+      "score": 83,
+      "level": "qualified",
+      "accuracy": 0.85,
+      "coverage": 0.8,
+      "freshness": "T+1",
+      "lift": 0.1
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_014",
+        "pack_002"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.82,
+        "coverage": 0.78
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.824,
+        "coverage": 0.783
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.828,
+        "coverage": 0.786
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.832,
+        "coverage": 0.789
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.836,
+        "coverage": 0.792
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.84,
+        "coverage": 0.795
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.844,
+        "coverage": 0.798
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.848,
+        "coverage": 0.801
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.852,
+        "coverage": 0.804
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.856,
+        "coverage": 0.807
+      }
+    ]
+  },
+  {
+    "id": "feat_039",
+    "name": "跨域特征_39",
+    "namespace": "trade.cross.*",
+    "type": "vector",
+    "description": "用于跨域统一交易的特征能力 39",
+    "health": {
+      "score": 84,
+      "level": "good",
+      "accuracy": 0.865,
+      "coverage": 0.82,
+      "freshness": "T+1",
+      "lift": 0.11
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade"
+      ],
+      "downstream": [
+        "aid_015",
+        "pack_003"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.835,
+        "coverage": 0.8
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.839,
+        "coverage": 0.803
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.843,
+        "coverage": 0.806
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.847,
+        "coverage": 0.809
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.851,
+        "coverage": 0.812
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.855,
+        "coverage": 0.815
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.859,
+        "coverage": 0.818
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.863,
+        "coverage": 0.821
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.867,
+        "coverage": 0.824
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.871,
+        "coverage": 0.827
+      }
+    ]
+  },
+  {
+    "id": "feat_040",
+    "name": "电商特征_40",
+    "namespace": "trade.ecommerce.*",
+    "type": "llm_intent",
+    "description": "用于电商增长的特征能力 40",
+    "health": {
+      "score": 86,
+      "level": "good",
+      "accuracy": 0.88,
+      "coverage": 0.84,
+      "freshness": "T+1",
+      "lift": 0.12
+    },
+    "lineage": {
+      "upstream": [
+        "trade_order",
+        "local_trade",
+        "content_event"
+      ],
+      "downstream": [
+        "aid_016",
+        "pack_004"
+      ]
+    },
+    "trend_30d": [
+      {
+        "date": "2026-04-01",
+        "accuracy": 0.85,
+        "coverage": 0.82
+      },
+      {
+        "date": "2026-04-02",
+        "accuracy": 0.854,
+        "coverage": 0.823
+      },
+      {
+        "date": "2026-04-03",
+        "accuracy": 0.858,
+        "coverage": 0.826
+      },
+      {
+        "date": "2026-04-04",
+        "accuracy": 0.862,
+        "coverage": 0.829
+      },
+      {
+        "date": "2026-04-05",
+        "accuracy": 0.866,
+        "coverage": 0.832
+      },
+      {
+        "date": "2026-04-06",
+        "accuracy": 0.87,
+        "coverage": 0.835
+      },
+      {
+        "date": "2026-04-07",
+        "accuracy": 0.874,
+        "coverage": 0.838
+      },
+      {
+        "date": "2026-04-08",
+        "accuracy": 0.878,
+        "coverage": 0.841
+      },
+      {
+        "date": "2026-04-09",
+        "accuracy": 0.882,
+        "coverage": 0.844
+      },
+      {
+        "date": "2026-04-10",
+        "accuracy": 0.886,
+        "coverage": 0.847
+      }
+    ]
+  }
+]

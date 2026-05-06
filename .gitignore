@@ -1,0 +1,4 @@
+.eslintrc.cjs
+.npm-cache
+.trae
+node_modules/*

@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg text-text-1 font-sans antialiased;
+  }
+
+  /* Grid background pattern for AI areas */
+  .bg-pattern-grid {
+    background-image: 
+      linear-gradient(rgba(91,124,250,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,124,250,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-gradient {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-brand {
+    background: var(--brand-gradient);
+  }
+
+  .glow-ai {
+    box-shadow: var(--glow-ai);
+  }
+
+  .glow-kpi {
+    box-shadow: var(--glow-kpi);
+  }
+
+  .hover-glow-ai:hover {
+    box-shadow: var(--glow-ai);
+  }
+
+  .market-card-shadow {
+    box-shadow: var(--market-shadow-card);
+  }
+
+  .market-ai-shadow {
+    box-shadow: var(--market-shadow-ai);
+  }
+
+  .market-focus-ring {
+    box-shadow: var(--market-focus-ring);
+  }
+
+  /* Breathe animation for AI avatar */
+  @keyframes breathe {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .animate-breathe {
+    animation: breathe 1.5s ease-in-out infinite;
+  }
+
+  /* Skeleton loading animation */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, var(--color-border) 25%, rgba(229,232,240,0.6) 50%, var(--color-border) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  @keyframes market-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-market-fade-in-up {
+    animation: market-fade-in-up 360ms ease-out both;
+  }
+}

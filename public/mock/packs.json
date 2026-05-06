@@ -1,0 +1,26 @@
+[
+  {
+    "id": "pack_a",
+    "name": "跨域序列特征组",
+    "feature_ids": ["feat_001","feat_002","feat_003","feat_004","feat_005"],
+    "est_lift": [{ "metric": "CVR", "value": 0.023 }],
+    "ab_history": [
+      { "ab_name": "ecom_rec_v12", "metric": "CVR", "result": 0.021, "adopted": true },
+      { "ab_name": "ecom_rec_v13", "metric": "CVR", "result": 0.018, "adopted": true }
+    ]
+  },
+  {
+    "id": "pack_b",
+    "name": "UE + LLM 意图组",
+    "feature_ids": ["feat_006","feat_007","feat_008"],
+    "est_lift": [{ "metric": "CVR", "value": 0.018 }],
+    "ab_history": [{ "ab_name": "mkt_cvr_v5", "metric": "CVR", "result": 0.016, "adopted": true }]
+  },
+  {
+    "id": "pack_c",
+    "name": "价格敏感特征组",
+    "feature_ids": ["feat_009","feat_010"],
+    "est_lift": [{ "metric": "CVR", "value": 0.009 }],
+    "ab_history": []
+  }
+]

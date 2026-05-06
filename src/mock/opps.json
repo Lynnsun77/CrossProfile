@@ -1,0 +1,173 @@
+[
+  {
+    "id": "opp_001",
+    "title": "电商沉默用户 × 生服餐饮高频",
+    "description": "沉默用户中有 380 万生服高频用户，适合以餐饮券联动召回。",
+    "urgency": "high",
+    "priority": "high",
+    "gap": 18,
+    "rootCause": [
+      "跨域标签未联动",
+      "召回动作缺少餐饮利益点"
+    ],
+    "suggestedAssets": [
+      "aid_001",
+      "aid_008",
+      "aid_020"
+    ],
+    "estimatedLift": 0.12,
+    "crowd_size": 3800000,
+    "expected": {
+      "gmv": 0.004,
+      "mac": -0.08
+    },
+    "owner_suggest": "生服用增-小王",
+    "recommender": {
+      "name": "生服用增-小王",
+      "role": "运营"
+    },
+    "related_tags": [
+      "双域生命周期",
+      "餐饮POI亲和",
+      "券敏感度"
+    ],
+    "estimatedRevenue": 850000,
+    "validUntil": "2026-04-30",
+    "preset_action": {
+      "touchpoints": [
+        "push",
+        "lifestyle_home"
+      ],
+      "subsidy_level": "mid",
+      "budget": 500000,
+      "copywriting_choice": "本周必吃"
+    }
+  },
+  {
+    "id": "opp_002",
+    "title": "婚庆跨域联动机会",
+    "description": "备婚场景在电商与生服之间渗透率偏低，存在跨域联动窗口。",
+    "urgency": "mid",
+    "priority": "mid",
+    "gap": 12,
+    "rootCause": [
+      "人生阶段特征未复用",
+      "类目映射不完整"
+    ],
+    "suggestedAssets": [
+      "aid_012",
+      "aid_015"
+    ],
+    "estimatedLift": 0.08,
+    "crowd_size": 1200000,
+    "expected": {
+      "gmv": 0.002,
+      "order": 0.006
+    },
+    "owner_suggest": "电商类目-小李",
+    "recommender": {
+      "name": "电商类目-小李",
+      "role": "产品"
+    },
+    "related_tags": [
+      "人生阶段",
+      "品类映射偏好"
+    ]
+  },
+  {
+    "id": "opp_003",
+    "title": "高消费力女性 618 跨域触达",
+    "description": "618 前 2 周进行站外预热，联动酒旅与电商场景提升高客单成交。",
+    "urgency": "mid",
+    "priority": "mid",
+    "gap": 15,
+    "rootCause": [
+      "高价值分层存在割裂",
+      "跨域权益未打包"
+    ],
+    "suggestedAssets": [
+      "aid_011",
+      "aid_015",
+      "aid_024"
+    ],
+    "estimatedLift": 0.11,
+    "crowd_size": 8600000,
+    "expected": {
+      "gmv": 0.006
+    },
+    "owner_suggest": "电商营销-小陈",
+    "recommender": {
+      "name": "电商营销-小陈",
+      "role": "营销"
+    },
+    "related_tags": [
+      "消费力等级",
+      "性别",
+      "营销敏感度"
+    ]
+  },
+  {
+    "id": "opp_004",
+    "title": "小端 AI 问答到生服餐饮引流",
+    "description": "问答意图已识别，但链路缺少可直接承接的人群与动作模板。",
+    "urgency": "low",
+    "priority": "low",
+    "gap": 9,
+    "rootCause": [
+      "意图特征缺承接",
+      "落地页动作模板不足"
+    ],
+    "suggestedAssets": [
+      "aid_018",
+      "aid_006"
+    ],
+    "estimatedLift": 0.05,
+    "crowd_size": 2400000,
+    "expected": {
+      "order": 0.003
+    },
+    "owner_suggest": "生服产品-小赵",
+    "recommender": {
+      "name": "生服产品-小赵",
+      "role": "产品"
+    },
+    "related_tags": [
+      "小端意图",
+      "POI亲和"
+    ]
+  },
+  {
+    "id": "opp_005",
+    "title": "跨域流失用户召回",
+    "description": "60 日无下单用户中识别出高召回概率人群，适合叠加券和会员权益。",
+    "urgency": "high",
+    "priority": "high",
+    "gap": 22,
+    "rootCause": [
+      "沉默用户无统一策略",
+      "缺少高召回特征包"
+    ],
+    "suggestedAssets": [
+      "aid_008",
+      "aid_020",
+      "aid_019"
+    ],
+    "estimatedLift": 0.14,
+    "crowd_size": 4200000,
+    "expected": {
+      "mac": -0.1,
+      "order": 0.002
+    },
+    "owner_suggest": "跨端用增-小孙",
+    "recommender": {
+      "name": "跨端用增-小孙",
+      "role": "运营"
+    },
+    "related_tags": [
+      "流失预测",
+      "UE向量",
+      "券敏感度"
+    ],
+    "estimatedRevenue": 1200000
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "date": "2024-03-22",
+    "asset_count": 125,
+    "cross_ratio": 0.35,
+    "avg_health": 85.2,
+    "subs_active": 4560,
+    "ab_running": 8,
+    "domain_covered": 0.92,
+    "mac_change": -0.08,
+    "gmv_change": 0.021,
+    "order_change": 0.018
+  },
+  {
+    "date": "2024-03-23",
+    "asset_count": 126,
+    "cross_ratio": 0.36,
+    "avg_health": 85.4,
+    "subs_active": 4620,
+    "ab_running": 9,
+    "domain_covered": 0.92,
+    "mac_change": -0.07,
+    "gmv_change": 0.022,
+    "order_change": 0.019
+  },
+  {
+    "date": "2024-03-24",
+    "asset_count": 127,
+    "cross_ratio": 0.37,
+    "avg_health": 85.6,
+    "subs_active": 4680,
+    "ab_running": 9,
+    "domain_covered": 0.93,
+    "mac_change": -0.06,
+    "gmv_change": 0.023,
+    "order_change": 0.020
+  },
+  {
+    "date": "2024-03-25",
+    "asset_count": 128,
+    "cross_ratio": 0.38,
+    "avg_health": 85.8,
+    "subs_active": 4750,
+    "ab_running": 10,
+    "domain_covered": 0.93,
+    "mac_change": -0.05,
+    "gmv_change": 0.024,
+    "order_change": 0.021
+  },
+  {
+    "date": "2024-03-26",
+    "asset_count": 129,
+    "cross_ratio": 0.39,
+    "avg_health": 86.0,
+    "subs_active": 4820,
+    "ab_running": 10,
+    "domain_covered": 0.94,
+    "mac_change": -0.04,
+    "gmv_change": 0.025,
+    "order_change": 0.022
+  }
+]
