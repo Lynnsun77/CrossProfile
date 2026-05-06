@@ -1,3 +1,6 @@
 .eslintrc.cjs
 .npm-cache
 .trae
+vite.config.js
+vite.config.d.ts
+*.tsbuildinfo
