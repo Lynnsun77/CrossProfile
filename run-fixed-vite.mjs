@@ -1,9 +1,12 @@
 import { spawn } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 
-const projectRoot = '/Users/bytedance/Desktop/huaxiang';
-const viteBin = new URL('./node_modules/vite/bin/vite.js', import.meta.url).pathname;
-const configPath = `${projectRoot}/vite.config.ts`;
+const projectRoot = fileURLToPath(new URL('.', import.meta.url));
+const viteBin = fileURLToPath(new URL('./node_modules/vite/bin/vite.js', import.meta.url));
+const configPath = fileURLToPath(new URL('./vite.config.ts', import.meta.url));
+const nodeExecutable = existsSync(process.execPath) ? process.execPath : 'node';
 const port = 5173;
 const targetPath = '/marketplace';
 const mode = process.argv[2] ?? 'dev';
@@ -39,7 +42,7 @@ function printTrustedUrls() {
 }
 
 function viteArgs() {
-  const shared = [projectRoot, '--config', configPath];
+  const shared = ['--config', configPath];
   if (mode === 'build') return ['build', ...shared];
   if (mode === 'preview') return ['preview', ...shared];
   return shared;
@@ -47,7 +50,7 @@ function viteArgs() {
 
 printTrustedUrls();
 
-const child = spawn(process.execPath, [viteBin, ...viteArgs()], {
+const child = spawn(nodeExecutable, [viteBin, ...viteArgs()], {
   cwd: projectRoot,
   stdio: 'inherit',
   env: process.env,
