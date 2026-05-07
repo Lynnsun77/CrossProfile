@@ -14,7 +14,7 @@ describe('generateMockRecommendations', () => {
   });
 
   it('命中 goal 和 scene 的卡片进入 ready', () => {
-    const parsed = parseIntent({ goalIds: ['orders'], sceneIds: ['local_weekly'] });
+    const parsed = parseIntent({ goalIds: ['orders'], sceneIds: ['local_growth'] });
     const grouped = generateMockRecommendations(parsed);
 
     expect(grouped.ready.length).toBeGreaterThan(0);
@@ -22,7 +22,7 @@ describe('generateMockRecommendations', () => {
   });
 
   it('只命中单一维度的卡片进入 adaptable', () => {
-    const parsed = parseIntent({ goalIds: ['orders'], sceneIds: ['member_ops'] });
+    const parsed = parseIntent({ goalIds: ['orders'], sceneIds: ['ecom_mall'] });
     const grouped = generateMockRecommendations(parsed);
 
     expect(grouped.adaptable.length).toBeGreaterThan(0);
@@ -39,7 +39,7 @@ describe('generateMockRecommendations', () => {
   });
 
   it('每组最多 3 条', () => {
-    const parsed = parseIntent({ goalIds: ['orders', 'gmv'], sceneIds: ['ecom_mkt'] });
+    const parsed = parseIntent({ goalIds: ['orders'], sceneIds: ['ecom_mkt'] });
     const grouped = generateMockRecommendations(parsed);
 
     expect(grouped.ready.length).toBeLessThanOrEqual(3);

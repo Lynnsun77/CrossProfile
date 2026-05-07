@@ -27,7 +27,7 @@ describe('buildReasonText', () => {
   });
 
   it('card.reasons 为空时使用模板兜底', () => {
-    const parsed = parseIntent({ goalIds: ['orders'], sceneIds: ['local_weekly'] });
+    const parsed = parseIntent({ goalIds: ['orders'], sceneIds: ['local_growth'] });
     const reasons = buildReasonText(parsed, baseCard);
     expect(reasons.length).toBeGreaterThan(0);
     expect(reasons[0]).toContain('提升订单量');

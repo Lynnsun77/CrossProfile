@@ -7,11 +7,12 @@
     { "id": "retain", "label": "留存", "phrase": "提升留存" }
   ],
   "scenes": [
-    { "id": "local_weekly", "label": "生服用增", "phrase": "生服用增场景" },
-    { "id": "local_cover", "label": "生服覆盖", "phrase": "生服覆盖场景" },
+    { "id": "local_growth", "label": "生服用增", "phrase": "生服用增场景" },
+    { "id": "ecom_growth", "label": "电商用增", "phrase": "电商用增场景" },
+    { "id": "local_mkt", "label": "生服营销", "phrase": "生服营销场景" },
     { "id": "ecom_mkt", "label": "电商营销", "phrase": "电商营销场景" },
-    { "id": "member_ops", "label": "会员运营", "phrase": "会员运营场景" },
-    { "id": "category_exp", "label": "品类拓展", "phrase": "品类拓展场景" }
+    { "id": "ecom_mall", "label": "电商商城", "phrase": "电商商城场景" },
+    { "id": "ecom_play", "label": "电商玩法", "phrase": "电商玩法场景" }
   ],
   "examples": [
     "提升订单量",

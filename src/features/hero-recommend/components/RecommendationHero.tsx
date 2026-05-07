@@ -17,8 +17,9 @@ function SelectableChip({
   return (
     <button
       type="button"
+      role="radio"
       onClick={onClick}
-      aria-pressed={active}
+      aria-checked={active}
       className={`rounded-full border px-3 py-1 text-sm transition-colors ${
         active ? 'border-blue-300 bg-blue-100 text-blue-700' : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200'
       }`}
@@ -42,7 +43,7 @@ function TagSection({
   return (
     <div>
       <div className="mb-2 text-xs text-slate-500">{title}</div>
-      <div className="flex flex-wrap gap-2">
+      <div role="radiogroup" aria-label={title} className="flex flex-wrap gap-2">
         {items.map((item) => (
           <SelectableChip
             key={item.id}
@@ -71,7 +72,7 @@ export function RecommendationHero() {
     <div id="recommendation-home-hero" className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 shadow-sm md:p-8">
       <div className="mb-4 md:mb-6">
         <h2 className="text-2xl font-semibold text-slate-900">描述你的需求，AI 帮你找到最佳方案</h2>
-        <p className="mt-1 text-sm text-slate-600">点击标签或输入一句话，系统会自动理解目标、匹配场景并输出推荐。</p>
+        <p className="mt-1 text-sm text-slate-600">业务目标和业务场景均为单选，系统会结合你的输入自动理解诉求并输出推荐。</p>
       </div>
 
       <div className="mb-5 flex items-center gap-2">

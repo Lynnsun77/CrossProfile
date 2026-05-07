@@ -110,7 +110,7 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
   toggleGoal: (id) => {
     const { heroDraft, textLocked } = get();
     const exists = heroDraft.goalIds.includes(id);
-    const nextGoalIds = exists ? heroDraft.goalIds.filter((item) => item !== id) : [...heroDraft.goalIds, id];
+    const nextGoalIds = exists ? [] : [id];
     const nextText = textLocked ? heroDraft.text : buildTextFromTags(nextGoalIds, heroDraft.sceneIds);
 
     set({
@@ -121,7 +121,7 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
   toggleScene: (id) => {
     const { heroDraft, textLocked } = get();
     const exists = heroDraft.sceneIds.includes(id);
-    const nextSceneIds = exists ? heroDraft.sceneIds.filter((item) => item !== id) : [...heroDraft.sceneIds, id];
+    const nextSceneIds = exists ? [] : [id];
     const nextText = textLocked ? heroDraft.text : buildTextFromTags(heroDraft.goalIds, nextSceneIds);
 
     set({

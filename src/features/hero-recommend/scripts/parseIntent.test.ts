@@ -13,11 +13,11 @@ describe('parseIntent', () => {
   });
 
   it('goal + scene 组合', () => {
-    const r = parseIntent({ goalIds: ['orders'], sceneIds: ['local_weekly'] });
+    const r = parseIntent({ goalIds: ['orders'], sceneIds: ['local_growth'] });
     expect(r.target).toBe('提升订单量');
     expect(r.scene).toBe('生服用增');
     expect(r.goalIds).toEqual(['orders']);
-    expect(r.sceneIds).toEqual(['local_weekly']);
+    expect(r.sceneIds).toEqual(['local_growth']);
   });
 
   it('仅 text 关键词识别目标与场景', () => {

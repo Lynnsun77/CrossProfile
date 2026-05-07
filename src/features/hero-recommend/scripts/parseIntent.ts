@@ -19,11 +19,12 @@ const GOAL_KEYWORDS: Array<{ id: string; keywords: string[] }> = [
 ];
 
 const SCENE_KEYWORDS: Array<{ id: string; keywords: string[] }> = [
-  { id: 'local_weekly', keywords: ['生服用增', '生服用增', '用增', '周增'] },
-  { id: 'local_cover', keywords: ['生服覆盖', '生服'] },
-  { id: 'ecom_mkt', keywords: ['电商营销', '电商'] },
-  { id: 'member_ops', keywords: ['会员运营', '会员'] },
-  { id: 'category_exp', keywords: ['品类拓展', '品类'] },
+  { id: 'local_growth', keywords: ['生服用增', '用增'] },
+  { id: 'ecom_growth', keywords: ['电商用增'] },
+  { id: 'local_mkt', keywords: ['生服营销'] },
+  { id: 'ecom_mkt', keywords: ['电商营销'] },
+  { id: 'ecom_mall', keywords: ['电商商城', '会员运营', '会员'] },
+  { id: 'ecom_play', keywords: ['电商玩法', '品类拓展', '玩法'] },
 ];
 
 const PREFERENCE_KEYWORDS: Array<{ keyword: string; label: string }> = [

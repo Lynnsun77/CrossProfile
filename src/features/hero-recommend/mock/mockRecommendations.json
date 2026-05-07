@@ -14,7 +14,7 @@
       { "label": "置信度", "value": "92%" }
     ],
     "goals": ["orders", "gmv"],
-    "scenes": ["local_weekly"],
+    "scenes": ["local_growth"],
     "preferenceTags": ["高复用", "可快速落地"],
     "reasons": [
       "命中你的核心目标：提升订单量",
@@ -25,11 +25,11 @@
   {
     "id": "rec-002",
     "group": "ready",
-    "name": "会员召回-跨域唤醒包",
+    "name": "电商商城-会员召回包",
     "objectType": "人群",
     "matchScore": 88,
     "matchLabel": "高匹配",
-    "oneLineReason": "针对沉默会员设计的跨域召回人群包，命中你的召回目标与会员运营场景。",
+    "oneLineReason": "针对沉默会员设计的召回人群包，命中你的召回目标与电商商城场景。",
     "hitTags": ["命中目标", "高场景匹配"],
     "metrics": [
       { "label": "召回率", "value": "+18%" },
@@ -37,11 +37,11 @@
       { "label": "置信度", "value": "88%" }
     ],
     "goals": ["recall", "retain"],
-    "scenes": ["member_ops"],
+    "scenes": ["ecom_mall"],
     "preferenceTags": ["高复用"],
     "reasons": [
       "命中你的核心目标：召回流失用户",
-      "会员运营场景复用率高",
+      "电商商城场景复用率高",
       "含 6 个细分子人群，覆盖度广"
     ]
   },
@@ -71,11 +71,11 @@
   {
     "id": "rec-004",
     "group": "adaptable",
-    "name": "生服覆盖-品类拓展标签集",
+    "name": "生服营销-高潜品类标签集",
     "objectType": "标签",
     "matchScore": 80,
     "matchLabel": "中匹配",
-    "oneLineReason": "覆盖生服高潜品类的标签集合，可作为订单量拉升的扩展输入。",
+    "oneLineReason": "覆盖生服营销高潜品类的标签集合，可作为订单量拉升的扩展输入。",
     "hitTags": ["命中目标", "中场景匹配"],
     "metrics": [
       { "label": "标签数", "value": "18" },
@@ -83,7 +83,7 @@
       { "label": "置信度", "value": "80%" }
     ],
     "goals": ["orders"],
-    "scenes": ["local_cover", "category_exp"],
+    "scenes": ["local_mkt", "ecom_play"],
     "preferenceTags": ["高复用"],
     "reasons": [
       "与你的目标场景部分重合",
@@ -106,7 +106,7 @@
       { "label": "置信度", "value": "78%" }
     ],
     "goals": ["acquire"],
-    "scenes": ["ecom_mkt", "local_weekly"],
+    "scenes": ["ecom_mkt", "local_growth"],
     "preferenceTags": ["可快速落地"],
     "reasons": [
       "为你的目标提供互补路径",
@@ -117,7 +117,7 @@
   {
     "id": "rec-006",
     "group": "adaptable",
-    "name": "留存提升-活跃人群扩圈",
+    "name": "电商商城-活跃人群扩圈",
     "objectType": "人群",
     "matchScore": 76,
     "matchLabel": "中匹配",
@@ -129,22 +129,22 @@
       { "label": "置信度", "value": "76%" }
     ],
     "goals": ["retain"],
-    "scenes": ["member_ops"],
+    "scenes": ["ecom_mall"],
     "preferenceTags": ["高复用"],
     "reasons": [
       "对当前目标的辅助增益明显",
-      "与会员运营场景匹配度中等",
+      "与电商商城场景匹配度中等",
       "历史复用可参考"
     ]
   },
   {
     "id": "rec-007",
     "group": "adaptable",
-    "name": "品类拓展-高潜商家召回包",
+    "name": "电商玩法-高潜商家召回包",
     "objectType": "人群",
     "matchScore": 72,
     "matchLabel": "中匹配",
-    "oneLineReason": "适合补充品类拓展类场景画像，可在现有诉求上加工后使用。",
+    "oneLineReason": "适合补充电商玩法类场景画像，可在现有诉求上加工后使用。",
     "hitTags": ["可加工使用"],
     "metrics": [
       { "label": "召回率", "value": "+6%" },
@@ -152,10 +152,10 @@
       { "label": "置信度", "value": "72%" }
     ],
     "goals": ["recall"],
-    "scenes": ["category_exp"],
+    "scenes": ["ecom_play"],
     "preferenceTags": ["高复用"],
     "reasons": [
-      "与相近品类拓展场景已有复用案例",
+      "与相近电商玩法场景已有复用案例",
       "可作为二次加工的人群基础包",
       "适合配合主策略做补充实验"
     ]
@@ -175,7 +175,7 @@
       { "label": "置信度", "value": "70%" }
     ],
     "goals": ["retain", "orders"],
-    "scenes": ["member_ops", "ecom_mkt"],
+    "scenes": ["ecom_play", "ecom_mkt"],
     "preferenceTags": ["高复用"],
     "reasons": [
       "多场景沉淀了较强复用证据",
@@ -186,7 +186,7 @@
   {
     "id": "rec-009",
     "group": "adaptable",
-    "name": "会员分层画像集",
+    "name": "电商商城-会员分层画像集",
     "objectType": "标签",
     "matchScore": 68,
     "matchLabel": "中匹配",
@@ -198,7 +198,7 @@
       { "label": "置信度", "value": "68%" }
     ],
     "goals": ["retain", "recall"],
-    "scenes": ["member_ops"],
+    "scenes": ["ecom_mall"],
     "preferenceTags": ["高复用"],
     "reasons": [
       "可用于快速补齐会员画像标签维度",

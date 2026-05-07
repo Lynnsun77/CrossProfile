@@ -22,7 +22,7 @@ function makeHeroCard(
       { label: '置信度', value: '92%' },
     ],
     goals: partial.goals ?? ['orders'],
-    scenes: partial.scenes ?? ['local_weekly'],
+    scenes: partial.scenes ?? ['local_growth'],
     preferenceTags: partial.preferenceTags ?? ['高复用'],
     reasons: partial.reasons ?? ['命中目标', '历史复用高'],
   };
