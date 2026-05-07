@@ -78,7 +78,7 @@ export interface Asset {
   uplift?: UpliftBadge;           // 业务指标提升徽章（仅正向）
   assetHealth?: AssetHealth;      // 三维度健康度
   isAIRecommended?: boolean;      // 是否为AI推荐
-  dataSourceType?: 'btm_plus' | 'external' | 'cross_domain' | 'private_end'; // 数据源类型：BTM+ / 外采 / 跨域 / 私域
+  dataSourceType?: 'btm_plus' | 'external' | 'cross_domain' | 'private_end'; // 数据源类型：BTM+ / cross / 跨域 / 私域
 }
 
 // ========== 人群 ==========

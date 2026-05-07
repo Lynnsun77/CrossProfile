@@ -22,10 +22,10 @@ const CONFIG: Record<DataSourceType, BadgeConfig> = {
     title: 'BTM+：平台自建数据源，口径来自 trade.common 自研加工',
   },
   external: {
-    label: '外采',
+    label: 'cross',
     emoji: '⚪️',
     className: 'bg-slate-50 text-slate-700 border-slate-200',
-    title: '外采：来自第三方合作伙伴或外部采购',
+    title: 'cross：来自第三方合作伙伴或外部采购',
   },
   cross_domain: {
     label: '跨域',

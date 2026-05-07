@@ -1,7 +1,17 @@
 import { create } from 'zustand';
 import mockTagsRaw from '../mock/mockTags.json';
 import { buildSummaryText, generateMockRecommendations, parseIntent } from '../scripts';
-import type { AnalysisPhase, DetailAnchor, GroupedRecommendations, HeroDeployConfig, IntentParsedResult, MockTags } from '../types';
+import type {
+  AnalysisPhase,
+  DetailAnchor,
+  GroupedRecommendations,
+  HeroDeployConfig,
+  IntentParsedResult,
+  MockTags,
+  PlatformDetailContext,
+  PlatformRecommendationTabKey,
+  RecommendationDetailSource,
+} from '../types';
 
 const mockTags = mockTagsRaw as MockTags;
 const INITIAL_DEPLOY: HeroDeployConfig = {
@@ -19,6 +29,12 @@ interface HeroDraft {
   text: string;
 }
 
+const INITIAL_PLATFORM_DETAIL_CONTEXT: PlatformDetailContext = {
+  grouped: null,
+  tabKey: null,
+  tabLabel: null,
+};
+
 export interface HeroRecommendState {
   heroDraft: HeroDraft;
   textLocked: boolean;
@@ -30,6 +46,8 @@ export interface HeroRecommendState {
   candidateIds: string[];
   detailCardId: string | null;
   detailAnchor: DetailAnchor;
+  detailSource: RecommendationDetailSource;
+  platformDetailContext: PlatformDetailContext;
   submittedDeployCardIds: string[];
   deploy: HeroDeployConfig;
   _timers: number[];
@@ -44,8 +62,12 @@ export interface HeroRecommendActions {
   retryHero: () => void;
   addCandidate: (cardId: string) => void;
   removeCandidate: (cardId: string) => void;
-  openDetail: (id: string, anchor?: DetailAnchor) => void;
+  openDetail: (id: string, anchor?: DetailAnchor, source?: RecommendationDetailSource) => void;
   closeDetail: () => void;
+  setPlatformDetailContext: (
+    grouped: GroupedRecommendations,
+    tab: { key: PlatformRecommendationTabKey; label: string },
+  ) => void;
   openDeploy: (cardId: string) => void;
   closeDeploy: () => void;
   setDeployField: <K extends keyof HeroDeployConfig>(key: K, value: HeroDeployConfig[K]) => void;
@@ -79,6 +101,8 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
   candidateIds: [],
   detailCardId: null,
   detailAnchor: 'top',
+  detailSource: 'hero',
+  platformDetailContext: INITIAL_PLATFORM_DETAIL_CONTEXT,
   submittedDeployCardIds: [],
   deploy: { ...INITIAL_DEPLOY },
   _timers: [],
@@ -200,8 +224,26 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
     set({ candidateIds: candidateIds.filter((item) => item !== cardId) });
   },
 
-  openDetail: (id, anchor = 'top') => set({ detailCardId: id, detailAnchor: anchor }),
-  closeDetail: () => set({ detailCardId: null, detailAnchor: 'top' }),
+  openDetail: (id, anchor = 'top', source = 'hero') =>
+    set({
+      detailCardId: id,
+      detailAnchor: anchor,
+      detailSource: source,
+    }),
+  closeDetail: () =>
+    set({
+      detailCardId: null,
+      detailAnchor: 'top',
+      detailSource: 'hero',
+    }),
+  setPlatformDetailContext: (grouped, tab) =>
+    set({
+      platformDetailContext: {
+        grouped,
+        tabKey: tab.key,
+        tabLabel: tab.label,
+      },
+    }),
   openDeploy: (cardId) =>
     set((state) => ({
       deploy: { ...state.deploy, open: true, cardId, status: 'draft', error: null },

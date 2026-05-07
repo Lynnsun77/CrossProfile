@@ -40,6 +40,12 @@ function resetHeroStore(grouped?: GroupedRecommendations) {
     candidateIds: [],
     detailCardId: null,
     detailAnchor: 'top',
+    detailSource: 'hero',
+    platformDetailContext: {
+      grouped: null,
+      tabKey: null,
+      tabLabel: null,
+    },
     submittedDeployCardIds: [],
     deploy: {
       open: false,

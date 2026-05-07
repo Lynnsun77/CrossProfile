@@ -1,10 +1,33 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useHeroRecommendStore } from '../store/useHeroRecommendStore';
 
+const DETAIL_SOURCE_COPY = {
+  hero: {
+    rootLabel: '智能推荐',
+    reasonTitle: '为什么推荐你',
+    summaryText: 'AI 判断你当前的核心诉求与该资产沉淀路径高度相关，且已有可复用案例与正向收益证据，适合作为当前方案的优先候选。',
+    confidenceText: '同类团队近期使用活跃，且该资产在相近目标和场景下沉淀了稳定的复用记录。',
+    lineagePrefix: '智能推荐',
+  },
+  platform: {
+    rootLabel: '平台推荐',
+    reasonTitle: '为什么值得看',
+    summaryText: '该资产来自平台沉淀供给，结合当前入口来源与近期消费信号被优先展示，适合先浏览详情并评估接入价值。',
+    confidenceText: '平台会综合资产沉淀状态、近期消费热度与复用记录，优先展示更值得关注的资产。',
+    lineagePrefix: '平台推荐',
+  },
+} as const;
+
+function resolveGroupLabel(canQuickDeploy: boolean) {
+  return canQuickDeploy ? 'ready（可直接复用）' : 'adaptable（可加工后使用）';
+}
+
 export function RecommendationDetailModal() {
   const detailCardId = useHeroRecommendStore((s) => s.detailCardId);
   const detailAnchor = useHeroRecommendStore((s) => s.detailAnchor);
+  const detailSource = useHeroRecommendStore((s) => s.detailSource);
   const grouped = useHeroRecommendStore((s) => s.grouped);
+  const platformDetailContext = useHeroRecommendStore((s) => s.platformDetailContext);
   const closeDetail = useHeroRecommendStore((s) => s.closeDetail);
   const candidateIds = useHeroRecommendStore((s) => s.candidateIds);
   const submittedDeployCardIds = useHeroRecommendStore((s) => s.submittedDeployCardIds);
@@ -13,10 +36,23 @@ export function RecommendationDetailModal() {
   const openDeploy = useHeroRecommendStore((s) => s.openDeploy);
   const openDetail = useHeroRecommendStore((s) => s.openDetail);
 
+  const activeGrouped = detailSource === 'platform' ? platformDetailContext.grouped : grouped;
+  const sourceCopy = DETAIL_SOURCE_COPY[detailSource];
+  const platformReasonTitle =
+    detailSource === 'platform'
+      ? platformDetailContext.tabKey === 'recent_hot'
+        ? '为什么近期热门'
+        : '为什么平台推荐'
+      : sourceCopy.reasonTitle;
+
   const card = useMemo(() => {
-    if (!detailCardId || !grouped) return null;
-    return grouped.ready.find((item) => item.id === detailCardId) || grouped.adaptable.find((item) => item.id === detailCardId) || null;
-  }, [detailCardId, grouped]);
+    if (!detailCardId || !activeGrouped) return null;
+    return (
+      activeGrouped.ready.find((item) => item.id === detailCardId) ||
+      activeGrouped.adaptable.find((item) => item.id === detailCardId) ||
+      null
+    );
+  }, [activeGrouped, detailCardId]);
 
   const reasonRef = useRef<HTMLDivElement | null>(null);
   const lineageRef = useRef<HTMLDivElement | null>(null);
@@ -33,7 +69,12 @@ export function RecommendationDetailModal() {
   const added = candidateIds.includes(card.id);
   const canQuickDeploy = card.group === 'ready';
   const submitted = submittedDeployCardIds.includes(card.id);
-  const path = ['智能推荐', canQuickDeploy ? 'ready（可直接复用）' : 'adaptable（可加工后使用）', card.name];
+  const path = [
+    sourceCopy.rootLabel,
+    ...(detailSource === 'platform' && platformDetailContext.tabLabel ? [platformDetailContext.tabLabel] : []),
+    resolveGroupLabel(canQuickDeploy),
+    card.name,
+  ];
   const factorCards = card.reasons.slice(0, 4).map((reason, index) => ({
     title: index === 0 ? '目标命中' : index === 1 ? '场景复用' : index === 2 ? '落地成本' : '历史效果',
     description: reason,
@@ -116,7 +157,7 @@ export function RecommendationDetailModal() {
 
         <section ref={reasonRef} className="mt-6 space-y-3">
           <div className="flex items-center justify-between">
-            <h4 className="text-sm font-semibold text-slate-900">为什么推荐你</h4>
+            <h4 className="text-sm font-semibold text-slate-900">{platformReasonTitle}</h4>
             <button
               type="button"
               onClick={() => openDetail(card.id, 'reason')}
@@ -135,14 +176,14 @@ export function RecommendationDetailModal() {
             ))}
           </div>
           <div className="rounded-xl bg-blue-50 p-3 text-sm leading-relaxed text-slate-700">
-            AI 判断你当前的核心诉求与该资产沉淀路径高度相关，且已有可复用案例与正向收益证据，适合作为当前方案的优先候选。
+            {sourceCopy.summaryText}
           </div>
         </section>
 
         <section className="mt-6 space-y-3">
           <h4 className="text-sm font-semibold text-slate-900">推荐信心来源</h4>
           <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            同类团队近期使用活跃，且该资产在相近目标和场景下沉淀了稳定的复用记录。
+            {sourceCopy.confidenceText}
           </div>
           <div className="flex flex-wrap gap-2">
             <span className="rounded-full bg-emerald-50 px-2 py-1 text-xs text-emerald-700">已被多团队复用</span>
@@ -212,7 +253,12 @@ export function RecommendationDetailModal() {
           <details open className="rounded-xl border border-slate-200 bg-slate-50 p-4">
             <summary className="cursor-pointer text-sm font-medium text-slate-700">查看血缘路径与来源说明</summary>
             <div className="mt-3 space-y-3 text-sm text-slate-700">
-              <div>来源路径：智能推荐 / {canQuickDeploy ? 'ready 资产' : 'adaptable 资产'} / {card.name}</div>
+              <div>
+                来源路径：{sourceCopy.lineagePrefix}
+                {detailSource === 'platform' && platformDetailContext.tabLabel ? ` / ${platformDetailContext.tabLabel}` : ''}
+                {' / '}
+                {canQuickDeploy ? 'ready 资产' : 'adaptable 资产'} / {card.name}
+              </div>
               <div className="flex flex-wrap gap-2">
                 {['源数据', '特征加工', '策略沉淀', '质量诊断'].map((node) => (
                   <span key={node} className="rounded-full border border-slate-200 bg-white px-2 py-0.5 text-xs text-slate-600">

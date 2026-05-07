@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRecommendStore } from '../store/useRecommendStore';
-import type { RecommendCard, RecommendGroup, RecommendSection, RecommendSlot, RecommendSectionCta } from '../types';
+import type { AssetDrawerSource, RecommendCard, RecommendGroup, RecommendSection, RecommendSlot, RecommendSectionCta } from '../types';
 import { UnmetDemandDialog } from './UnmetDemandDialog';
 
 type SortKey = 'relevance' | 'revenue' | 'audienceSize';
@@ -32,6 +32,7 @@ const FADE_SLIDE_STYLE = `@keyframes fadeSlide { from { opacity: 0; transform: t
 
 export interface RecommendGroupSectionProps {
   onGoReport?: () => void;
+  drawerSource?: AssetDrawerSource;
 }
 
 type ParagraphKind = 'ready' | 'adaptable' | 'fallback';
@@ -292,7 +293,10 @@ function resolveFallbackCta(section: RecommendSection | null): RecommendSectionC
   return slot?.cta ?? section.cta ?? null;
 }
 
-export function RecommendGroupSection({ onGoReport }: RecommendGroupSectionProps) {
+export function RecommendGroupSection({
+  onGoReport,
+  drawerSource = 'intelligent_recommend',
+}: RecommendGroupSectionProps) {
   const groups = useRecommendStore((s) => s.groups);
   const storeSections = useRecommendStore((s) => s.sections);
   const openDrawer = useRecommendStore((s) => s.openDrawer);
@@ -301,6 +305,7 @@ export function RecommendGroupSection({ onGoReport }: RecommendGroupSectionProps
   const [sortKey, setSortKey] = useState<SortKey>('relevance');
   const [animKey, setAnimKey] = useState(0);
   const [unmetOpen, setUnmetOpen] = useState(false);
+  const hasMountedRef = useRef(false);
 
   const sections = useMemo(() => {
     const hasReadyOrAdaptable = storeSections.some((s) => s.section_id === 'paragraph_1' || s.section_id === 'paragraph_2');
@@ -333,6 +338,10 @@ export function RecommendGroupSection({ onGoReport }: RecommendGroupSectionProps
   }, [readyCardsRaw, sortKey]);
 
   useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
     setAnimKey((k) => k + 1);
   }, [sortKey]);
 
@@ -405,7 +414,7 @@ export function RecommendGroupSection({ onGoReport }: RecommendGroupSectionProps
                   style={{ animation: 'fadeSlide 300ms ease-out' }}
                 >
                   {sortedReadyCards.slice(0, 2).map((card) => (
-                    <RecommendCardTile key={card.id} card={card} showAIBadge onOpen={() => openDrawer(card.id)} />
+                    <RecommendCardTile key={card.id} card={card} showAIBadge onOpen={() => openDrawer(card.id, drawerSource)} />
                   ))}
                 </div>
               )}
@@ -423,7 +432,7 @@ export function RecommendGroupSection({ onGoReport }: RecommendGroupSectionProps
                 title="组合"
                 intro={groupIntroSentence('ready')}
                 group={group}
-                onOpen={openDrawer}
+                onOpen={(cardId) => openDrawer(cardId, drawerSource)}
               />
             ))}
         </ParagraphSection>
@@ -435,7 +444,7 @@ export function RecommendGroupSection({ onGoReport }: RecommendGroupSectionProps
             <AdaptableSlotRenderer
               key={`${slot.kind}-${index}`}
               slot={slot}
-              onOpenCard={(id) => openDrawer(id)}
+              onOpenCard={(id) => openDrawer(id, drawerSource)}
             />
           ))}
         </ParagraphSection>

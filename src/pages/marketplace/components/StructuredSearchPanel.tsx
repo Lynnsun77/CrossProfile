@@ -123,7 +123,7 @@ export function StructuredSearchPanel({
             onChange={(dataSource) => onFilterChange({ ...filters, dataSource })}
             options={[
               { value: 'btm_plus', label: 'BTM+' },
-              { value: 'external', label: '外采' },
+              { value: 'external', label: 'cross' },
               { value: 'cross_domain', label: '跨域' },
               { value: 'private_end', label: '小端' },
             ]}

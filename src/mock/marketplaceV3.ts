@@ -2,6 +2,7 @@ import type { ConsumerSubRole } from '../store/globalState';
 import type { Asset } from '../types';
 import { buildAssetId } from '../lib/runtimeTokens';
 import { mockAssets } from './index';
+import type { PlatformRecommendationTabKey } from '../features/hero-recommend/types';
 
 export type MarketAgentPhase = 'idle' | 'sending' | 'thinking' | 'streaming_cards' | 'done';
 
@@ -81,6 +82,17 @@ export const MARKET_RECOMMEND_IDS: Record<ConsumerSubRole, string[]> = {
   algorithm: [buildAssetId(16), buildAssetId(17), buildAssetId(18)],
 };
 
+export const MARKETPLACE_PLATFORM_TAB_IDS: Record<PlatformRecommendationTabKey, string[]> = {
+  owned_tags: mockAssets
+    .filter((asset) => asset.type === 'tag' && asset.dataSourceType !== 'external')
+    .slice(0, 6)
+    .map((asset) => asset.id),
+  recent_hot: [...mockAssets]
+    .sort((a, b) => (b.heat ?? b.subs ?? 0) - (a.heat ?? a.subs ?? 0))
+    .slice(0, 6)
+    .map((asset) => asset.id),
+};
+
 export const MARKET_ROLE_COPY: Record<ConsumerSubRole, { title: string; subtitle: string; helper: string }> = {
   business: {
     title: '智能推荐',
@@ -101,4 +113,11 @@ export function getMarketplaceRecommendations(role: ConsumerSubRole): Array<Asse
     .filter((asset): asset is Asset => Boolean(asset))
     .slice(0, 3)
     .map((asset) => ({ ...asset, isAIRecommended: true as const }));
+}
+
+export function getMarketplacePlatformRecommendations(tabKey: PlatformRecommendationTabKey): Asset[] {
+  const ids = MARKETPLACE_PLATFORM_TAB_IDS[tabKey] ?? [];
+  return ids
+    .map((id) => mockAssets.find((asset) => asset.id === id))
+    .filter((asset): asset is Asset => Boolean(asset));
 }

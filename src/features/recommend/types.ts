@@ -99,9 +99,12 @@ export interface RecommendGroup {
   comboTitle?: string; // 组合标题，例如 "电商复购 × 跨域高消费妈妈"
 }
 
+export type AssetDrawerSource = 'intelligent_recommend' | 'platform_recommend';
+
 export interface AssetDrawerState {
   open: boolean;
   cardId: string | null;
+  source?: AssetDrawerSource;
 }
 
 export type DeployStatus = 'draft' | 'submitted';

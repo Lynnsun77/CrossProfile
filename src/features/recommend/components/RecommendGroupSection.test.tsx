@@ -202,6 +202,43 @@ describe('RecommendGroupSection', () => {
     const drawer = useRecommendStore.getState().drawer;
     expect(drawer.open).toBe(true);
     expect(drawer.cardId).toBe(clickedCardId);
+    expect(drawer.source).toBe('intelligent_recommend');
+  });
+
+  it('点击整卡区域也会打开抽屉', () => {
+    const clickedCardId = 'r_tile_1';
+    const card = makeCard({ id: clickedCardId, title: 'ready_tile_1', confidence: 0.91, healthStatus: 'healthy' });
+    useRecommendStore.setState({
+      groups: [{ id: 'ai', kind: 'ai', title: '推荐组 1 · AI 推荐', cards: [card] }],
+      sections: [
+        {
+          section_id: 'paragraph_1',
+          emoji: '🤖',
+          title: '以下画像资产高度匹配，可以直接配置使用',
+          subtitle: '基于你的诉求生成的可执行建议',
+          bg_style: 'plain',
+          slots: [{ kind: 'card_list', cards: [card], adapt: { type: 'recommend_cards', sourceKind: 'ready_ai', sourceId: 'ai' } }],
+        },
+        {
+          section_id: 'paragraph_3',
+          emoji: '🧭',
+          title: '都不符合你的诉求？',
+          subtitle: '可能是资产尚未入驻平台，或诉求过于定制',
+          bg_style: 'muted',
+          slots: [{ kind: 'fallback_cta', cta: { primary: { text: '去提需更多画像标签建设', action: 'go_report' } } }],
+        },
+      ],
+    });
+
+    render(<RecommendGroupSection />);
+
+    fireEvent.click(screen.getByText('ready_tile_1'));
+
+    expect(useRecommendStore.getState().drawer).toEqual({
+      open: true,
+      cardId: clickedCardId,
+      source: 'intelligent_recommend',
+    });
   });
 
   it('段落二 banner：文案“匹配到了与你的需求相似的画像资产”存在', () => {

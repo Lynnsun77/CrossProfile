@@ -1,4 +1,4 @@
-import type { MatchLabel, RecommendationCard as CardType } from '../types';
+import type { MatchLabel, RecommendationCard as CardType, RecommendationDetailSource } from '../types';
 import { useHeroRecommendStore } from '../store/useHeroRecommendStore';
 
 const BADGE_STYLES: Record<MatchLabel, string> = {
@@ -10,9 +10,17 @@ interface Props {
   card: CardType;
   emphasized?: boolean;
   showDecisionTone?: boolean;
+  detailSource?: RecommendationDetailSource;
+  hideMatchBadge?: boolean;
 }
 
-export function RecommendationCard({ card, emphasized, showDecisionTone = true }: Props) {
+export function RecommendationCard({
+  card,
+  emphasized,
+  showDecisionTone = true,
+  detailSource = 'hero',
+  hideMatchBadge = false,
+}: Props) {
   const candidateIds = useHeroRecommendStore((s) => s.candidateIds);
   const submittedDeployCardIds = useHeroRecommendStore((s) => s.submittedDeployCardIds);
   const addCandidate = useHeroRecommendStore((s) => s.addCandidate);
@@ -29,40 +37,58 @@ export function RecommendationCard({ card, emphasized, showDecisionTone = true }
       : 'border-indigo-200 bg-indigo-50/40';
   const levelLabel = card.group === 'ready' ? '可直接复用' : '可加工后使用';
   const conclusion = card.oneLineReason;
-  const guidance = card.group === 'ready' ? '建议优先评估并直接配置落地。' : '建议结合当前诉求补充加工方向后使用。';
+  const guidance =
+    detailSource === 'platform'
+      ? ''
+      : card.group === 'ready'
+        ? '建议优先评估并直接配置落地。'
+        : '建议结合当前诉求补充加工方向后使用。';
+  const reasonActionLabel = detailSource === 'platform' ? '为什么值得看' : '为什么推荐';
+  const compactPlatformHeader = detailSource === 'platform' && hideMatchBadge && !showDecisionTone;
 
   return (
     <article
       role="button"
       tabIndex={0}
-      onClick={() => openDetail(card.id)}
+      onClick={() => openDetail(card.id, 'top', detailSource)}
       onKeyDown={(event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          openDetail(card.id);
+          openDetail(card.id, 'top', detailSource);
         }
       }}
       className={`relative rounded-2xl border bg-white p-5 transition-all hover:-translate-y-0.5 hover:shadow-md ${
         emphasized ? 'border-blue-200 shadow-md' : 'border-slate-200 shadow-sm'
       }`}
     >
-      <div className="mb-2 flex items-center justify-between">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${BADGE_STYLES[card.matchLabel]}`}>
-            {card.matchLabel} {card.matchScore}%
-          </span>
-          {showDecisionTone ? (
-            <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${toneClass}`}>
-              {levelLabel}
-            </span>
-          ) : null}
+      {compactPlatformHeader ? (
+        <div className="mb-2 flex items-start justify-between gap-3">
+          <h4 className="text-lg font-semibold leading-snug text-slate-900">{card.name}</h4>
+          <span className="shrink-0 pt-1 text-xs text-slate-400">{card.objectType}</span>
         </div>
-        <span className="text-xs text-slate-400">{card.objectType}</span>
-      </div>
+      ) : (
+        <>
+          <div className="mb-2 flex items-center justify-between">
+            <div className="flex flex-wrap items-center gap-2">
+              {!hideMatchBadge ? (
+                <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${BADGE_STYLES[card.matchLabel]}`}>
+                  {card.matchLabel} {card.matchScore}%
+                </span>
+              ) : null}
+              {showDecisionTone ? (
+                <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${toneClass}`}>
+                  {levelLabel}
+                </span>
+              ) : null}
+            </div>
+            <span className="text-xs text-slate-400">{card.objectType}</span>
+          </div>
 
-      <h4 className="text-lg font-semibold leading-snug text-slate-900">{card.name}</h4>
+          <h4 className="text-lg font-semibold leading-snug text-slate-900">{card.name}</h4>
+        </>
+      )}
       <p className="mt-1 text-sm font-medium text-slate-800">{conclusion}</p>
-      <p className="mt-1 text-xs text-slate-500">{guidance}</p>
+      {guidance ? <p className="mt-1 text-xs text-slate-500">{guidance}</p> : null}
 
       <div className="mt-3 flex flex-wrap gap-1.5">
         {card.hitTags.map((tag) => (
@@ -86,11 +112,11 @@ export function RecommendationCard({ card, emphasized, showDecisionTone = true }
           type="button"
           onClick={(event) => {
             event.stopPropagation();
-            openDetail(card.id, 'reason');
+            openDetail(card.id, 'reason', detailSource);
           }}
           className="text-sm text-blue-600 hover:underline"
         >
-          为什么推荐
+          {reasonActionLabel}
         </button>
         {canQuickDeploy ? (
           <button
@@ -122,7 +148,7 @@ export function RecommendationCard({ card, emphasized, showDecisionTone = true }
           type="button"
           onClick={(event) => {
             event.stopPropagation();
-            openDetail(card.id);
+            openDetail(card.id, 'top', detailSource);
           }}
           className="rounded-lg border border-blue-500 px-3 py-1.5 text-sm text-blue-600 hover:bg-blue-50"
         >

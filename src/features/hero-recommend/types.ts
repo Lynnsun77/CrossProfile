@@ -1,5 +1,9 @@
 export type RecommendGroupKey = 'ready' | 'adaptable';
 
+export type RecommendationDetailSource = 'hero' | 'platform';
+
+export type PlatformRecommendationTabKey = 'owned_tags' | 'recent_hot';
+
 export type ObjectType = '策略' | '人群' | '标签';
 
 export type MatchLabel = '高匹配' | '中匹配';
@@ -49,6 +53,12 @@ export interface GroupedRecommendations {
 export type DeployStatus = 'draft' | 'submitted';
 
 export type DetailAnchor = 'top' | 'reason' | 'lineage';
+
+export interface PlatformDetailContext {
+  grouped: GroupedRecommendations | null;
+  tabKey: PlatformRecommendationTabKey | null;
+  tabLabel: string | null;
+}
 
 export interface HeroDeployConfig {
   open: boolean;

@@ -7,14 +7,13 @@ import { MarketPageShell } from '../../components/common/MarketPageShell';
 import { AssetLibrarySection } from '../../features/hero-recommend/components/AssetLibrarySection';
 import { RecommendationHomePanel } from '../../features/hero-recommend/components/RecommendationHomePanel';
 import { MARKETPLACE_OPEN_GAP_REQUEST_EVENT } from '../../features/hero-recommend/components/FallbackActionSection';
-import { AssetDrawer } from '../../features/recommend/components/AssetDrawer';
-import { DeployConfigModal } from '../../features/recommend/components/DeployConfigModal';
 import { useFavoriteStore } from '../../store/favoriteStore';
 import { useGlobalState } from '../../store/globalState';
 import type { ConsumerSubRole } from '../../store/globalState';
 import type { Asset, Role } from '../../types';
 import { SupplierWorkbench } from './components/SupplierWorkbench';
 import { FilterBar } from './components/FilterBar';
+import { PlatformRecommendSection } from './components/PlatformRecommendSection';
 import { RoleSwitch } from './components/RoleSwitch';
 import { focusRecommendationHeroInput } from '../../features/hero-recommend/components/heroInput';
 
@@ -28,7 +27,7 @@ const defaultFilters: MarketplaceFilters = {
 
 const DATA_SOURCE_LABEL_MAP: Record<DataSource, string> = {
   btm_plus: 'BTM+',
-  external: '外采',
+  external: 'cross',
   cross_domain: '跨域',
   private_end: '小端',
 };
@@ -370,6 +369,11 @@ export function MarketplacePage() {
     <MarketPageShell title="智能推荐" subtitle="" action={<RoleSwitch value={consumerSubRole} onChange={handleSubRoleChange} />}>
       <RecommendationHomePanel />
 
+      <PlatformRecommendSection
+        subRole={consumerSubRole}
+        onOpenGap={handleOpenGap}
+      />
+
       <AssetLibrarySection
         controls={
           <FilterBar
@@ -407,9 +411,6 @@ export function MarketplacePage() {
         submitting={gapSubmitting}
         submittedId={gapSubmittedId}
       />
-
-      <AssetDrawer />
-      <DeployConfigModal />
     </MarketPageShell>
   );
 }

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import type { RecommendGroupKey, RecommendationCard as CardType } from '../types';
-import { RecommendationCard } from './RecommendationCard';
+import type { RecommendGroupKey, RecommendationCard as CardType, RecommendationDetailSource } from '../types';
+import { RecommendationCard } from './RecommendationCard.tsx';
 
 const SECTION_META: Record<RecommendGroupKey, { title: string; desc: string; badge: string; accentClass: string }> = {
   ready: {
@@ -21,9 +21,10 @@ interface Props {
   group: RecommendGroupKey;
   cards: CardType[];
   emptyFallback?: ReactNode;
+  detailSource?: RecommendationDetailSource;
 }
 
-export function RecommendationSection({ group, cards, emptyFallback }: Props) {
+export function RecommendationSection({ group, cards, emptyFallback, detailSource = 'hero' }: Props) {
   const meta = SECTION_META[group];
 
   if (cards.length === 0 && !emptyFallback) {
@@ -42,7 +43,7 @@ export function RecommendationSection({ group, cards, emptyFallback }: Props) {
       {cards.length > 0 ? (
         <div className={`grid gap-4 ${group === 'ready' ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'}`}>
           {cards.map((card) => (
-            <RecommendationCard key={card.id} card={card} emphasized={group === 'ready'} />
+            <RecommendationCard key={card.id} card={card} emphasized={group === 'ready'} detailSource={detailSource} />
           ))}
         </div>
       ) : (

@@ -54,7 +54,7 @@ describe('AssetDrawer', () => {
 
     const paragraphMeta = findParagraphMetaByCardId(sections, 'card_1');
     expect(paragraphMeta).toEqual({ paragraphKind: 'ready', slotKind: 'card_list' });
-    expect(buildDrawerBreadcrumb('会员高复购人群', paragraphMeta)).toBe(
+    expect(buildDrawerBreadcrumb('intelligent_recommend', '会员高复购人群', paragraphMeta)).toBe(
       '智能推荐 › ✨ 可直接复用 › 推荐组 1 · AI 推荐 › 会员高复购人群',
     );
   });
@@ -103,6 +103,30 @@ describe('AssetDrawer', () => {
 
     expect(screen.getByText('生服增长 ·')).toBeInTheDocument();
     expect(screen.getByText('推荐算法 ·')).toBeInTheDocument();
+  });
+
+  it('平台推荐来源会切换抽屉文案', () => {
+    const card = makeCard({ id: 'card_platform', title: '平台精选人群包', confidence: 0.84 });
+    useRecommendStore.setState({
+      groups: [{ id: 'ai', kind: 'ai', title: '推荐组 1 · 平台精选', cards: [card] }],
+      sections: [
+        {
+          section_id: 'paragraph_1',
+          emoji: '🤖',
+          title: '以下画像资产高度匹配，可以直接配置使用',
+          bg_style: 'plain',
+          slots: [{ kind: 'card_list', cards: [card] }],
+        },
+      ],
+      drawer: { open: true, cardId: 'card_platform', source: 'platform_recommend' },
+    });
+
+    render(<AssetDrawer />);
+
+    expect(screen.getByText('平台推荐 › ✨ 可直接复用 › 推荐组 1 · AI 推荐 › 平台精选人群包')).toBeInTheDocument();
+    expect(screen.getByText('入选理由')).toBeInTheDocument();
+    expect(screen.getByText('资产画像白话解析')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '去使用' })).toBeInTheDocument();
   });
 
   it('展示 6 个决策模块锚点并支持点击联动', () => {

@@ -11,9 +11,9 @@ describe('DataSourceBadge', () => {
     expect(badge!.getAttribute('title')).toContain('平台自建');
   });
 
-  it('renders 外采 label and tooltip for external', () => {
+  it('renders cross label and tooltip for external', () => {
     const { container } = render(<DataSourceBadge type="external" />);
-    expect(screen.getByText('外采')).toBeInTheDocument();
+    expect(screen.getByText('cross')).toBeInTheDocument();
     const badge = container.querySelector('span[title]');
     expect(badge).not.toBeNull();
     expect(badge!.getAttribute('title')).toContain('外部');

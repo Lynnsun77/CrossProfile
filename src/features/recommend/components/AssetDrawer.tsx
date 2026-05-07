@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRecommendStore } from '../store/useRecommendStore';
 import type { RecommendCard } from '../types';
-import type { RecommendSection, RecommendSlotKind } from '../types';
+import type { AssetDrawerSource, RecommendSection, RecommendSlotKind } from '../types';
 
 const COHORT_SUBSCRIPTIONS: { team: string; scenario: string; status: 'active' | 'trial' }[] = [
   { team: '生服增长', scenario: '夺投放', status: 'active' },
@@ -51,6 +51,42 @@ const DECISION_DRAWER_SECTIONS = [
 ] as const;
 
 type DecisionDrawerSectionId = (typeof DECISION_DRAWER_SECTIONS)[number]['id'];
+
+const DRAWER_COPY: Record<
+  AssetDrawerSource,
+  {
+    rootLabel: string;
+    reasonTitle: string;
+    audienceTitle: string;
+    subscriptionTitle: string;
+    impactTitle: string;
+    confidenceLabel: string;
+    deployButtonLabel: string;
+  }
+> = {
+  intelligent_recommend: {
+    rootLabel: '智能推荐',
+    reasonTitle: '推荐理由',
+    audienceTitle: '人群构成白话解析',
+    subscriptionTitle: '同类用户订阅行为',
+    impactTitle: '订阅影响说明',
+    confidenceLabel: '相似度',
+    deployButtonLabel: '去投放',
+  },
+  platform_recommend: {
+    rootLabel: '平台推荐',
+    reasonTitle: '入选理由',
+    audienceTitle: '资产画像白话解析',
+    subscriptionTitle: '平台消费热度',
+    impactTitle: '使用建议',
+    confidenceLabel: '推荐度',
+    deployButtonLabel: '去使用',
+  },
+};
+
+function resolveDrawerSource(source?: AssetDrawerSource): AssetDrawerSource {
+  return source === 'platform_recommend' ? 'platform_recommend' : 'intelligent_recommend';
+}
 
 export function findCardById(groups: ReturnType<typeof useRecommendStore.getState>['groups'], cardId: string | null): RecommendCard | null {
   if (!cardId) return null;
@@ -104,14 +140,16 @@ export function findParagraphMetaByCardId(
 }
 
 export function buildDrawerBreadcrumb(
+  source: AssetDrawerSource | undefined,
   cardTitle: string | undefined,
   paragraphMeta: { paragraphKind: ParagraphKind; slotKind: Extract<RecommendSlotKind, 'card_list' | 'combo_group'> } | null,
 ) {
+  const rootLabel = DRAWER_COPY[resolveDrawerSource(source)].rootLabel;
   const title = cardTitle ?? '资产详情';
   if (!paragraphMeta) {
-    return `智能推荐 › ${title}`;
+    return `${rootLabel} › ${title}`;
   }
-  return `智能推荐 › ${paragraphLabel(paragraphMeta.paragraphKind)} › ${resolveGroupName(paragraphMeta.paragraphKind, paragraphMeta.slotKind)} › ${title}`;
+  return `${rootLabel} › ${paragraphLabel(paragraphMeta.paragraphKind)} › ${resolveGroupName(paragraphMeta.paragraphKind, paragraphMeta.slotKind)} › ${title}`;
 }
 
 function SectionTitle({ children }: { children: string }) {
@@ -160,7 +198,12 @@ export function AssetDrawer(_props: AssetDrawerProps) {
     () => findParagraphMetaByCardId(sections, drawer.cardId),
     [sections, drawer.cardId],
   );
-  const breadcrumb = useMemo(() => buildDrawerBreadcrumb(card?.title, paragraphMeta), [paragraphMeta, card?.title]);
+  const drawerSource = resolveDrawerSource(drawer.source);
+  const copy = DRAWER_COPY[drawerSource];
+  const breadcrumb = useMemo(
+    () => buildDrawerBreadcrumb(drawerSource, card?.title, paragraphMeta),
+    [drawerSource, paragraphMeta, card?.title],
+  );
 
   useEffect(() => {
     if (!drawer.open) return;
@@ -284,9 +327,9 @@ export function AssetDrawer(_props: AssetDrawerProps) {
         {/* 1. 推荐理由 */}
         <section id="decision-drawer-reason" ref={registerSection('reason')} className="space-y-3 scroll-mt-4">
           <div className="flex items-center justify-between">
-            <SectionTitle>推荐理由</SectionTitle>
+            <SectionTitle>{copy.reasonTitle}</SectionTitle>
             <span className="rounded-full bg-indigo-50 px-2 py-0.5 text-[11px] font-medium text-indigo-600">
-              相似度 {confidencePct}%
+              {copy.confidenceLabel} {confidencePct}%
             </span>
           </div>
           <div className="grid grid-cols-4 gap-2">
@@ -313,7 +356,7 @@ export function AssetDrawer(_props: AssetDrawerProps) {
 
         {/* 1.5 人群构成白话解析 */}
         <section id="decision-drawer-audience" ref={registerSection('audience')} className="mt-6 space-y-2 scroll-mt-4">
-          <SectionTitle>人群构成白话解析</SectionTitle>
+          <SectionTitle>{copy.audienceTitle}</SectionTitle>
           <div className="rounded-lg bg-gray-50 p-3 text-[12px] leading-relaxed text-gray-700 ring-1 ring-gray-100">
             {card.audience_narrative ??
               '该人群基于历史消费与标签匹配筛选得出，涵盖近期在相关品类有过活跃行为的用户。'}
@@ -323,7 +366,7 @@ export function AssetDrawer(_props: AssetDrawerProps) {
         {/* 2. 同类用户订阅行为 */}
         <section id="decision-drawer-subscription" ref={registerSection('subscription')} className="mt-6 space-y-2 scroll-mt-4">
           <div className="flex items-center justify-between">
-            <SectionTitle>同类用户订阅行为</SectionTitle>
+            <SectionTitle>{copy.subscriptionTitle}</SectionTitle>
             <button
               type="button"
               onClick={() => setPeerOpen((v) => !v)}
@@ -403,7 +446,7 @@ export function AssetDrawer(_props: AssetDrawerProps) {
 
         {/* 5. 订阅影响说明 */}
         <section id="decision-drawer-impact" ref={registerSection('impact')} className="mt-6 space-y-2 scroll-mt-4">
-          <SectionTitle>订阅影响说明</SectionTitle>
+          <SectionTitle>{copy.impactTitle}</SectionTitle>
           <div className="flex flex-wrap gap-4 text-[11px] text-gray-600">
             <span>预估触达 128 万</span>
             <span>预估增益 +28%</span>
@@ -432,7 +475,7 @@ export function AssetDrawer(_props: AssetDrawerProps) {
             onClick={handleGoDeploy}
             className="w-full rounded-lg bg-indigo-600 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700"
           >
-            去投放
+            {copy.deployButtonLabel}
           </button>
         )}
       </footer>

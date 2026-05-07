@@ -4,6 +4,7 @@ import type {
   ActionCard,
   AgentEvent,
   AssetDrawerState,
+  AssetDrawerSource,
   ChainNode,
   DeployConfig,
   FeatureBundle,
@@ -120,7 +121,7 @@ type RecommendState = {
   failThinking: (reason?: string) => void;
   timeoutThinking: () => void;
   setGroups: (groups: RecommendGroup[]) => void;
-  openDrawer: (cardId: string) => void;
+  openDrawer: (cardId: string, source?: AssetDrawerSource) => void;
   closeDrawer: () => void;
   openDeploy: (cardId: string) => void;
   closeDeploy: () => void;
@@ -527,7 +528,7 @@ const INITIAL_INTENT: IntentInput = {
   truncated: false,
 };
 
-const INITIAL_DRAWER: AssetDrawerState = { open: false, cardId: null };
+const INITIAL_DRAWER: AssetDrawerState = { open: false, cardId: null, source: 'intelligent_recommend' };
 
 const INITIAL_DEPLOY: DeployConfig = {
   open: false,
@@ -1150,9 +1151,9 @@ export const useRecommendStore = create<RecommendState>((set, get) => ({
         sections: deriveSectionsFromGroups(nextGroups, { input: s.input, intent: s.intent }),
       };
     }),
-  openDrawer: (cardId) =>
+  openDrawer: (cardId, source = 'intelligent_recommend') =>
     set(() => ({
-      drawer: { open: true, cardId },
+      drawer: { open: true, cardId, source },
     })),
   closeDrawer: () =>
     set(() => ({
