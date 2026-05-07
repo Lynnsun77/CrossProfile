@@ -19,7 +19,7 @@ const GOAL_KEYWORDS: Array<{ id: string; keywords: string[] }> = [
 ];
 
 const SCENE_KEYWORDS: Array<{ id: string; keywords: string[] }> = [
-  { id: 'local_weekly', keywords: ['生服用增', '生服周增', '用增', '周增'] },
+  { id: 'local_weekly', keywords: ['生服用增', '生服用增', '用增', '周增'] },
   { id: 'local_cover', keywords: ['生服覆盖', '生服'] },
   { id: 'ecom_mkt', keywords: ['电商营销', '电商'] },
   { id: 'member_ops', keywords: ['会员运营', '会员'] },
