@@ -12,6 +12,7 @@ import { StructuredSearchPanel } from './components/StructuredSearchPanel';
 import { useFavoriteStore } from '../../store/favoriteStore';
 import type { Asset, Role } from '../../types';
 import { useRecommendStore } from '../../features/recommend/store/useRecommendStore';
+import { RecommendationHomePanel } from '../../features/hero-recommend/components/RecommendationHomePanel';
 import { DocInputBar, type SceneValue } from '../../features/recommend/components/DocInputBar';
 import { RecommendChainPanel } from '../../features/recommend/components/RecommendChainPanel';
 import { RecommendGroupSection } from '../../features/recommend/components/RecommendGroupSection';
@@ -561,6 +562,8 @@ export function MarketplacePage() {
       subtitle=""
       action={<RoleSwitch value={consumerSubRole} onChange={handleSubRoleChange} />}
     >
+      <RecommendationHomePanel />
+
       <section ref={aiPanelRef} className="space-y-4">
         <div id="marketplace-ai-workbench" tabIndex={-1}>
           <DocInputBar

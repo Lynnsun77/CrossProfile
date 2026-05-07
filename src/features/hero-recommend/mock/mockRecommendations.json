@@ -1,0 +1,209 @@
+[
+  {
+    "id": "rec-001",
+    "group": "priority",
+    "name": "生服周增-高频订单提升策略",
+    "objectType": "策略",
+    "matchScore": 92,
+    "matchLabel": "高匹配",
+    "oneLineReason": "面向生服周增场景沉淀的高频订单提升策略，命中你对订单量与高复用的关键诉求。",
+    "hitTags": ["命中目标", "高场景匹配", "高复用性"],
+    "metrics": [
+      { "label": "GMV", "value": "+12%" },
+      { "label": "人群规模", "value": "128万" },
+      { "label": "置信度", "value": "92%" }
+    ],
+    "goals": ["orders", "gmv"],
+    "scenes": ["local_weekly"],
+    "preferenceTags": ["高复用", "可快速落地"],
+    "reasons": [
+      "命中你的核心目标：提升订单量",
+      "与生服周增场景历史复用度 >80%",
+      "该策略在同类门店落地周期 <3 天"
+    ]
+  },
+  {
+    "id": "rec-002",
+    "group": "priority",
+    "name": "会员召回-跨域唤醒包",
+    "objectType": "人群",
+    "matchScore": 88,
+    "matchLabel": "高匹配",
+    "oneLineReason": "针对沉默会员设计的跨域召回人群包，命中你的召回目标与会员运营场景。",
+    "hitTags": ["命中目标", "高场景匹配"],
+    "metrics": [
+      { "label": "召回率", "value": "+18%" },
+      { "label": "人群规模", "value": "96万" },
+      { "label": "置信度", "value": "88%" }
+    ],
+    "goals": ["recall", "retain"],
+    "scenes": ["member_ops"],
+    "preferenceTags": ["高复用"],
+    "reasons": [
+      "命中你的核心目标：召回流失用户",
+      "会员运营场景复用率高",
+      "含 6 个细分子人群，覆盖度广"
+    ]
+  },
+  {
+    "id": "rec-003",
+    "group": "priority",
+    "name": "电商营销-GMV 冲刺策略",
+    "objectType": "策略",
+    "matchScore": 90,
+    "matchLabel": "高匹配",
+    "oneLineReason": "电商营销场景下的 GMV 冲刺组合策略，命中 GMV 核心目标并可快速落地。",
+    "hitTags": ["命中目标", "高场景匹配", "可快速落地"],
+    "metrics": [
+      { "label": "GMV", "value": "+15%" },
+      { "label": "人群规模", "value": "210万" },
+      { "label": "置信度", "value": "90%" }
+    ],
+    "goals": ["gmv", "orders"],
+    "scenes": ["ecom_mkt"],
+    "preferenceTags": ["可快速落地"],
+    "reasons": [
+      "命中你的核心目标：拉升 GMV",
+      "在电商营销场景中已被复用 23 次",
+      "支持 A/B 对照一键发布"
+    ]
+  },
+  {
+    "id": "rec-004",
+    "group": "expandable",
+    "name": "生服覆盖-品类拓展标签集",
+    "objectType": "标签",
+    "matchScore": 80,
+    "matchLabel": "中匹配",
+    "oneLineReason": "覆盖生服高潜品类的标签集合，可作为订单量拉升的扩展输入。",
+    "hitTags": ["命中目标", "中场景匹配"],
+    "metrics": [
+      { "label": "标签数", "value": "18" },
+      { "label": "覆盖门店", "value": "4.2万" },
+      { "label": "置信度", "value": "80%" }
+    ],
+    "goals": ["orders"],
+    "scenes": ["local_cover", "category_exp"],
+    "preferenceTags": ["高复用"],
+    "reasons": [
+      "与你的目标场景部分重合",
+      "标签体系已在 2 个业务线复用",
+      "可作为主策略的输入扩展"
+    ]
+  },
+  {
+    "id": "rec-005",
+    "group": "expandable",
+    "name": "拉新转化-新客首单礼包",
+    "objectType": "策略",
+    "matchScore": 78,
+    "matchLabel": "中匹配",
+    "oneLineReason": "拉新转化心智策略，可作为订单量/GMV 目标的互补方案。",
+    "hitTags": ["部分命中目标"],
+    "metrics": [
+      { "label": "新客占比", "value": "+22%" },
+      { "label": "人群规模", "value": "65万" },
+      { "label": "置信度", "value": "78%" }
+    ],
+    "goals": ["acquire"],
+    "scenes": ["ecom_mkt", "local_weekly"],
+    "preferenceTags": ["可快速落地"],
+    "reasons": [
+      "为你的目标提供互补路径",
+      "同类场景落地周期较短",
+      "可与主策略叠加投放"
+    ]
+  },
+  {
+    "id": "rec-006",
+    "group": "expandable",
+    "name": "留存提升-活跃人群扩圈",
+    "objectType": "人群",
+    "matchScore": 76,
+    "matchLabel": "中匹配",
+    "oneLineReason": "面向活跃会员的扩圈人群，可辅助实现留存与复购。",
+    "hitTags": ["部分命中目标"],
+    "metrics": [
+      { "label": "留存", "value": "+9%" },
+      { "label": "人群规模", "value": "140万" },
+      { "label": "置信度", "value": "76%" }
+    ],
+    "goals": ["retain"],
+    "scenes": ["member_ops"],
+    "preferenceTags": ["高复用"],
+    "reasons": [
+      "对当前目标的辅助增益明显",
+      "与会员运营场景匹配度中等",
+      "历史复用可参考"
+    ]
+  },
+  {
+    "id": "rec-007",
+    "group": "similar",
+    "name": "品类拓展-高潜商家召回包",
+    "objectType": "人群",
+    "matchScore": 72,
+    "matchLabel": "相似度",
+    "oneLineReason": "与当前诉求相似度较高的备选人群，适用于品类拓展类场景。",
+    "hitTags": ["高复用性"],
+    "metrics": [
+      { "label": "召回率", "value": "+6%" },
+      { "label": "人群规模", "value": "52万" },
+      { "label": "置信度", "value": "72%" }
+    ],
+    "goals": ["recall"],
+    "scenes": ["category_exp"],
+    "preferenceTags": ["高复用"],
+    "reasons": [
+      "作为备选人群可替代评估",
+      "相似场景复用率 >60%",
+      "可用于二次下钻分析"
+    ]
+  },
+  {
+    "id": "rec-008",
+    "group": "similar",
+    "name": "相似策略-多触点互动模板",
+    "objectType": "策略",
+    "matchScore": 70,
+    "matchLabel": "相似度",
+    "oneLineReason": "同类场景中广泛复用的多触点互动模板，可作为备选策略对照。",
+    "hitTags": ["高复用性"],
+    "metrics": [
+      { "label": "CTR", "value": "+4%" },
+      { "label": "覆盖触点", "value": "5" },
+      { "label": "置信度", "value": "70%" }
+    ],
+    "goals": ["retain", "orders"],
+    "scenes": ["member_ops", "ecom_mkt"],
+    "preferenceTags": ["高复用"],
+    "reasons": [
+      "相似度较高的备选策略",
+      "多场景复用证据充足",
+      "可作为 A/B 对照组"
+    ]
+  },
+  {
+    "id": "rec-009",
+    "group": "similar",
+    "name": "相似标签-会员分层画像集",
+    "objectType": "标签",
+    "matchScore": 68,
+    "matchLabel": "相似度",
+    "oneLineReason": "会员分层画像集合，相似度较高，可作为画像诊断备选。",
+    "hitTags": ["高复用性"],
+    "metrics": [
+      { "label": "标签数", "value": "24" },
+      { "label": "覆盖用户", "value": "320万" },
+      { "label": "置信度", "value": "68%" }
+    ],
+    "goals": ["retain", "recall"],
+    "scenes": ["member_ops"],
+    "preferenceTags": ["高复用"],
+    "reasons": [
+      "作为备选标签集可用于画像复核",
+      "复用率较高",
+      "支持与主人群对照分析"
+    ]
+  }
+]

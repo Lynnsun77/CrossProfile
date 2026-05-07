@@ -1,0 +1,75 @@
+export type RecommendGroupKey = 'priority' | 'expandable' | 'similar';
+
+export type ObjectType = '策略' | '人群' | '标签';
+
+export type MatchLabel = '高匹配' | '中匹配' | '相似度';
+
+export interface TagItem {
+  id: string;
+  label: string;
+  phrase: string;
+}
+
+export interface MockTags {
+  goals: TagItem[];
+  scenes: TagItem[];
+  examples: string[];
+}
+
+export interface CardMetric {
+  label: string;
+  value: string;
+}
+
+export interface RecommendationCard {
+  id: string;
+  group: RecommendGroupKey;
+  name: string;
+  objectType: ObjectType;
+  matchScore: number;
+  matchLabel: MatchLabel;
+  oneLineReason: string;
+  hitTags: string[];
+  metrics: CardMetric[];
+  goals: string[];
+  scenes: string[];
+  preferenceTags: string[];
+  reasons: string[];
+}
+
+export interface GroupedRecommendations {
+  priority: RecommendationCard[];
+  expandable: RecommendationCard[];
+  similar: RecommendationCard[];
+}
+
+export interface ParseIntentInput {
+  text?: string;
+  goalIds?: string[];
+  sceneIds?: string[];
+}
+
+export interface IntentParsedResult {
+  target: string;
+  scene: string;
+  objectType: string;
+  preference: string;
+  goalIds: string[];
+  sceneIds: string[];
+  rawText: string;
+}
+
+export interface MockTemplates {
+  summary: string;
+  summaryTail: string;
+  emptySummary: string;
+  intentFallback: {
+    target: string;
+    scene: string;
+    objectType: string;
+    preference: string;
+  };
+  reasonTemplates: string[];
+}
+
+export type AnalysisPhase = 'idle' | 'analyzing' | 'ready' | 'empty' | 'error';

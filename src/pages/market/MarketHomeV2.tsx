@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PageHeader } from '../../components/common/PageHeader';
+import { RecommendationHomePanel } from '../../features/hero-recommend/components/RecommendationHomePanel';
 import { AIWorkbench } from '../../components/common/AIWorkbench';
 import { AssetCard } from '../../components/common/AssetCard';
 import { AgentTraceTimeline } from '../../components/common/AgentTraceTimeline';
@@ -334,6 +335,10 @@ export function MarketHomeV2() {
     <div className="min-h-screen bg-bg">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <PageHeader title="智能推荐" subtitle="跨生服电商统一交易用户画像与资产编排" moduleTone="market" />
+
+        <div className="mb-8">
+          <RecommendationHomePanel />
+        </div>
 
         <div className="mb-6 rounded-ai border border-border bg-white p-6">
           <AIWorkbench

@@ -1,0 +1,16 @@
+{
+  "summary": "已为你找到 {total} 条相关方案，其中 {priority} 条高匹配、{expandable} 条可扩展、{similar} 条相似备选。{tail}",
+  "summaryTail": "优先建议查看高复用、低改造成本的策略。",
+  "emptySummary": "暂未命中完全匹配的方案，可以尝试更换描述或点击示例需求。",
+  "intentFallback": {
+    "target": "综合增长",
+    "scene": "待进一步确认",
+    "objectType": "策略 / 人群 / 标签",
+    "preference": "优先高匹配方案"
+  },
+  "reasonTemplates": [
+    "命中你的核心目标：{target}",
+    "与当前场景相似度较高：{scene}",
+    "该{objectType}在同类场景中复用价值较高"
+  ]
+}
