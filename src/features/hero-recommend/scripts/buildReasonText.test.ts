@@ -31,7 +31,7 @@ describe('buildReasonText', () => {
     const reasons = buildReasonText(parsed, baseCard);
     expect(reasons.length).toBeGreaterThan(0);
     expect(reasons[0]).toContain('提升订单量');
-    expect(reasons[1]).toContain('生服周增');
+    expect(reasons[1]).toContain('生服用增');
   });
 
   it('最多返回 3 条', () => {

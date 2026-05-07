@@ -58,7 +58,7 @@ describe('MarketplacePage 单一推荐主链路', () => {
   it('fallback 主按钮可打开缺口需求弹窗', () => {
     renderPage();
 
-    fireEvent.change(screen.getByPlaceholderText('如：我想在生服周增场景提升订单量'), {
+    fireEvent.change(screen.getByPlaceholderText('如：我想在生服用增场景提升订单量'), {
       target: { value: '我需要海外直播冷启动素材诊断标签' },
     });
     fireEvent.click(screen.getByRole('button', { name: '生成推荐' }));

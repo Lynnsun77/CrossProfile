@@ -82,7 +82,7 @@ export function RecommendationHero() {
         rows={3}
         value={heroDraft.text}
         onChange={(event) => updateHeroText(event.target.value)}
-        placeholder="如：我想在生服周增场景提升订单量"
+        placeholder="如：我想在生服用增场景提升订单量"
         className="w-full resize-none rounded-xl border border-slate-200 bg-white p-4 text-base focus:border-blue-400 focus:outline-none"
       />
 

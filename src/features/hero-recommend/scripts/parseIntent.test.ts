@@ -15,7 +15,7 @@ describe('parseIntent', () => {
   it('goal + scene 组合', () => {
     const r = parseIntent({ goalIds: ['orders'], sceneIds: ['local_weekly'] });
     expect(r.target).toBe('提升订单量');
-    expect(r.scene).toBe('生服周增');
+    expect(r.scene).toBe('生服用增');
     expect(r.goalIds).toEqual(['orders']);
     expect(r.sceneIds).toEqual(['local_weekly']);
   });
