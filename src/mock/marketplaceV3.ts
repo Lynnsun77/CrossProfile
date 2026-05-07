@@ -83,12 +83,12 @@ export const MARKET_RECOMMEND_IDS: Record<ConsumerSubRole, string[]> = {
 
 export const MARKET_ROLE_COPY: Record<ConsumerSubRole, { title: string; subtitle: string; helper: string }> = {
   business: {
-    title: '市集',
+    title: '智能推荐',
     subtitle: '工作台驱动的消费视角入口，统一收口到 AI 推荐、折叠筛选与资产流。',
     helper: '更适合围绕 GMV、拉新、召回等业务目标快速找可直接使用的资产。',
   },
   algorithm: {
-    title: '市集',
+    title: '智能推荐',
     subtitle: '工作台驱动的算法入口，围绕特征复用、收益评估与资产健康统一收口。',
     helper: '更适合先确认场景目标，再查看特征包、模型与高复用资产。',
   },

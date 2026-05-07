@@ -29,7 +29,7 @@ describe('navigation helpers', () => {
     const producerAssetDirectory = producerItems.find((item) => item.label === '资产目录');
     const governanceGroup = producerGroups.find((group) => group.label === '质量治理');
     const producerTicketParent = governanceGroup?.items.find((item) => isNavCollapsible(item) && item.label === '工单与归因');
-    const consumerMarketplaceHome = consumerItems.find((item) => item.label === '市集首页');
+    const consumerMarketplaceHome = consumerItems.find((item) => item.label === '智能推荐');
 
     expect(producerItems.map((item) => item.label)).not.toContain('编辑特征');
     expect(producerItems.map((item) => item.label)).not.toContain('工单详情');
@@ -60,7 +60,7 @@ describe('navigation helpers', () => {
     const businessGroups = getVisibleNavGroups('consumer', { consumerSubRole: 'business' });
     const algorithmGroups = getVisibleNavGroups('consumer', { consumerSubRole: 'algorithm' });
 
-    const businessGroup = businessGroups.find((group) => group.label === '市集中心');
+    const businessGroup = businessGroups.find((group) => group.label === '智能推荐中心');
     const algorithmGroup = algorithmGroups.find((group) => group.label === '算法工坊');
     const businessLabels = flattenLeafItems('consumer', { consumerSubRole: 'business' }).map((item) => item.label);
 
@@ -70,12 +70,12 @@ describe('navigation helpers', () => {
     expect(businessLabels).not.toContain('任务监控');
     expect(algorithmGroup?.items.some((item) => isNavSectionTitle(item) && item.label === '基础能力')).toBe(true);
     expect(businessLabels).not.toContain('Pack 组装');
-    expect(flattenLeafItems('consumer', { consumerSubRole: 'algorithm' }).map((item) => item.label)).not.toContain('市集首页');
+    expect(flattenLeafItems('consumer', { consumerSubRole: 'algorithm' }).map((item) => item.label)).not.toContain('智能推荐');
   });
 
   it('supports recentDynamic entries and hiddenInNav items in the same config contract', () => {
     const businessGroups = getVisibleNavGroups('consumer', { consumerSubRole: 'business' });
-    const marketGroup = businessGroups.find((group) => group.label === '市集中心');
+    const marketGroup = businessGroups.find((group) => group.label === '智能推荐中心');
     const recentItem = marketGroup?.items.find((item) => isNavLeaf(item) && item.label === '最近访问');
     const businessLabels = flattenLeafItems('consumer', { consumerSubRole: 'business' }).map((item) => item.label);
 

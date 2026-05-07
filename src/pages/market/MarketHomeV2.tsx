@@ -333,7 +333,7 @@ export function MarketHomeV2() {
   return (
     <div className="min-h-screen bg-bg">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <PageHeader title="市集" subtitle="跨生服电商统一交易用户画像与资产编排" moduleTone="market" />
+        <PageHeader title="智能推荐" subtitle="跨生服电商统一交易用户画像与资产编排" moduleTone="market" />
 
         <div className="mb-6 rounded-ai border border-border bg-white p-6">
           <AIWorkbench

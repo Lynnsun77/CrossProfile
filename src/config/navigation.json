@@ -9,12 +9,11 @@
       ],
       "nav": [
         {
-          "group": "市集中心",
+          "group": "智能推荐中心",
           "stage": "market",
           "items": [
             { "type": "sectionTitle", "label": "推荐工作台", "subRole": ["business"] },
-            { "label": "市集首页", "path": "/marketplace", "subRole": ["business"] },
-            { "label": "智能推荐", "path": "/marketplace/recommend", "subRole": ["business"] },
+            { "label": "智能推荐", "path": "/marketplace", "subRole": ["business"] },
             { "label": "Agent 推荐结果", "path": "/marketplace/agent", "subRole": ["business"], "hiddenInNav": true, "activeParentPath": "/marketplace/recommend" },
             {
               "label": "最近访问",
