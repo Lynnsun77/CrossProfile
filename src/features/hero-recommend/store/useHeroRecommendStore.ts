@@ -1,16 +1,7 @@
 import { create } from 'zustand';
 import mockTagsRaw from '../mock/mockTags.json';
-import {
-  buildSummaryText,
-  generateMockRecommendations,
-  parseIntent,
-} from '../scripts';
-import type {
-  AnalysisPhase,
-  GroupedRecommendations,
-  IntentParsedResult,
-  MockTags,
-} from '../types';
+import { buildSummaryText, generateMockRecommendations, parseIntent } from '../scripts';
+import type { AnalysisPhase, GroupedRecommendations, IntentParsedResult, MockTags } from '../types';
 
 const mockTags = mockTagsRaw as MockTags;
 
@@ -50,22 +41,15 @@ export interface HeroRecommendActions {
 type Store = HeroRecommendState & HeroRecommendActions;
 
 function buildTextFromTags(goalIds: string[], sceneIds: string[]): string {
-  const goal = goalIds.length > 0 ? mockTags.goals.find((g) => g.id === goalIds[0]) : null;
-  const scene = sceneIds.length > 0 ? mockTags.scenes.find((s) => s.id === sceneIds[0]) : null;
+  const goal = goalIds.length > 0 ? mockTags.goals.find((item) => item.id === goalIds[0]) : null;
+  const scene = sceneIds.length > 0 ? mockTags.scenes.find((item) => item.id === sceneIds[0]) : null;
 
-  if (goal && scene) {
-    return `我想在${scene.phrase}${goal.phrase}`;
-  }
-  if (goal) {
-    return `我想${goal.phrase}`;
-  }
-  if (scene) {
-    return `我想在${scene.phrase}做相关运营`;
-  }
+  if (goal && scene) return `我想在${scene.phrase}${goal.phrase}`;
+  if (goal) return `我想${goal.phrase}`;
+  if (scene) return `我想在${scene.phrase}做相关运营`;
   return '';
 }
 
-// 初始化默认推荐（空输入兜底）
 const initialParsed = parseIntent({});
 const initialGrouped = generateMockRecommendations(initialParsed);
 
@@ -84,8 +68,9 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
   toggleGoal: (id) => {
     const { heroDraft, textLocked } = get();
     const exists = heroDraft.goalIds.includes(id);
-    const nextGoalIds = exists ? heroDraft.goalIds.filter((x) => x !== id) : [...heroDraft.goalIds, id];
+    const nextGoalIds = exists ? heroDraft.goalIds.filter((item) => item !== id) : [...heroDraft.goalIds, id];
     const nextText = textLocked ? heroDraft.text : buildTextFromTags(nextGoalIds, heroDraft.sceneIds);
+
     set({
       heroDraft: { ...heroDraft, goalIds: nextGoalIds, text: nextText },
     });
@@ -94,8 +79,9 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
   toggleScene: (id) => {
     const { heroDraft, textLocked } = get();
     const exists = heroDraft.sceneIds.includes(id);
-    const nextSceneIds = exists ? heroDraft.sceneIds.filter((x) => x !== id) : [...heroDraft.sceneIds, id];
+    const nextSceneIds = exists ? heroDraft.sceneIds.filter((item) => item !== id) : [...heroDraft.sceneIds, id];
     const nextText = textLocked ? heroDraft.text : buildTextFromTags(heroDraft.goalIds, nextSceneIds);
+
     set({
       heroDraft: { ...heroDraft, sceneIds: nextSceneIds, text: nextText },
     });
@@ -119,7 +105,7 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
 
   _clearTimers: () => {
     const { _timers } = get();
-    _timers.forEach((t) => window.clearTimeout(t));
+    _timers.forEach((timerId) => window.clearTimeout(timerId));
     set({ _timers: [] });
   },
 
@@ -137,11 +123,11 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
     const timers: number[] = [];
     const stepDelay = 450;
 
-    for (let step = 1; step <= 4; step++) {
-      const t = window.setTimeout(() => {
+    for (let step = 1; step <= 4; step += 1) {
+      const timerId = window.setTimeout(() => {
         set({ analysisStep: step as 0 | 1 | 2 | 3 | 4 });
       }, stepDelay * step);
-      timers.push(t);
+      timers.push(timerId);
     }
 
     const finalTimer = window.setTimeout(() => {
@@ -149,6 +135,7 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
         if (opts?.forceError) {
           throw new Error('forced error');
         }
+
         const parsed = parseIntent({
           text: heroDraft.text,
           goalIds: heroDraft.goalIds,
@@ -156,12 +143,14 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
         });
         const grouped = generateMockRecommendations(parsed);
         const summaryText = buildSummaryText(parsed, grouped);
-        const total = grouped.priority.length + grouped.expandable.length + grouped.similar.length;
+        const total = grouped.ready.length + grouped.adaptable.length;
+        const nextPhase: AnalysisPhase = total === 0 && !grouped.fallback.show ? 'empty' : 'ready';
+
         set({
           intentParsed: parsed,
           grouped,
           summaryText,
-          analysisPhase: total === 0 ? 'empty' : 'ready',
+          analysisPhase: nextPhase,
         });
       } catch {
         set({ analysisPhase: 'error' });
@@ -176,11 +165,10 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
     const { _clearTimers, submitHeroIntent } = get();
     _clearTimers();
     set({ analysisPhase: 'idle', analysisStep: 0 });
-    // 稍后重新提交
-    const t = window.setTimeout(() => {
+    const timerId = window.setTimeout(() => {
       submitHeroIntent();
     }, 50);
-    set({ _timers: [t] });
+    set({ _timers: [timerId] });
   },
 
   addCandidate: (cardId) => {
@@ -191,7 +179,7 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
 
   removeCandidate: (cardId) => {
     const { candidateIds } = get();
-    set({ candidateIds: candidateIds.filter((x) => x !== cardId) });
+    set({ candidateIds: candidateIds.filter((item) => item !== cardId) });
   },
 
   openDetail: (id) => set({ detailCardId: id }),

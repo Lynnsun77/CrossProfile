@@ -1,12 +1,12 @@
 {
-  "summary": "已为你找到 {total} 条相关方案，其中 {priority} 条高匹配、{expandable} 条可扩展、{similar} 条相似备选。{tail}",
-  "summaryTail": "优先建议查看高复用、低改造成本的策略。",
-  "emptySummary": "暂未命中完全匹配的方案，可以尝试更换描述或点击示例需求。",
+  "summary": "已为你筛出 {total} 条可用资产，其中 {ready} 条可直接复用、{adaptable} 条可加工后使用。{tail}",
+  "summaryTail": "建议优先从复用成本更低的资产开始评估。",
+  "emptySummary": "暂未找到可直接复用或可加工后使用的资产，可以重新描述需求或发起更多画像标签建设。",
   "intentFallback": {
     "target": "综合增长",
     "scene": "待进一步确认",
     "objectType": "策略 / 人群 / 标签",
-    "preference": "优先高匹配方案"
+    "preference": "优先可直接复用方案"
   },
   "reasonTemplates": [
     "命中你的核心目标：{target}",

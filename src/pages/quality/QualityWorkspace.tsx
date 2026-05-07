@@ -342,7 +342,7 @@ function formatSignedScore(value: number, digits = 1) {
 }
 
 function channelLabel(channel: ConsumptionRecord['channel']) {
-  if (channel === 'marketplace') return '市集';
+  if (channel === 'marketplace') return '智能推荐';
   if (channel === 'api') return 'API';
   if (channel === 'batch') return '批量';
   if (channel === 'foundry') return '工坊';

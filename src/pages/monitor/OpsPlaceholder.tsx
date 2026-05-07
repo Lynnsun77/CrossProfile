@@ -25,7 +25,7 @@ export function OpsPlaceholder() {
               to="/marketplace"
               className="rounded-lg bg-module-market px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
             >
-              去市集
+              去智能推荐
             </Link>
             <Link
               to="/factory"

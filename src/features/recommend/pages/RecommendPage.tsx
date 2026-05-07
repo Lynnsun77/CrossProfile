@@ -13,7 +13,7 @@ import { DEFAULT_DOC_URL } from '../scripts/lark-merchant-insight.script';
 export function RecommendPage() {
   const [sp] = useSearchParams();
   const docFromQuery = sp.get('doc') || DEFAULT_DOC_URL;
-  const breadcrumb = useMemo(() => [{ label: '市集', to: '/marketplace' }, { label: '智能推荐' }], []);
+  const breadcrumb = useMemo(() => [{ label: '智能推荐', to: '/marketplace' }, { label: '智能推荐' }], []);
 
   useBreadcrumb(breadcrumb);
 
@@ -24,7 +24,7 @@ export function RecommendPage() {
   const target = `/marketplace?view=consumer&doc=${encodeURIComponent(docFromQuery)}`;
 
   return (
-    <MarketPageShell title="智能推荐" subtitle="智能推荐已整合到市集首页工作台，正在为你打开…">
+    <MarketPageShell title="智能推荐" subtitle="智能推荐已整合到首页工作台，正在为你打开…">
       <Navigate to={target} replace />
     </MarketPageShell>
   );

@@ -171,7 +171,7 @@ export function CrowdDiagnosisPage() {
   const { detail, actionTargetId, resolvedId, usedFallback, hint } = crowdContext;
 
   useBreadcrumb([
-    { label: '市集', to: '/marketplace' },
+    { label: '智能推荐', to: '/marketplace' },
     { label: '人群诊断' },
   ]);
 

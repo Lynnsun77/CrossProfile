@@ -47,7 +47,7 @@ export function SupplierWorkbench() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const breadcrumb = useMemo(() => [{ label: '市集', to: '/marketplace' }, { label: '供给方工作台' }], []);
+  const breadcrumb = useMemo(() => [{ label: '智能推荐', to: '/marketplace' }, { label: '供给方工作台' }], []);
   useBreadcrumb(breadcrumb);
 
   useEffect(() => {

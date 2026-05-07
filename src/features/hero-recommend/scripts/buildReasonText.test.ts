@@ -5,7 +5,7 @@ import type { RecommendationCard } from '../types';
 
 const baseCard: RecommendationCard = {
   id: 'x',
-  group: 'priority',
+  group: 'ready',
   name: 'x',
   objectType: '策略',
   matchScore: 80,

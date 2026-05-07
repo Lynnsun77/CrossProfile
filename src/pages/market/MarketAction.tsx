@@ -11,7 +11,7 @@ export function MarketAction() {
   const [showSuccess, setShowSuccess] = useState(false);
 
   useBreadcrumb([
-    { label: '市集', to: '/marketplace' },
+    { label: '智能推荐', to: '/marketplace' },
     { label: '运营配置' },
   ]);
 

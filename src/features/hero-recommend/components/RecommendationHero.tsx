@@ -16,43 +16,37 @@ export function RecommendationHero() {
   const loading = analysisPhase === 'analyzing';
 
   return (
-    <div className="rounded-2xl bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 md:p-8 border border-blue-100 shadow-sm">
+    <div id="recommendation-home-hero" className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 shadow-sm md:p-8">
       <div className="mb-4 md:mb-6">
         <h2 className="text-2xl font-semibold text-slate-900">描述你的需求，AI 帮你找到最佳方案</h2>
-        <p className="mt-1 text-sm text-slate-600">
-          点击标签或输入一句话，系统会自动理解目标、匹配场景并输出推荐。
-        </p>
+        <p className="mt-1 text-sm text-slate-600">点击标签或输入一句话，系统会自动理解目标、匹配场景并输出推荐。</p>
       </div>
 
-      {/* 模式表达区 */}
       <div className="mb-5 flex items-center gap-2">
-        <span className="inline-flex items-center rounded-full bg-blue-600 text-white px-3 py-1 text-xs font-medium">
-          智能推荐
-        </span>
-        <span className="inline-flex items-center rounded-full bg-slate-100 text-slate-400 cursor-not-allowed px-3 py-1 text-xs font-medium">
+        <span className="inline-flex items-center rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white">智能推荐</span>
+        <span className="inline-flex cursor-not-allowed items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-400">
           规则筛选（暂未开放）
         </span>
       </div>
 
-      {/* 标签区 */}
       <div className="mb-4 space-y-3">
         <div>
-          <div className="text-xs text-slate-500 mb-2">业务目标</div>
+          <div className="mb-2 text-xs text-slate-500">业务目标</div>
           <div className="flex flex-wrap gap-2">
-            {mockTags.goals.map((g) => {
-              const active = heroDraft.goalIds.includes(g.id);
+            {mockTags.goals.map((goal) => {
+              const active = heroDraft.goalIds.includes(goal.id);
               return (
                 <button
-                  key={g.id}
+                  key={goal.id}
                   type="button"
-                  onClick={() => toggleGoal(g.id)}
+                  onClick={() => toggleGoal(goal.id)}
                   className={`rounded-full border px-3 py-1 text-sm transition-colors ${
                     active
-                      ? 'bg-blue-100 text-blue-700 border-blue-300'
-                      : 'bg-white text-slate-600 border-slate-200 hover:border-blue-200'
+                      ? 'border-blue-300 bg-blue-100 text-blue-700'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200'
                   }`}
                 >
-                  {g.label}
+                  {goal.label}
                 </button>
               );
             })}
@@ -60,22 +54,22 @@ export function RecommendationHero() {
         </div>
 
         <div>
-          <div className="text-xs text-slate-500 mb-2">业务场景</div>
+          <div className="mb-2 text-xs text-slate-500">业务场景</div>
           <div className="flex flex-wrap gap-2">
-            {mockTags.scenes.map((s) => {
-              const active = heroDraft.sceneIds.includes(s.id);
+            {mockTags.scenes.map((scene) => {
+              const active = heroDraft.sceneIds.includes(scene.id);
               return (
                 <button
-                  key={s.id}
+                  key={scene.id}
                   type="button"
-                  onClick={() => toggleScene(s.id)}
+                  onClick={() => toggleScene(scene.id)}
                   className={`rounded-full border px-3 py-1 text-sm transition-colors ${
                     active
-                      ? 'bg-blue-100 text-blue-700 border-blue-300'
-                      : 'bg-white text-slate-600 border-slate-200 hover:border-blue-200'
+                      ? 'border-blue-300 bg-blue-100 text-blue-700'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200'
                   }`}
                 >
-                  {s.label}
+                  {scene.label}
                 </button>
               );
             })}
@@ -83,38 +77,36 @@ export function RecommendationHero() {
         </div>
       </div>
 
-      {/* 输入框 */}
       <textarea
+        id="recommendation-hero-input"
         rows={3}
         value={heroDraft.text}
-        onChange={(e) => updateHeroText(e.target.value)}
+        onChange={(event) => updateHeroText(event.target.value)}
         placeholder="如：我想在生服周增场景提升订单量"
-        className="w-full rounded-xl border border-slate-200 focus:border-blue-400 focus:outline-none bg-white p-4 text-base resize-none"
+        className="w-full resize-none rounded-xl border border-slate-200 bg-white p-4 text-base focus:border-blue-400 focus:outline-none"
       />
 
-      {/* 示例 chips */}
-      <div className="mt-3 flex flex-wrap gap-2 items-center">
+      <div className="mt-3 flex flex-wrap items-center gap-2">
         <span className="text-xs text-slate-400">示例：</span>
-        {mockTags.examples.map((ex) => (
+        {mockTags.examples.map((example) => (
           <button
-            key={ex}
+            key={example}
             type="button"
-            onClick={() => applyExampleChip(ex)}
+            onClick={() => applyExampleChip(example)}
             className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-600 hover:border-blue-200 hover:text-blue-600"
           >
-            {ex}
+            {example}
           </button>
         ))}
       </div>
 
-      {/* 主按钮 */}
       <div className="mt-5">
         <button
           type="button"
           disabled={loading}
           onClick={() => submitHeroIntent()}
-          className={`bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl text-base font-medium transition-colors ${
-            loading ? 'opacity-70 cursor-not-allowed' : ''
+          className={`rounded-xl bg-blue-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-blue-700 ${
+            loading ? 'cursor-not-allowed opacity-70' : ''
           }`}
         >
           {loading ? '分析中...' : '生成推荐'}

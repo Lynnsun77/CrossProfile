@@ -23,7 +23,7 @@ export function ArchDrawer({ isOpen, onClose }: ArchDrawerProps) {
         </div>
         <div className="grid grid-cols-3 gap-8">
           <div className="border-2 border-market rounded-lg p-6">
-            <h3 className="text-lg font-bold text-market mb-4">市集层</h3>
+            <h3 className="text-lg font-bold text-market mb-4">智能推荐层</h3>
             <ul className="space-y-2 text-gray-600">
               <li>• 资产库</li>
               <li>• 人群分析</li>

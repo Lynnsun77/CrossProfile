@@ -108,7 +108,7 @@ function buildFavorites(): MyFavoriteItem[] {
 
   return sources.map((asset, index) => ({
     ...asset,
-    reason: index % 2 === 0 ? '最近在市集中多次对比并加入收藏' : '常用于复购和召回场景的常驻资产',
+    reason: index % 2 === 0 ? '最近在智能推荐页中多次对比并加入收藏' : '常用于复购和召回场景的常驻资产',
     savedAt: withDate(25 - index, 10 + (index % 4)),
   }));
 }

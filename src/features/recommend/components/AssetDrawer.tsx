@@ -113,9 +113,9 @@ export function AssetDrawer(_props: AssetDrawerProps) {
     // Prefer store `sections` to reverse lookup which paragraph/slot the card belongs to.
     if (paragraphMeta) {
       const groupName = resolveGroupName(paragraphMeta.paragraphKind, paragraphMeta.slotKind);
-      return `市集 › ${paragraphLabel(paragraphMeta.paragraphKind)} › ${groupName} › ${title}`;
+      return `智能推荐 › ${paragraphLabel(paragraphMeta.paragraphKind)} › ${groupName} › ${title}`;
     }
-    return `市集 › ${title}`;
+    return `智能推荐 › ${title}`;
   }, [paragraphMeta, card?.title]);
 
   if (!drawer.open) return null;

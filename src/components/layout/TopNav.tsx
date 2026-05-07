@@ -39,7 +39,7 @@ export function TopNav() {
                 {isActive('marketplace') && (
                   <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-brand rounded-t-full" />
                 )}
-                市集
+                智能推荐
               </Link>
               <Link
                 to="/factory"

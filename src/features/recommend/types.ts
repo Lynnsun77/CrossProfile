@@ -243,7 +243,7 @@ export const DEFAULT_RECOMMEND_SECTION_3_COPY: Pick<
 > = {
   emoji: '🧭',
   title: '都不符合你的诉求？',
-  subtitle: '可能是资产尚未入驻市集，或诉求过于定制',
+  subtitle: '可能是资产尚未入驻平台，或诉求过于定制',
   bg_style: 'muted',
 };
 

@@ -1,8 +1,8 @@
-export type RecommendGroupKey = 'priority' | 'expandable' | 'similar';
+export type RecommendGroupKey = 'ready' | 'adaptable';
 
 export type ObjectType = '策略' | '人群' | '标签';
 
-export type MatchLabel = '高匹配' | '中匹配' | '相似度';
+export type MatchLabel = '高匹配' | '中匹配';
 
 export interface TagItem {
   id: string;
@@ -38,9 +38,12 @@ export interface RecommendationCard {
 }
 
 export interface GroupedRecommendations {
-  priority: RecommendationCard[];
-  expandable: RecommendationCard[];
-  similar: RecommendationCard[];
+  ready: RecommendationCard[];
+  adaptable: RecommendationCard[];
+  fallback: {
+    show: boolean;
+    reason?: string;
+  };
 }
 
 export interface ParseIntentInput {

@@ -44,14 +44,14 @@ export function RoleSwitch({ value, onChange, disabled = false }: RoleSwitchProp
       </div>
 
       <label className="md:hidden">
-        <span className="sr-only">切换市集角色</span>
+        <span className="sr-only">切换智能推荐角色</span>
         <select
           value={value}
           disabled={disabled}
           onChange={(e) => onChange(e.target.value as ConsumerSubRole)}
           className="h-10 rounded-xl border bg-white px-3 text-sm"
           style={{ borderColor: 'var(--color-border)' }}
-          aria-label="切换市集角色"
+          aria-label="切换智能推荐角色"
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>

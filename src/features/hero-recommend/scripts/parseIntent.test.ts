@@ -7,7 +7,7 @@ describe('parseIntent', () => {
     expect(r.target).toBe('综合增长');
     expect(r.scene).toBe('待进一步确认');
     expect(r.objectType).toBe('策略 / 人群 / 标签');
-    expect(r.preference).toBe('优先高匹配方案');
+    expect(r.preference).toBe('优先可直接复用方案');
     expect(r.goalIds).toEqual([]);
     expect(r.sceneIds).toEqual([]);
   });

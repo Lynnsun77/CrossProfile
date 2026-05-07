@@ -88,7 +88,7 @@ export function AssetDiagnosticDetailPage() {
 
   const breadcrumb = useMemo(() => {
     const label = data?.identity.displayName || routeAssetId || '诊断详情';
-    return [{ label: '市集', to: '/marketplace' }, { label }];
+    return [{ label: '智能推荐', to: '/marketplace' }, { label }];
   }, [data?.identity.displayName, routeAssetId]);
   useBreadcrumb(breadcrumb);
 
@@ -203,7 +203,7 @@ export function AssetDiagnosticDetailPage() {
                 to="/marketplace"
                 className="rounded-lg border border-border bg-white px-4 py-2 text-sm font-medium text-text-2 transition hover:border-module-market/30 hover:text-module-market"
               >
-                返回市集
+                返回智能推荐
               </Link>
               {data?.asset?.id ? (
                 <Link

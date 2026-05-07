@@ -110,7 +110,7 @@ export function MarketWorkbench() {
   const entryMeta = useMemo(() => getEntryMeta(location.pathname), [location.pathname]);
 
   useBreadcrumb([
-    { label: '市集', to: '/marketplace' },
+    { label: '智能推荐', to: '/marketplace' },
     { label: '下游消费方打通页' },
   ]);
 
@@ -643,7 +643,7 @@ export function MarketWorkbench() {
                 to="/marketplace"
                 className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-text-2 transition hover:bg-bg"
               >
-                返回市集
+                返回智能推荐
               </Link>
               <button
                 type="button"

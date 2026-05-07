@@ -1,8 +1,8 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHeroRecommendStore } from '../../features/hero-recommend/store/useHeroRecommendStore';
 import { MarketplacePage } from './MarketplacePage';
-import { useRecommendStore } from '../../features/recommend/store/useRecommendStore';
 import { useGlobalState } from '../../store/globalState';
 
 function renderPage(initialEntry = '/marketplace?view=consumer') {
@@ -15,46 +15,59 @@ function renderPage(initialEntry = '/marketplace?view=consumer') {
   );
 }
 
-describe('MarketplacePage recommend query', () => {
+describe('MarketplacePage 单一推荐主链路', () => {
   beforeEach(() => {
-    useRecommendStore.getState().reset();
+    vi.useFakeTimers();
     act(() => {
       useGlobalState.setState({
         currentView: 'consumer',
         consumerSubRole: 'business',
       });
+      useHeroRecommendStore.setState({
+        heroDraft: { goalIds: [], sceneIds: [], text: '' },
+        textLocked: false,
+        analysisPhase: 'idle',
+        analysisStep: 0,
+        intentParsed: null,
+        grouped: useHeroRecommendStore.getInitialState().grouped,
+        summaryText: '',
+        candidateIds: [],
+        detailCardId: null,
+        _timers: [],
+      });
     });
   });
 
   afterEach(() => {
-    useRecommendStore.getState().reset();
+    act(() => {
+      useHeroRecommendStore.getState()._clearTimers();
+    });
+    vi.useRealTimers();
   });
 
-  it('普通文本点击查询后提交 manual intent', async () => {
+  it('页面仅保留 Hero 主入口并展示更多可浏览资产区', () => {
     renderPage();
 
-    fireEvent.change(screen.getByLabelText('需求输入'), {
-      target: { value: '帮我找提升 GMV 的会员资产' },
-    });
-    fireEvent.click(screen.getByRole('button', { name: '查询' }));
-
-    await waitFor(() => {
-      expect(useRecommendStore.getState().intent.source).toBe('manual');
-      expect(useRecommendStore.getState().thinkingTask).not.toBeNull();
-    });
+    expect(screen.getByText('描述你的需求，AI 帮你找到最佳方案')).toBeInTheDocument();
+    expect(screen.getByText('更多可浏览资产')).toBeInTheDocument();
+    expect(screen.queryByLabelText('需求输入')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '查询' })).not.toBeInTheDocument();
+    expect(screen.queryByText('高级筛选')).not.toBeInTheDocument();
   });
 
-  it('飞书链接点击查询后提交 feishu_doc intent', async () => {
+  it('fallback 主按钮可打开缺口需求弹窗', () => {
     renderPage();
 
-    fireEvent.change(screen.getByLabelText('需求输入'), {
-      target: { value: 'https://bytedance.larkoffice.com/wiki/abc123' },
+    fireEvent.change(screen.getByPlaceholderText('如：我想在生服周增场景提升订单量'), {
+      target: { value: '我需要海外直播冷启动素材诊断标签' },
     });
-    fireEvent.click(screen.getByRole('button', { name: '查询' }));
+    fireEvent.click(screen.getByRole('button', { name: '生成推荐' }));
 
-    await waitFor(() => {
-      expect(useRecommendStore.getState().intent.source).toBe('feishu_doc');
-      expect(useRecommendStore.getState().thinkingTask).not.toBeNull();
+    act(() => {
+      vi.runAllTimers();
     });
+
+    fireEvent.click(screen.getByRole('button', { name: '去提需更多画像标签建设' }));
+    expect(screen.getByText('缺口需求')).toBeInTheDocument();
   });
 });

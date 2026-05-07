@@ -74,7 +74,7 @@ export function MarketFeatureP2() {
   const foundryPath = `/factory/pack?base=${detail.id}`;
 
   useBreadcrumb([
-    { label: '市集', to: '/marketplace' },
+    { label: '智能推荐', to: '/marketplace' },
     { label: '人群诊断', to: `/marketplace/crowd/${detail.id}` },
     { label: '查看资产' },
   ]);
@@ -84,7 +84,7 @@ export function MarketFeatureP2() {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <PageHeader
           title="查看资产样本"
-          subtitle="市集入口强调查看资产与样本理解，承接双体系分布下钻后的只读预览。"
+          subtitle="智能推荐入口强调查看资产与样本理解，承接双体系分布下钻后的只读预览。"
           moduleTone="market"
           extra={
             <div className="flex flex-wrap items-center gap-2">
