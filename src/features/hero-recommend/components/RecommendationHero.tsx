@@ -1,8 +1,60 @@
 import mockTagsRaw from '../mock/mockTags.json';
 import type { MockTags } from '../types';
 import { useHeroRecommendStore } from '../store/useHeroRecommendStore';
+import { HERO_INPUT_ID } from './heroInput';
 
 const mockTags = mockTagsRaw as MockTags;
+
+function SelectableChip({
+  active,
+  label,
+  onClick,
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={`rounded-full border px-3 py-1 text-sm transition-colors ${
+        active ? 'border-blue-300 bg-blue-100 text-blue-700' : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200'
+      }`}
+    >
+      {label}
+    </button>
+  );
+}
+
+function TagSection({
+  title,
+  items,
+  selectedIds,
+  onToggle,
+}: {
+  title: string;
+  items: MockTags['goals'] | MockTags['scenes'];
+  selectedIds: string[];
+  onToggle: (id: string) => void;
+}) {
+  return (
+    <div>
+      <div className="mb-2 text-xs text-slate-500">{title}</div>
+      <div className="flex flex-wrap gap-2">
+        {items.map((item) => (
+          <SelectableChip
+            key={item.id}
+            active={selectedIds.includes(item.id)}
+            label={item.label}
+            onClick={() => onToggle(item.id)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function RecommendationHero() {
   const heroDraft = useHeroRecommendStore((s) => s.heroDraft);
@@ -30,55 +82,16 @@ export function RecommendationHero() {
       </div>
 
       <div className="mb-4 space-y-3">
-        <div>
-          <div className="mb-2 text-xs text-slate-500">业务目标</div>
-          <div className="flex flex-wrap gap-2">
-            {mockTags.goals.map((goal) => {
-              const active = heroDraft.goalIds.includes(goal.id);
-              return (
-                <button
-                  key={goal.id}
-                  type="button"
-                  onClick={() => toggleGoal(goal.id)}
-                  className={`rounded-full border px-3 py-1 text-sm transition-colors ${
-                    active
-                      ? 'border-blue-300 bg-blue-100 text-blue-700'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200'
-                  }`}
-                >
-                  {goal.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div>
-          <div className="mb-2 text-xs text-slate-500">业务场景</div>
-          <div className="flex flex-wrap gap-2">
-            {mockTags.scenes.map((scene) => {
-              const active = heroDraft.sceneIds.includes(scene.id);
-              return (
-                <button
-                  key={scene.id}
-                  type="button"
-                  onClick={() => toggleScene(scene.id)}
-                  className={`rounded-full border px-3 py-1 text-sm transition-colors ${
-                    active
-                      ? 'border-blue-300 bg-blue-100 text-blue-700'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200'
-                  }`}
-                >
-                  {scene.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        <TagSection title="业务目标" items={mockTags.goals} selectedIds={heroDraft.goalIds} onToggle={toggleGoal} />
+        <TagSection title="业务场景" items={mockTags.scenes} selectedIds={heroDraft.sceneIds} onToggle={toggleScene} />
       </div>
 
+      <label htmlFor={HERO_INPUT_ID} className="sr-only">
+        需求输入
+      </label>
       <textarea
-        id="recommendation-hero-input"
+        id={HERO_INPUT_ID}
+        aria-label="需求输入"
         rows={3}
         value={heroDraft.text}
         onChange={(event) => updateHeroText(event.target.value)}

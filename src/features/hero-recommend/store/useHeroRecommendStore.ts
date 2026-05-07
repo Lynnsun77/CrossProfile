@@ -1,9 +1,17 @@
 import { create } from 'zustand';
 import mockTagsRaw from '../mock/mockTags.json';
 import { buildSummaryText, generateMockRecommendations, parseIntent } from '../scripts';
-import type { AnalysisPhase, GroupedRecommendations, IntentParsedResult, MockTags } from '../types';
+import type { AnalysisPhase, DetailAnchor, GroupedRecommendations, HeroDeployConfig, IntentParsedResult, MockTags } from '../types';
 
 const mockTags = mockTagsRaw as MockTags;
+const INITIAL_DEPLOY: HeroDeployConfig = {
+  open: false,
+  cardId: null,
+  downstream: null,
+  libraUrl: '',
+  status: 'draft',
+  error: null,
+};
 
 interface HeroDraft {
   goalIds: string[];
@@ -21,6 +29,9 @@ export interface HeroRecommendState {
   summaryText: string;
   candidateIds: string[];
   detailCardId: string | null;
+  detailAnchor: DetailAnchor;
+  submittedDeployCardIds: string[];
+  deploy: HeroDeployConfig;
   _timers: number[];
 }
 
@@ -33,8 +44,12 @@ export interface HeroRecommendActions {
   retryHero: () => void;
   addCandidate: (cardId: string) => void;
   removeCandidate: (cardId: string) => void;
-  openDetail: (id: string) => void;
+  openDetail: (id: string, anchor?: DetailAnchor) => void;
   closeDetail: () => void;
+  openDeploy: (cardId: string) => void;
+  closeDeploy: () => void;
+  setDeployField: <K extends keyof HeroDeployConfig>(key: K, value: HeroDeployConfig[K]) => void;
+  submitDeploy: () => void;
   _clearTimers: () => void;
 }
 
@@ -63,6 +78,9 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
   summaryText: '',
   candidateIds: [],
   detailCardId: null,
+  detailAnchor: 'top',
+  submittedDeployCardIds: [],
+  deploy: { ...INITIAL_DEPLOY },
   _timers: [],
 
   toggleGoal: (id) => {
@@ -182,6 +200,29 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
     set({ candidateIds: candidateIds.filter((item) => item !== cardId) });
   },
 
-  openDetail: (id) => set({ detailCardId: id }),
-  closeDetail: () => set({ detailCardId: null }),
+  openDetail: (id, anchor = 'top') => set({ detailCardId: id, detailAnchor: anchor }),
+  closeDetail: () => set({ detailCardId: null, detailAnchor: 'top' }),
+  openDeploy: (cardId) =>
+    set((state) => ({
+      deploy: { ...state.deploy, open: true, cardId, status: 'draft', error: null },
+    })),
+  closeDeploy: () =>
+    set(() => ({
+      deploy: { ...INITIAL_DEPLOY },
+    })),
+  setDeployField: (key, value) =>
+    set((state) => ({
+      deploy: { ...state.deploy, [key]: value },
+    })),
+  submitDeploy: () =>
+    set((state) => {
+      if (!state.deploy.open || !state.deploy.cardId) return {};
+      const nextSubmitted = state.submittedDeployCardIds.includes(state.deploy.cardId)
+        ? state.submittedDeployCardIds
+        : [...state.submittedDeployCardIds, state.deploy.cardId];
+      return {
+        deploy: { ...state.deploy, status: 'submitted', error: null },
+        submittedDeployCardIds: nextSubmitted,
+      };
+    }),
 }));

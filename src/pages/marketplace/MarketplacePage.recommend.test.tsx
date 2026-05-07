@@ -5,14 +5,20 @@ import { useHeroRecommendStore } from '../../features/hero-recommend/store/useHe
 import { MarketplacePage } from './MarketplacePage';
 import { useGlobalState } from '../../store/globalState';
 
-function renderPage(initialEntry = '/marketplace?view=consumer') {
-  return render(
+async function renderPage(initialEntry = '/marketplace?view=consumer') {
+  const rendered = render(
     <MemoryRouter initialEntries={[initialEntry]}>
       <Routes>
         <Route path="/marketplace" element={<MarketplacePage />} />
       </Routes>
     </MemoryRouter>,
   );
+
+  await act(async () => {
+    vi.runOnlyPendingTimers();
+  });
+
+  return rendered;
 }
 
 describe('MarketplacePage 单一推荐主链路', () => {
@@ -33,6 +39,16 @@ describe('MarketplacePage 单一推荐主链路', () => {
         summaryText: '',
         candidateIds: [],
         detailCardId: null,
+        detailAnchor: 'top',
+        submittedDeployCardIds: [],
+        deploy: {
+          open: false,
+          cardId: null,
+          downstream: null,
+          libraUrl: '',
+          status: 'draft',
+          error: null,
+        },
         _timers: [],
       });
     });
@@ -45,18 +61,18 @@ describe('MarketplacePage 单一推荐主链路', () => {
     vi.useRealTimers();
   });
 
-  it('页面仅保留 Hero 主入口并展示更多可浏览资产区', () => {
-    renderPage();
+  it('页面仅保留 Hero 主入口并展示更多可浏览资产区', async () => {
+    await renderPage();
 
     expect(screen.getByText('描述你的需求，AI 帮你找到最佳方案')).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: '需求输入' })).toBeInTheDocument();
     expect(screen.getByText('更多可浏览资产')).toBeInTheDocument();
-    expect(screen.queryByLabelText('需求输入')).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: '查询' })).not.toBeInTheDocument();
     expect(screen.queryByText('高级筛选')).not.toBeInTheDocument();
   });
 
-  it('fallback 主按钮可打开缺口需求弹窗', () => {
-    renderPage();
+  it('fallback 主按钮可打开缺口需求弹窗', async () => {
+    await renderPage();
 
     fireEvent.change(screen.getByPlaceholderText('如：我想在生服用增场景提升订单量'), {
       target: { value: '我需要海外直播冷启动素材诊断标签' },

@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
+import { DeployConfigModal } from '../../recommend/components/DeployConfigModal';
+import type { RecommendationCard as RecommendationCardType } from '../types';
 import { useHeroRecommendStore } from '../store/useHeroRecommendStore';
 import { AnalysisLoadingPanel } from './AnalysisLoadingPanel';
 import { FallbackActionSection } from './FallbackActionSection';
@@ -11,10 +13,35 @@ import { RecommendationHero } from './RecommendationHero';
 import { RecommendationSection } from './RecommendationSection';
 import { RecommendationSummaryPanel } from './RecommendationSummaryPanel';
 import { ResultLayerHint } from './ResultLayerHint';
+import { focusRecommendationHeroInput } from './heroInput';
+
+function DefaultRecommendationPanel({ cards }: { cards: RecommendationCardType[] }) {
+  if (cards.length === 0) return null;
+
+  return (
+    <div className="space-y-3">
+      <div className="rounded-xl border border-slate-100 bg-slate-50/60 p-3 text-sm text-slate-500">
+        你可以先描述诉求进入智能推荐，也可以先浏览系统沉淀的默认推荐。
+      </div>
+      <div>
+        <h3 className="mb-3 text-base font-semibold text-slate-700">默认推荐</h3>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {cards.map((card) => (
+            <RecommendationCard key={card.id} card={card} emphasized={card.group === 'ready'} showDecisionTone={false} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function RecommendationHomePanel() {
   const analysisPhase = useHeroRecommendStore((s) => s.analysisPhase);
   const grouped = useHeroRecommendStore((s) => s.grouped);
+  const deploy = useHeroRecommendStore((s) => s.deploy);
+  const closeDeploy = useHeroRecommendStore((s) => s.closeDeploy);
+  const setDeployField = useHeroRecommendStore((s) => s.setDeployField);
+  const submitDeploy = useHeroRecommendStore((s) => s.submitDeploy);
   const resultRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -29,15 +56,7 @@ export function RecommendationHomePanel() {
   }, [grouped]);
 
   const handleRetryDescribe = () => {
-    const heroInput = document.getElementById('recommendation-hero-input');
-    if (heroInput && typeof heroInput.scrollIntoView === 'function') {
-      heroInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    window.setTimeout(() => {
-      if (heroInput instanceof HTMLTextAreaElement) {
-        heroInput.focus();
-      }
-    }, 180);
+    focusRecommendationHeroInput();
   };
 
   return (
@@ -71,23 +90,21 @@ export function RecommendationHomePanel() {
         </div>
       ) : null}
 
-      {analysisPhase === 'idle' && defaultCards.length > 0 ? (
-        <div className="space-y-3">
-          <div className="rounded-xl border border-slate-100 bg-slate-50/60 p-3 text-sm text-slate-500">
-            你可以先描述诉求进入智能推荐，也可以先浏览系统沉淀的默认推荐。
-          </div>
-          <div>
-            <h3 className="mb-3 text-base font-semibold text-slate-700">默认推荐</h3>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {defaultCards.map((card) => (
-                <RecommendationCard key={card.id} card={card} emphasized={card.group === 'ready'} />
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : null}
+      {analysisPhase === 'idle' ? <DefaultRecommendationPanel cards={defaultCards} /> : null}
 
       <RecommendationDetailModal />
+      <DeployConfigModal
+        title="一键配置"
+        ariaLabel="一键配置"
+        successToastText="已提交配置请求"
+        workbenchLabel="去工作台编辑 →"
+        bindings={{
+          deploy,
+          closeDeploy,
+          setDeployField,
+          submitDeploy,
+        }}
+      />
     </div>
   );
 }

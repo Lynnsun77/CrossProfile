@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRecommendStore } from '../store/useRecommendStore';
 import type { RecommendCard } from '../types';
 import type { RecommendSection, RecommendSlotKind } from '../types';
@@ -41,7 +41,18 @@ const IMPACT_BULLETS = [
   '建议联动基准对照，观察未达标场景的迭代收敛',
 ];
 
-function findCardById(groups: ReturnType<typeof useRecommendStore.getState>['groups'], cardId: string | null): RecommendCard | null {
+const DECISION_DRAWER_SECTIONS = [
+  { id: 'reason', label: '推荐理由' },
+  { id: 'audience', label: '人群构成' },
+  { id: 'subscription', label: '订阅行为' },
+  { id: 'lineage', label: '血缘透视' },
+  { id: 'benchmark', label: '基准线对照' },
+  { id: 'impact', label: '订阅影响' },
+] as const;
+
+type DecisionDrawerSectionId = (typeof DECISION_DRAWER_SECTIONS)[number]['id'];
+
+export function findCardById(groups: ReturnType<typeof useRecommendStore.getState>['groups'], cardId: string | null): RecommendCard | null {
   if (!cardId) return null;
   for (const group of groups) {
     const hit = group.cards.find((card) => card.id === cardId);
@@ -71,7 +82,7 @@ function resolveGroupName(paragraphKind: ParagraphKind, slotKind: Extract<Recomm
   return '推荐组 4 · 相似组合';
 }
 
-function findParagraphMetaByCardId(
+export function findParagraphMetaByCardId(
   sections: RecommendSection[],
   cardId: string | null,
 ): { paragraphKind: ParagraphKind; slotKind: Extract<RecommendSlotKind, 'card_list' | 'combo_group'> } | null {
@@ -92,6 +103,37 @@ function findParagraphMetaByCardId(
   return null;
 }
 
+export function buildDrawerBreadcrumb(
+  cardTitle: string | undefined,
+  paragraphMeta: { paragraphKind: ParagraphKind; slotKind: Extract<RecommendSlotKind, 'card_list' | 'combo_group'> } | null,
+) {
+  const title = cardTitle ?? '资产详情';
+  if (!paragraphMeta) {
+    return `智能推荐 › ${title}`;
+  }
+  return `智能推荐 › ${paragraphLabel(paragraphMeta.paragraphKind)} › ${resolveGroupName(paragraphMeta.paragraphKind, paragraphMeta.slotKind)} › ${title}`;
+}
+
+function SectionTitle({ children }: { children: string }) {
+  return <h3 className="text-sm font-semibold text-gray-800">{children}</h3>;
+}
+
+function StatusBadge({
+  active,
+  inactiveLabel,
+  activeLabel,
+}: {
+  active: boolean;
+  inactiveLabel: string;
+  activeLabel: string;
+}) {
+  return (
+    <span className={`rounded-full px-2 py-0.5 text-[10px] ${active ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>
+      {active ? activeLabel : inactiveLabel}
+    </span>
+  );
+}
+
 export interface AssetDrawerProps {}
 
 export function AssetDrawer(_props: AssetDrawerProps) {
@@ -102,21 +144,54 @@ export function AssetDrawer(_props: AssetDrawerProps) {
   const sections = useRecommendStore((s) => s.sections);
 
   const [peerOpen, setPeerOpen] = useState(false);
+  const [activeAnchor, setActiveAnchor] = useState<DecisionDrawerSectionId>('reason');
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const sectionRefs = useRef<Record<DecisionDrawerSectionId, HTMLElement | null>>({
+    reason: null,
+    audience: null,
+    subscription: null,
+    lineage: null,
+    benchmark: null,
+    impact: null,
+  });
 
   const card = useMemo(() => findCardById(groups, drawer.cardId), [groups, drawer.cardId]);
   const paragraphMeta = useMemo(
     () => findParagraphMetaByCardId(sections, drawer.cardId),
     [sections, drawer.cardId],
   );
-  const breadcrumb = useMemo(() => {
-    const title = card?.title ?? '资产详情';
-    // Prefer store `sections` to reverse lookup which paragraph/slot the card belongs to.
-    if (paragraphMeta) {
-      const groupName = resolveGroupName(paragraphMeta.paragraphKind, paragraphMeta.slotKind);
-      return `智能推荐 › ${paragraphLabel(paragraphMeta.paragraphKind)} › ${groupName} › ${title}`;
-    }
-    return `智能推荐 › ${title}`;
-  }, [paragraphMeta, card?.title]);
+  const breadcrumb = useMemo(() => buildDrawerBreadcrumb(card?.title, paragraphMeta), [paragraphMeta, card?.title]);
+
+  useEffect(() => {
+    if (!drawer.open) return;
+    setPeerOpen(false);
+    setActiveAnchor('reason');
+  }, [drawer.open, drawer.cardId]);
+
+  useEffect(() => {
+    if (!drawer.open) return;
+    const container = contentRef.current;
+    if (!container) return;
+
+    const resolveActiveAnchor = () => {
+      const threshold = container.scrollTop + 72;
+      let nextAnchor: DecisionDrawerSectionId = DECISION_DRAWER_SECTIONS[0].id;
+
+      DECISION_DRAWER_SECTIONS.forEach(({ id }) => {
+        const section = sectionRefs.current[id];
+        if (!section) return;
+        if (section.offsetTop <= threshold) {
+          nextAnchor = id;
+        }
+      });
+
+      setActiveAnchor((prev) => (prev === nextAnchor ? prev : nextAnchor));
+    };
+
+    resolveActiveAnchor();
+    container.addEventListener('scroll', resolveActiveAnchor, { passive: true });
+    return () => container.removeEventListener('scroll', resolveActiveAnchor);
+  }, [drawer.open, drawer.cardId]);
 
   if (!drawer.open) return null;
 
@@ -156,6 +231,15 @@ export function AssetDrawer(_props: AssetDrawerProps) {
     openDeploy(card.id);
   };
 
+  const registerSection = (id: DecisionDrawerSectionId) => (node: HTMLElement | null) => {
+    sectionRefs.current[id] = node;
+  };
+
+  const handleAnchorClick = (id: DecisionDrawerSectionId) => {
+    setActiveAnchor(id);
+    sectionRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <aside
       role="dialog"
@@ -176,11 +260,31 @@ export function AssetDrawer(_props: AssetDrawerProps) {
 
       <div className="border-b border-gray-100 px-5 py-2 text-xs text-gray-500">{breadcrumb}</div>
 
-      <div className="flex-1 overflow-y-auto px-5 py-4">
+      <div className="border-b border-gray-100 px-3 py-2">
+        <nav aria-label="决策抽屉锚点" className="flex gap-1 overflow-x-auto">
+          {DECISION_DRAWER_SECTIONS.map((section) => (
+            <button
+              key={section.id}
+              type="button"
+              aria-pressed={activeAnchor === section.id}
+              onClick={() => handleAnchorClick(section.id)}
+              className={`shrink-0 rounded-full px-3 py-1 text-[11px] transition ${
+                activeAnchor === section.id
+                  ? 'bg-indigo-50 font-medium text-indigo-700 ring-1 ring-indigo-200'
+                  : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+              }`}
+            >
+              {section.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+
+      <div ref={contentRef} className="flex-1 overflow-y-auto px-5 py-4">
         {/* 1. 推荐理由 */}
-        <section className="space-y-3">
+        <section id="decision-drawer-reason" ref={registerSection('reason')} className="space-y-3 scroll-mt-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-gray-800">推荐理由</h3>
+            <SectionTitle>推荐理由</SectionTitle>
             <span className="rounded-full bg-indigo-50 px-2 py-0.5 text-[11px] font-medium text-indigo-600">
               相似度 {confidencePct}%
             </span>
@@ -208,8 +312,8 @@ export function AssetDrawer(_props: AssetDrawerProps) {
         </section>
 
         {/* 1.5 人群构成白话解析 */}
-        <section className="mt-6 space-y-2">
-          <h3 className="text-sm font-semibold text-gray-800">人群构成白话解析</h3>
+        <section id="decision-drawer-audience" ref={registerSection('audience')} className="mt-6 space-y-2 scroll-mt-4">
+          <SectionTitle>人群构成白话解析</SectionTitle>
           <div className="rounded-lg bg-gray-50 p-3 text-[12px] leading-relaxed text-gray-700 ring-1 ring-gray-100">
             {card.audience_narrative ??
               '该人群基于历史消费与标签匹配筛选得出，涵盖近期在相关品类有过活跃行为的用户。'}
@@ -217,9 +321,9 @@ export function AssetDrawer(_props: AssetDrawerProps) {
         </section>
 
         {/* 2. 同类用户订阅行为 */}
-        <section className="mt-6 space-y-2">
+        <section id="decision-drawer-subscription" ref={registerSection('subscription')} className="mt-6 space-y-2 scroll-mt-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-gray-800">同类用户订阅行为</h3>
+            <SectionTitle>同类用户订阅行为</SectionTitle>
             <button
               type="button"
               onClick={() => setPeerOpen((v) => !v)}
@@ -241,15 +345,7 @@ export function AssetDrawer(_props: AssetDrawerProps) {
                   <div className="text-gray-800">
                     {item.team} · <span className="text-gray-500">{item.scenario}</span>
                   </div>
-                  <span
-                    className={`rounded-full px-2 py-0.5 text-[10px] ${
-                      item.status === 'active'
-                        ? 'bg-emerald-50 text-emerald-600'
-                        : 'bg-amber-50 text-amber-600'
-                    }`}
-                  >
-                    {item.status}
-                  </span>
+                  <StatusBadge active={item.status === 'active'} activeLabel="active" inactiveLabel="trial" />
                 </div>
               ))}
             </div>
@@ -257,8 +353,8 @@ export function AssetDrawer(_props: AssetDrawerProps) {
         </section>
 
         {/* 3. 血缘透视 */}
-        <section className="mt-6 space-y-2">
-          <h3 className="text-sm font-semibold text-gray-800">血缘透视</h3>
+        <section id="decision-drawer-lineage" ref={registerSection('lineage')} className="mt-6 space-y-2 scroll-mt-4">
+          <SectionTitle>血缘透视</SectionTitle>
           <div className="flex flex-wrap items-center gap-1.5">
             {LINEAGE_CHAIN.map((node, idx) => (
               <span key={node} className="flex items-center gap-1.5">
@@ -277,8 +373,8 @@ export function AssetDrawer(_props: AssetDrawerProps) {
         </section>
 
         {/* 4. 分场景基准线对照 */}
-        <section className="mt-6 space-y-2">
-          <h3 className="text-sm font-semibold text-gray-800">分场景基准线对照</h3>
+        <section id="decision-drawer-benchmark" ref={registerSection('benchmark')} className="mt-6 space-y-2 scroll-mt-4">
+          <SectionTitle>分场景基准线对照</SectionTitle>
           <div className="overflow-hidden rounded-lg border border-gray-100">
             <table className="w-full text-[11px]">
               <thead className="bg-gray-50 text-gray-500">
@@ -296,15 +392,7 @@ export function AssetDrawer(_props: AssetDrawerProps) {
                     <td className="px-3 py-2 text-gray-600">{row.baseline}</td>
                     <td className="px-3 py-2 text-gray-600">{row.actual}</td>
                     <td className="px-3 py-2">
-                      <span
-                        className={`rounded-full px-2 py-0.5 text-[10px] ${
-                          row.pass
-                            ? 'bg-emerald-50 text-emerald-600'
-                            : 'bg-amber-50 text-amber-600'
-                        }`}
-                      >
-                        {row.label}
-                      </span>
+                      <StatusBadge active={row.pass} activeLabel={row.label} inactiveLabel={row.label} />
                     </td>
                   </tr>
                 ))}
@@ -314,8 +402,8 @@ export function AssetDrawer(_props: AssetDrawerProps) {
         </section>
 
         {/* 5. 订阅影响说明 */}
-        <section className="mt-6 space-y-2">
-          <h3 className="text-sm font-semibold text-gray-800">订阅影响说明</h3>
+        <section id="decision-drawer-impact" ref={registerSection('impact')} className="mt-6 space-y-2 scroll-mt-4">
+          <SectionTitle>订阅影响说明</SectionTitle>
           <div className="flex flex-wrap gap-4 text-[11px] text-gray-600">
             <span>预估触达 128 万</span>
             <span>预估增益 +28%</span>

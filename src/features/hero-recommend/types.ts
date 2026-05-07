@@ -46,6 +46,19 @@ export interface GroupedRecommendations {
   };
 }
 
+export type DeployStatus = 'draft' | 'submitted';
+
+export type DetailAnchor = 'top' | 'reason' | 'lineage';
+
+export interface HeroDeployConfig {
+  open: boolean;
+  cardId: string | null;
+  downstream: string | null;
+  libraUrl: string;
+  status: DeployStatus;
+  error: string | null;
+}
+
 export interface ParseIntentInput {
   text?: string;
   goalIds?: string[];

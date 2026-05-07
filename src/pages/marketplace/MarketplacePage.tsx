@@ -16,6 +16,7 @@ import type { Asset, Role } from '../../types';
 import { SupplierWorkbench } from './components/SupplierWorkbench';
 import { FilterBar } from './components/FilterBar';
 import { RoleSwitch } from './components/RoleSwitch';
+import { focusRecommendationHeroInput } from '../../features/hero-recommend/components/heroInput';
 
 const defaultFilters: MarketplaceFilters = {
   tier: null,
@@ -24,6 +25,117 @@ const defaultFilters: MarketplaceFilters = {
   subRange: null,
   publishedAfter: null,
 };
+
+const DATA_SOURCE_LABEL_MAP: Record<DataSource, string> = {
+  btm_plus: 'BTM+',
+  external: '外采',
+  cross_domain: '跨域',
+  private_end: '小端',
+};
+
+function buildSelectedChips(filters: MarketplaceFilters, query: string) {
+  const chips: Array<{ id: string; label: string }> = [];
+  if (query.trim()) chips.push({ id: 'query', label: `搜索: ${query.trim()}` });
+  if (filters.tier) chips.push({ id: 'tier', label: `Tier: ${filters.tier}` });
+  if (filters.dataSource) chips.push({ id: 'dataSource', label: `数据源: ${DATA_SOURCE_LABEL_MAP[filters.dataSource]}` });
+  if (filters.timeliness) chips.push({ id: 'timeliness', label: `时效: ${filters.timeliness}` });
+  if (filters.subRange) chips.push({ id: 'subRange', label: `订阅: ${filters.subRange}` });
+  if (filters.publishedAfter) chips.push({ id: 'publishedAfter', label: `上架: ${filters.publishedAfter}` });
+  return chips;
+}
+
+function AssetGrid({
+  items,
+  role,
+  showRanking,
+}: {
+  items: Asset[];
+  role: Role;
+  showRanking: boolean;
+}) {
+  return (
+    <div className="grid grid-cols-1 gap-4 min-[1024px]:grid-cols-2 min-[1440px]:grid-cols-3">
+      {items.map((asset, index) => (
+        <div key={asset.id} className="relative">
+          {showRanking ? (
+            <div
+              className="absolute left-3 top-3 z-10 inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-xs font-semibold text-white"
+              style={{ background: 'var(--brand-gradient)' }}
+            >
+              {index + 1}
+            </div>
+          ) : null}
+          <AssetCard asset={asset} role={role} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AssetLibraryContent({
+  loading,
+  error,
+  empty,
+  items,
+  role,
+  showRanking,
+  onBackToHero,
+  onOpenGap,
+}: {
+  loading: boolean;
+  error: string | null;
+  empty: boolean;
+  items: Asset[];
+  role: Role;
+  showRanking: boolean;
+  onBackToHero: () => void;
+  onOpenGap: () => void;
+}) {
+  if (loading) {
+    return (
+      <div className="rounded-card border border-border bg-white p-10 text-center">
+        <div className="text-base font-semibold text-text-1">正在加载资产...</div>
+        <div className="mt-2 text-sm text-text-3">请求 /api/assets（mock）</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="rounded-card border border-border bg-white p-10 text-center">
+        <div className="text-base font-semibold text-text-1">资产加载失败</div>
+        <div className="mt-2 text-sm text-text-3">{error}</div>
+      </div>
+    );
+  }
+
+  if (empty) {
+    return (
+      <div className="rounded-card border border-border bg-white p-10 text-center">
+        <div className="text-base font-semibold text-text-1">没有找到符合条件的资产</div>
+        <div className="mt-2 text-sm text-text-3">可以试试放宽筛选，或回到顶部智能推荐入口重新描述需求。</div>
+        <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <button
+            type="button"
+            onClick={onBackToHero}
+            className="h-10 rounded-lg bg-module-market px-5 text-sm font-medium text-white hover:opacity-90"
+          >
+            回到智能推荐入口
+          </button>
+          <button
+            type="button"
+            onClick={onOpenGap}
+            className="h-10 rounded-lg border border-border bg-white px-5 text-sm font-medium text-text-2 hover:border-module-market/20"
+          >
+            提交缺口需求（mock）
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return <AssetGrid items={items} role={role} showRanking={showRanking} />;
+}
 
 function GapRequestModal({
   open,
@@ -166,7 +278,9 @@ export function MarketplacePage() {
 
   useEffect(() => {
     let cancelled = false;
-    const req: AssetsRequest = {
+    setLoading(true);
+    setError(null);
+    getAssetsApi({
       featureClass,
       tab,
       q: query,
@@ -174,11 +288,7 @@ export function MarketplacePage() {
       sortKey,
       sortDir,
       favoriteIds,
-    };
-
-    setLoading(true);
-    setError(null);
-    getAssetsApi(req)
+    } satisfies AssetsRequest)
       .then((response) => {
         if (cancelled) return;
         setItems(response.items as unknown as Asset[]);
@@ -200,37 +310,12 @@ export function MarketplacePage() {
     };
   }, [featureClass, tab, query, filters, sortKey, sortDir, favoriteIds]);
 
-  const selectedChips = useMemo(() => {
-    const chips: Array<{ id: string; label: string }> = [];
-    if (query.trim()) chips.push({ id: 'query', label: `搜索: ${query.trim()}` });
-    if (filters.tier) chips.push({ id: 'tier', label: `Tier: ${filters.tier}` });
-    if (filters.dataSource) {
-      const dataSourceLabelMap: Record<DataSource, string> = {
-        btm_plus: 'BTM+',
-        external: '外采',
-        cross_domain: '跨域',
-        private_end: '小端',
-      };
-      chips.push({ id: 'dataSource', label: `数据源: ${dataSourceLabelMap[filters.dataSource]}` });
-    }
-    if (filters.timeliness) chips.push({ id: 'timeliness', label: `时效: ${filters.timeliness}` });
-    if (filters.subRange) chips.push({ id: 'subRange', label: `订阅: ${filters.subRange}` });
-    if (filters.publishedAfter) chips.push({ id: 'publishedAfter', label: `上架: ${filters.publishedAfter}` });
-    return chips;
-  }, [filters, query]);
+  const selectedChips = useMemo(() => buildSelectedChips(filters, query), [filters, query]);
 
   const empty = items.length === 0;
 
   const handleScrollToHero = () => {
-    const heroInput = document.getElementById('recommendation-hero-input');
-    if (heroInput && typeof heroInput.scrollIntoView === 'function') {
-      heroInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    window.setTimeout(() => {
-      if (heroInput instanceof HTMLTextAreaElement) {
-        heroInput.focus();
-      }
-    }, 180);
+    focusRecommendationHeroInput();
   };
 
   const handleOpenGap = () => {
@@ -303,54 +388,16 @@ export function MarketplacePage() {
           />
         }
       >
-        {loading ? (
-          <div className="rounded-card border border-border bg-white p-10 text-center">
-            <div className="text-base font-semibold text-text-1">正在加载资产...</div>
-            <div className="mt-2 text-sm text-text-3">请求 /api/assets（mock）</div>
-          </div>
-        ) : error ? (
-          <div className="rounded-card border border-border bg-white p-10 text-center">
-            <div className="text-base font-semibold text-text-1">资产加载失败</div>
-            <div className="mt-2 text-sm text-text-3">{error}</div>
-          </div>
-        ) : empty ? (
-          <div className="rounded-card border border-border bg-white p-10 text-center">
-            <div className="text-base font-semibold text-text-1">没有找到符合条件的资产</div>
-            <div className="mt-2 text-sm text-text-3">可以试试放宽筛选，或回到顶部智能推荐入口重新描述需求。</div>
-            <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={handleScrollToHero}
-                className="h-10 rounded-lg bg-module-market px-5 text-sm font-medium text-white hover:opacity-90"
-              >
-                回到智能推荐入口
-              </button>
-              <button
-                type="button"
-                onClick={handleOpenGap}
-                className="h-10 rounded-lg border border-border bg-white px-5 text-sm font-medium text-text-2 hover:border-module-market/20"
-              >
-                提交缺口需求（mock）
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-4 min-[1024px]:grid-cols-2 min-[1440px]:grid-cols-3">
-            {items.map((asset, index) => (
-              <div key={asset.id} className="relative">
-                {tab === 'ranking' ? (
-                  <div
-                    className="absolute left-3 top-3 z-10 inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-xs font-semibold text-white"
-                    style={{ background: 'var(--brand-gradient)' }}
-                  >
-                    {index + 1}
-                  </div>
-                ) : null}
-                <AssetCard asset={asset} role={roleForCard} />
-              </div>
-            ))}
-          </div>
-        )}
+        <AssetLibraryContent
+          loading={loading}
+          error={error}
+          empty={empty}
+          items={items}
+          role={roleForCard}
+          showRanking={tab === 'ranking'}
+          onBackToHero={handleScrollToHero}
+          onOpenGap={handleOpenGap}
+        />
       </AssetLibrarySection>
 
       <GapRequestModal

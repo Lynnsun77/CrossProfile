@@ -1,7 +1,5 @@
-import { useState } from 'react';
 import type { MatchLabel, RecommendationCard as CardType } from '../types';
 import { useHeroRecommendStore } from '../store/useHeroRecommendStore';
-import { ReasonPopover } from './ReasonPopover';
 
 const BADGE_STYLES: Record<MatchLabel, string> = {
   高匹配: 'border border-red-100 bg-red-50 text-red-600',
@@ -11,28 +9,60 @@ const BADGE_STYLES: Record<MatchLabel, string> = {
 interface Props {
   card: CardType;
   emphasized?: boolean;
+  showDecisionTone?: boolean;
 }
 
-export function RecommendationCard({ card, emphasized }: Props) {
-  const [reasonOpen, setReasonOpen] = useState(false);
+export function RecommendationCard({ card, emphasized, showDecisionTone = true }: Props) {
   const candidateIds = useHeroRecommendStore((s) => s.candidateIds);
+  const submittedDeployCardIds = useHeroRecommendStore((s) => s.submittedDeployCardIds);
   const addCandidate = useHeroRecommendStore((s) => s.addCandidate);
   const removeCandidate = useHeroRecommendStore((s) => s.removeCandidate);
   const openDetail = useHeroRecommendStore((s) => s.openDetail);
+  const openDeploy = useHeroRecommendStore((s) => s.openDeploy);
 
   const added = candidateIds.includes(card.id);
+  const canQuickDeploy = card.group === 'ready';
+  const submitted = submittedDeployCardIds.includes(card.id);
+  const toneClass =
+    card.group === 'ready'
+      ? 'border-emerald-200 bg-emerald-50/40'
+      : 'border-indigo-200 bg-indigo-50/40';
+  const levelLabel = card.group === 'ready' ? '可直接复用' : '可加工后使用';
+  const conclusion = card.oneLineReason;
+  const guidance = card.group === 'ready' ? '建议优先评估并直接配置落地。' : '建议结合当前诉求补充加工方向后使用。';
 
   return (
-    <div className={`relative rounded-2xl border bg-white p-5 transition-shadow ${emphasized ? 'border-blue-200 shadow-md' : 'border-slate-200 shadow-sm'}`}>
+    <article
+      role="button"
+      tabIndex={0}
+      onClick={() => openDetail(card.id)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openDetail(card.id);
+        }
+      }}
+      className={`relative rounded-2xl border bg-white p-5 transition-all hover:-translate-y-0.5 hover:shadow-md ${
+        emphasized ? 'border-blue-200 shadow-md' : 'border-slate-200 shadow-sm'
+      }`}
+    >
       <div className="mb-2 flex items-center justify-between">
-        <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${BADGE_STYLES[card.matchLabel]}`}>
-          {card.matchLabel} {card.matchScore}%
-        </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${BADGE_STYLES[card.matchLabel]}`}>
+            {card.matchLabel} {card.matchScore}%
+          </span>
+          {showDecisionTone ? (
+            <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${toneClass}`}>
+              {levelLabel}
+            </span>
+          ) : null}
+        </div>
         <span className="text-xs text-slate-400">{card.objectType}</span>
       </div>
 
       <h4 className="text-lg font-semibold leading-snug text-slate-900">{card.name}</h4>
-      <p className="mt-1 line-clamp-2 text-sm text-slate-600">{card.oneLineReason}</p>
+      <p className="mt-1 text-sm font-medium text-slate-800">{conclusion}</p>
+      <p className="mt-1 text-xs text-slate-500">{guidance}</p>
 
       <div className="mt-3 flex flex-wrap gap-1.5">
         {card.hitTags.map((tag) => (
@@ -52,24 +82,53 @@ export function RecommendationCard({ card, emphasized }: Props) {
       </div>
 
       <div className="mt-4 flex items-center gap-2">
-        <button type="button" onClick={() => setReasonOpen(true)} className="text-sm text-blue-600 hover:underline">
-          为什么推荐
-        </button>
         <button
           type="button"
-          onClick={() => (added ? removeCandidate(card.id) : addCandidate(card.id))}
-          className={`ml-auto rounded-lg border px-3 py-1.5 text-sm transition-colors ${
-            added ? 'border-blue-200 bg-blue-50 text-blue-700' : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200'
-          }`}
+          onClick={(event) => {
+            event.stopPropagation();
+            openDetail(card.id, 'reason');
+          }}
+          className="text-sm text-blue-600 hover:underline"
         >
-          {added ? '已加入' : '加入候选'}
+          为什么推荐
         </button>
-        <button type="button" onClick={() => openDetail(card.id)} className="rounded-lg border border-blue-500 px-3 py-1.5 text-sm text-blue-600 hover:bg-blue-50">
+        {canQuickDeploy ? (
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              if (!submitted) openDeploy(card.id);
+            }}
+            disabled={submitted}
+            className="ml-auto rounded-lg bg-blue-600 px-3 py-1.5 text-sm text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+          >
+            {submitted ? '已提交配置' : '一键配置'}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              added ? removeCandidate(card.id) : addCandidate(card.id);
+            }}
+            className={`ml-auto rounded-lg border px-3 py-1.5 text-sm transition-colors ${
+              added ? 'border-blue-200 bg-blue-50 text-blue-700' : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200'
+            }`}
+          >
+            {added ? '已加入' : '加入候选'}
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            openDetail(card.id);
+          }}
+          className="rounded-lg border border-blue-500 px-3 py-1.5 text-sm text-blue-600 hover:bg-blue-50"
+        >
           查看详情
         </button>
       </div>
-
-      {reasonOpen ? <ReasonPopover card={card} onClose={() => setReasonOpen(false)} /> : null}
-    </div>
+    </article>
   );
 }
