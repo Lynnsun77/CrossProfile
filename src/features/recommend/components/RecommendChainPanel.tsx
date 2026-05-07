@@ -157,54 +157,57 @@ export function RecommendChainPanel() {
       </div>
 
       {collapsed ? (
-        hasParsedEntities ? (
-          <div
-            className="mt-2 flex flex-wrap items-center gap-2 text-xs"
-            style={{ color: 'var(--color-text-2)' }}
-          >
-            <span style={{ color: 'var(--color-text-2)' }}>AI 已识别您的诉求：</span>
-            {INTENT_CATEGORY_STYLES.map((cat) => {
-              const items = intentParsed[cat.key];
-              if (!items || items.length === 0) return null;
-              return (
-                <span
-                  key={cat.key}
-                  className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium"
-                  style={{
-                    backgroundColor: cat.background,
-                    color: cat.color,
-                    borderColor: cat.border,
-                  }}
-                >
-                  {cat.label}: {items.join('、')}
-                </span>
-              );
-            })}
-          </div>
-        ) : chipNodes.length > 0 ? (
-          <div
-            className="mt-2 flex items-center gap-2 overflow-x-auto whitespace-nowrap text-xs"
-            style={{ color: 'var(--color-text-2)', maxHeight: 64 }}
-          >
-            {chipNodes.map((node, idx) => {
-              const symbol = chipStatusSymbol(node.status);
-              return (
-                <span key={node.id} className="flex items-center gap-1">
-                  <span className="flex items-center gap-1">
-                    <span aria-hidden>{circledOrder(node.order)}</span>
-                    <span style={{ color: 'var(--color-text-1)' }}>{node.title}</span>
-                    {symbol ? <span aria-hidden>{symbol}</span> : null}
+        <>
+          {hasParsedEntities ? (
+            <div
+              className="mt-2 flex flex-wrap items-center gap-2 text-xs"
+              style={{ color: 'var(--color-text-2)' }}
+            >
+              <span style={{ color: 'var(--color-text-2)' }}>AI 已识别您的诉求：</span>
+              {INTENT_CATEGORY_STYLES.map((cat) => {
+                const items = intentParsed[cat.key];
+                if (!items || items.length === 0) return null;
+                return (
+                  <span
+                    key={cat.key}
+                    className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium"
+                    style={{
+                      backgroundColor: cat.background,
+                      color: cat.color,
+                      borderColor: cat.border,
+                    }}
+                  >
+                    {cat.label}: {items.join('、')}
                   </span>
-                  {idx < chipNodes.length - 1 ? (
-                    <span aria-hidden style={{ color: 'var(--color-text-3)' }}>
-                      →
+                );
+              })}
+            </div>
+          ) : null}
+          {chipNodes.length > 0 ? (
+            <div
+              className={`${hasParsedEntities ? 'mt-2' : 'mt-2'} flex items-center gap-2 overflow-x-auto whitespace-nowrap text-xs`}
+              style={{ color: 'var(--color-text-2)', maxHeight: 64 }}
+            >
+              {chipNodes.map((node, idx) => {
+                const symbol = chipStatusSymbol(node.status);
+                return (
+                  <span key={node.id} className="flex items-center gap-1">
+                    <span className="flex items-center gap-1">
+                      <span aria-hidden>{circledOrder(node.order)}</span>
+                      <span style={{ color: 'var(--color-text-1)' }}>{node.title}</span>
+                      {symbol ? <span aria-hidden>{symbol}</span> : null}
                     </span>
-                  ) : null}
-                </span>
-              );
-            })}
-          </div>
-        ) : null
+                    {idx < chipNodes.length - 1 ? (
+                      <span aria-hidden style={{ color: 'var(--color-text-3)' }}>
+                        →
+                      </span>
+                    ) : null}
+                  </span>
+                );
+              })}
+            </div>
+          ) : null}
+        </>
       ) : (
         <>
           <div className="mt-1.5 text-xs" style={{ color: 'var(--color-text-3)' }}>
