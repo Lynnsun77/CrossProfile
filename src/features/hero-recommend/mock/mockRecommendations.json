@@ -2,12 +2,12 @@
   {
     "id": "rec-001",
     "group": "ready",
-    "name": "生服用增-高频订单提升策略",
-    "objectType": "策略",
+    "name": "生服用增-高频订单提升人群包",
+    "objectType": "人群",
     "matchScore": 92,
     "matchLabel": "高匹配",
-    "oneLineReason": "面向生服用增场景沉淀的高频订单提升策略，命中你对订单量与高复用的关键诉求。",
-    "hitTags": ["命中目标", "高场景匹配", "高复用性"],
+    "oneLineReason": "面向生服用增场景沉淀的高频订单提升人群包，命中你对订单量与高复用的关键诉求。",
+    "hitTags": ["BTM+", "生服", "订单"],
     "metrics": [
       { "label": "订单量", "value": "+12%" },
       { "label": "GMV", "value": "+9%" },
@@ -19,7 +19,7 @@
     "reasons": [
       "命中你的核心目标：提升订单量",
       "与生服用增场景历史复用度 >80%",
-      "该策略在同类门店落地周期 <3 天"
+      "该人群包在同类门店落地周期 <3 天"
     ]
   },
   {
@@ -30,7 +30,7 @@
     "matchScore": 88,
     "matchLabel": "高匹配",
     "oneLineReason": "针对沉默会员设计的召回人群包，命中你的召回目标与电商商城场景。",
-    "hitTags": ["命中目标", "高场景匹配"],
+    "hitTags": ["电商", "会员", "人群包"],
     "metrics": [
       { "label": "召回率", "value": "+18%" },
       { "label": "人群规模", "value": "96万" },
@@ -48,12 +48,12 @@
   {
     "id": "rec-003",
     "group": "ready",
-    "name": "电商营销-GMV 冲刺策略",
-    "objectType": "策略",
+    "name": "电商营销-GMV 冲刺人群包",
+    "objectType": "人群",
     "matchScore": 90,
     "matchLabel": "高匹配",
-    "oneLineReason": "电商营销场景下的 GMV 冲刺组合策略，命中 GMV 核心目标并可快速落地。",
-    "hitTags": ["命中目标", "高场景匹配", "可快速落地"],
+    "oneLineReason": "电商营销场景下的 GMV 冲刺人群包，命中 GMV 核心目标并可快速落地。",
+    "hitTags": ["电商", "营销", "人群包"],
     "metrics": [
       { "label": "GMV", "value": "+15%" },
       { "label": "订单量", "value": "+11%" },
@@ -71,12 +71,12 @@
   {
     "id": "rec-004",
     "group": "adaptable",
-    "name": "生服营销-高潜品类标签集",
+    "name": "生服营销-高潜品类标签包",
     "objectType": "标签",
     "matchScore": 80,
     "matchLabel": "中匹配",
-    "oneLineReason": "覆盖生服营销高潜品类的标签集合，可作为订单量拉升的扩展输入。",
-    "hitTags": ["命中目标", "中场景匹配"],
+    "oneLineReason": "覆盖生服营销高潜品类的标签包，可作为订单量拉升的扩展输入。",
+    "hitTags": ["生服", "标签包", "品类"],
     "metrics": [
       { "label": "标签数", "value": "18" },
       { "label": "覆盖门店", "value": "4.2万" },
@@ -88,18 +88,18 @@
     "reasons": [
       "与你的目标场景部分重合",
       "标签体系已在 2 个业务线复用",
-      "可作为主策略的输入扩展"
+      "可作为主人群包的输入扩展"
     ]
   },
   {
     "id": "rec-005",
     "group": "adaptable",
-    "name": "拉新转化-新客首单礼包",
-    "objectType": "策略",
+    "name": "拉新转化-新客首单人群包",
+    "objectType": "人群",
     "matchScore": 78,
     "matchLabel": "中匹配",
-    "oneLineReason": "拉新转化心智策略，可作为订单量或 GMV 目标的互补方案。",
-    "hitTags": ["部分命中目标"],
+    "oneLineReason": "拉新转化新客首单人群包，可作为订单量或 GMV 目标的互补方案。",
+    "hitTags": ["电商", "新客", "人群包"],
     "metrics": [
       { "label": "新客占比", "value": "+22%" },
       { "label": "人群规模", "value": "65万" },
@@ -111,18 +111,18 @@
     "reasons": [
       "为你的目标提供互补路径",
       "同类场景落地周期较短",
-      "可与主策略叠加投放"
+      "可与主人群包叠加投放"
     ]
   },
   {
     "id": "rec-006",
     "group": "adaptable",
-    "name": "电商商城-活跃人群扩圈",
+    "name": "电商商城-活跃扩圈人群包",
     "objectType": "人群",
     "matchScore": 76,
     "matchLabel": "中匹配",
-    "oneLineReason": "面向活跃会员的扩圈人群，可辅助实现留存与复购。",
-    "hitTags": ["部分命中目标"],
+    "oneLineReason": "面向活跃会员的扩圈人群包，可辅助实现留存与复购。",
+    "hitTags": ["电商", "会员", "扩圈"],
     "metrics": [
       { "label": "留存", "value": "+9%" },
       { "label": "人群规模", "value": "140万" },
@@ -145,7 +145,7 @@
     "matchScore": 72,
     "matchLabel": "中匹配",
     "oneLineReason": "适合补充电商玩法类场景画像，可在现有诉求上加工后使用。",
-    "hitTags": ["可加工使用"],
+    "hitTags": ["电商", "玩法", "人群包"],
     "metrics": [
       { "label": "召回率", "value": "+6%" },
       { "label": "人群规模", "value": "52万" },
@@ -157,18 +157,18 @@
     "reasons": [
       "与相近电商玩法场景已有复用案例",
       "可作为二次加工的人群基础包",
-      "适合配合主策略做补充实验"
+      "适合配合主人群包做补充实验"
     ]
   },
   {
     "id": "rec-008",
     "group": "adaptable",
-    "name": "多触点互动模板",
-    "objectType": "策略",
+    "name": "多触点互动标签包",
+    "objectType": "标签",
     "matchScore": 70,
     "matchLabel": "中匹配",
-    "oneLineReason": "同类场景中复用较多的多触点互动模板，可调整后承接当前需求。",
-    "hitTags": ["可加工使用"],
+    "oneLineReason": "同类场景中复用较多的多触点互动标签包，可调整后承接当前需求。",
+    "hitTags": ["cross", "标签包", "互动"],
     "metrics": [
       { "label": "订单量", "value": "+7%" },
       { "label": "CTR", "value": "+4%" },
@@ -179,19 +179,19 @@
     "preferenceTags": ["高复用"],
     "reasons": [
       "多场景沉淀了较强复用证据",
-      "适合作为当前诉求的加工模板",
+      "适合作为当前诉求的加工标签包",
       "可快速扩展成 A/B 对照方案"
     ]
   },
   {
     "id": "rec-009",
     "group": "adaptable",
-    "name": "电商商城-会员分层画像集",
+    "name": "电商商城-会员分层标签包",
     "objectType": "标签",
     "matchScore": 68,
     "matchLabel": "中匹配",
-    "oneLineReason": "会员分层画像集合可作为诊断和补充建模的基础标签资源。",
-    "hitTags": ["可加工使用"],
+    "oneLineReason": "会员分层标签包可作为诊断和补充建模的基础标签资源。",
+    "hitTags": ["电商", "标签包", "会员"],
     "metrics": [
       { "label": "标签数", "value": "24" },
       { "label": "覆盖用户", "value": "320万" },

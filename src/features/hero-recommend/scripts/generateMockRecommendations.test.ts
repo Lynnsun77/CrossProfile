@@ -26,6 +26,7 @@ describe('generateMockRecommendations', () => {
     expect(grouped.ready.map((card) => card.highlightTag).sort()).toEqual(['匹配度最高', '收益最优']);
     expect(benefitCard?.highlightDetail?.includes('标签数')).toBe(false);
     expect(benefitCard?.highlightDetail).toContain('历史收益订单量');
+    expect(grouped.ready.some((card) => card.hitTags.includes('收益最优') || card.hitTags.includes('匹配度最高'))).toBe(false);
   });
 
   it('只命中单一维度的卡片进入 adaptable', () => {

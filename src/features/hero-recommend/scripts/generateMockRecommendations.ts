@@ -128,7 +128,7 @@ function buildHighlightedReadyCard(
     group: 'ready',
     matchLabel: '高匹配',
     matchScore: nextScore,
-    hitTags: card.hitTags.includes(highlightTag) ? card.hitTags : [highlightTag, ...card.hitTags],
+    hitTags: card.hitTags,
     highlightTag,
     highlightDetail,
   };

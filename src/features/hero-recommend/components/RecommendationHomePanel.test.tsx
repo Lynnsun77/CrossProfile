@@ -16,7 +16,7 @@ function makeHeroCard(
     matchScore: partial.matchScore ?? (partial.group === 'ready' ? 92 : 76),
     matchLabel: partial.matchLabel ?? (partial.group === 'ready' ? '高匹配' : '中匹配'),
     oneLineReason: partial.oneLineReason ?? `${partial.name} 的推荐理由`,
-    hitTags: partial.hitTags ?? ['命中目标'],
+    hitTags: partial.hitTags ?? ['cross', 'BTM+', '人群包'],
     metrics: partial.metrics ?? [
       { label: 'GMV', value: '+12%' },
       { label: '人群规模', value: '128万' },
