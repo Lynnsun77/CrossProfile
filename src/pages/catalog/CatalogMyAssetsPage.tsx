@@ -142,7 +142,7 @@ export function CatalogMyAssetsPage() {
                     className={[
                       'rounded-lg px-3 py-2 text-sm font-medium transition',
                       active
-                        ? 'border border-border bg-gray-900 text-white shadow-sm'
+                        ? 'border border-border bg-blue-600 text-white shadow-sm'
                         : 'border border-border bg-white text-text-2 hover:border-module-market/20 hover:text-text-1',
                     ].join(' ')}
                     title={tab.desc}

@@ -107,7 +107,6 @@ export function UserMenu() {
     return () => window.removeEventListener(MY_BADGES_REFRESH_EVENT, onRefresh as EventListener);
   }, [activeView, open]);
 
-  const avatarText = currentUser.name.trim().slice(-1) || '我';
   const nextView = activeView === 'consumer' ? 'producer' : 'consumer';
 
   const handleNavigate = (path: string, query?: Record<string, string>) => {
@@ -151,8 +150,11 @@ export function UserMenu() {
         className="flex items-center gap-2 rounded-full border border-border bg-white px-2 py-2 text-sm text-text-2 transition-colors hover:text-text-1"
         aria-label="打开头像菜单"
       >
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-sm font-semibold text-white">
-          {avatarText}
+        <span
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 text-base"
+          aria-hidden="true"
+        >
+          🏄
         </span>
         <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path

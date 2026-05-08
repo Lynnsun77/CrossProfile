@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PageHeader } from '../../components/common/PageHeader';
 import { RadarDual } from '../../components/common/RadarDual';
 import { useBreadcrumb } from '../../hooks/useBreadcrumb';
@@ -16,7 +16,6 @@ function labelOfView(view: AppView) {
 
 export function DashboardOppDetail() {
   const { id } = useParams<{ id: string }>();
-  const location = useLocation();
   const navigate = useNavigate();
   const currentView = useGlobalState((s) => s.currentView);
   const opp = getOpportunityById(id || 'opp_001');
@@ -29,11 +28,11 @@ export function DashboardOppDetail() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
       <PageHeader
-        title={currentView === 'consumer' ? opp.title : `${labelOfView(currentView)}机会详情骨架`}
+        title={currentView === 'consumer' ? opp.title : `${labelOfView(currentView)}机会详情`}
         subtitle={
           currentView === 'consumer'
             ? opp.description
-            : '当前详情路由已支持多视角直达与刷新保持，非消费视角先展示占位骨架。'
+            : '查看机会概览与后续处理入口。'
         }
         moduleTone="dashboard"
         action={
@@ -48,22 +47,11 @@ export function DashboardOppDetail() {
         }
       />
 
-      <div className="mb-6 rounded-2xl border border-border bg-white px-4 py-3 text-sm text-text-2 shadow-sm">
-        当前为
-        <span className="mx-1 font-semibold text-text-1">{labelOfView(currentView)}</span>
-        ，页面内不再提供重复的视角切换入口。
-      </div>
-
       {currentView !== 'consumer' && (
         <div className="rounded-card border border-border bg-surface p-6 shadow-sm">
-          <div className="text-sm text-text-2">
-            当前路径: <span className="font-semibold text-text-1">{location.pathname}</span>
-          </div>
+          <div className="text-lg font-semibold text-text-1">{labelOfView(currentView)}暂未开放详情内容</div>
           <div className="mt-2 text-sm text-text-2">
-            当前 query: <span className="font-mono text-xs text-text-3">{location.search || '(empty)'}</span>
-          </div>
-          <div className="mt-4 rounded-2xl border border-dashed border-border bg-bg px-4 py-6 text-sm text-text-3">
-            机会详情在 {labelOfView(currentView)} 下先作为路由骨架保留，后续可以在同一路径下接入供给方或运营方差异化内容。
+            你可以先返回大盘或跳转集市继续查看相关资产。
           </div>
         </div>
       )}

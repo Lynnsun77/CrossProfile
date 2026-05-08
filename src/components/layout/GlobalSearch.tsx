@@ -226,7 +226,7 @@ export function GlobalSearch() {
                         className={[
                           'rounded-lg px-3 py-1.5 text-sm font-medium transition',
                           selected
-                            ? 'border border-border bg-gray-900 text-white shadow-sm'
+                            ? 'border border-border bg-blue-600 text-white shadow-sm'
                             : 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50',
                         ].join(' ')}
                       >
@@ -252,7 +252,7 @@ export function GlobalSearch() {
                             onClick={() => runNavigate(item)}
                             className={[
                               'w-full rounded-xl px-3 py-2 text-left transition-colors',
-                              active ? 'bg-gray-900 text-white' : 'hover:bg-gray-50',
+                              active ? 'bg-blue-600 text-white' : 'hover:bg-gray-50',
                             ].join(' ')}
                           >
                             <div className="flex items-start justify-between gap-3">

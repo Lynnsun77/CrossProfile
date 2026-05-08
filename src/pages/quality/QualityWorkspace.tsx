@@ -447,7 +447,7 @@ function SectionTabs({ section }: { section: QualitySection }) {
           to={{ pathname: tab.to, search: buildSearch(location.search, { view: currentView }) }}
           className={`rounded-xl border px-4 py-2 text-sm font-medium transition ${
             tab.key === section
-              ? 'border-transparent bg-gray-900 text-white shadow-sm'
+              ? 'border-transparent bg-blue-600 text-white shadow-sm'
               : 'border-border bg-white text-text-2 hover:border-gray-300 hover:text-text-1'
           }`}
         >
@@ -1082,14 +1082,14 @@ export function QualityGovernancePage() {
                 <button
                   type="button"
                   onClick={() => navigate({ pathname: location.pathname, search: buildSearch(location.search, { board: 'list' }) })}
-                  className={`rounded-lg px-3 py-2 text-sm font-medium ${boardMode === 'list' ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'}`}
+                  className={`rounded-lg px-3 py-2 text-sm font-medium ${boardMode === 'list' ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'}`}
                 >
                   列表
                 </button>
                 <button
                   type="button"
                   onClick={() => navigate({ pathname: location.pathname, search: buildSearch(location.search, { board: 'heatmap' }) })}
-                  className={`rounded-lg px-3 py-2 text-sm font-medium ${boardMode === 'heatmap' ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'}`}
+                  className={`rounded-lg px-3 py-2 text-sm font-medium ${boardMode === 'heatmap' ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'}`}
                 >
                   热力图
                 </button>
@@ -1117,7 +1117,7 @@ export function QualityGovernancePage() {
                   placeholder="搜特征、团队"
                   className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm outline-none transition focus:border-gray-400"
                 />
-                <button type="submit" className="rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white">
+                <button type="submit" className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
                   搜索
                 </button>
               </form>
@@ -1163,7 +1163,7 @@ export function QualityGovernancePage() {
                       })
                     }
                     className={`rounded-lg px-3 py-2 font-medium ${
-                      sortBy === key ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'
+                      sortBy === key ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'
                     }`}
                   >
                     {key === 'score' ? '按分数' : key === 'freshness' ? '按时效' : key === 'alerts' ? '按告警' : '按工单'}
@@ -1280,7 +1280,7 @@ export function QualityGovernancePage() {
                                   key={window}
                                   type="button"
                                   onClick={() => navigate({ pathname: location.pathname, search: buildSearch(location.search, { feature: item.featureId, trendWindow: window }) })}
-                                  className={`rounded-lg px-3 py-2 text-xs font-medium ${trendWindow === window ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'}`}
+                                  className={`rounded-lg px-3 py-2 text-xs font-medium ${trendWindow === window ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'}`}
                                 >
                                   近 {window} 天
                                 </button>
@@ -1365,7 +1365,7 @@ export function QualityGovernancePage() {
                         key={window}
                         type="button"
                         onClick={() => navigate({ pathname: location.pathname, search: buildSearch(location.search, { feature: selectedFeature.featureId, trendWindow: window }) })}
-                        className={`rounded-lg px-3 py-2 text-xs font-medium ${trendWindow === window ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'}`}
+                        className={`rounded-lg px-3 py-2 text-xs font-medium ${trendWindow === window ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'}`}
                       >
                         近 {window} 天
                       </button>
@@ -1739,7 +1739,7 @@ export function QualityAutoBacktestPage() {
               placeholder="搜任务、特征、团队"
               className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm outline-none transition focus:border-gray-400"
             />
-            <button type="submit" className="rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white">
+            <button type="submit" className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
               搜索
             </button>
           </form>
@@ -2578,7 +2578,7 @@ export function QualityTicketsPage() {
                 type="button"
                 onClick={() => navigate({ pathname: location.pathname, search: buildSearch(location.search, { status: status === 'all' ? null : status }) })}
                 className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
-                  statusFilter === status ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2 hover:border-gray-300 hover:text-text-1'
+                  statusFilter === status ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2 hover:border-gray-300 hover:text-text-1'
                 }`}
               >
                 {status === 'all' ? '全部' : ticketStatusLabel(status)} ({statusCounts[status]})
@@ -2605,7 +2605,7 @@ export function QualityTicketsPage() {
               placeholder="搜工单号、标题、团队"
               className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm outline-none transition focus:border-gray-400"
             />
-            <button type="submit" className="rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white">
+            <button type="submit" className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
               搜索
             </button>
           </form>
@@ -2935,7 +2935,7 @@ export function QualityTicketDetailPage() {
                     type="button"
                     disabled={saving}
                     onClick={() => void handleStatusChange('closed')}
-                    className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+                    className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
                   >
                     关闭工单
                   </button>
@@ -3113,14 +3113,14 @@ export function QualityAttributionPage() {
             <button
               type="button"
               onClick={() => navigate({ pathname: location.pathname, search: buildSearch(location.search, { format: 'xlsx' }) })}
-              className={`rounded-lg px-3 py-2 text-xs font-medium ${exportFormat === 'xlsx' ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'}`}
+              className={`rounded-lg px-3 py-2 text-xs font-medium ${exportFormat === 'xlsx' ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'}`}
             >
               XLSX
             </button>
             <button
               type="button"
               onClick={() => navigate({ pathname: location.pathname, search: buildSearch(location.search, { format: 'csv' }) })}
-              className={`rounded-lg px-3 py-2 text-xs font-medium ${exportFormat === 'csv' ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'}`}
+              className={`rounded-lg px-3 py-2 text-xs font-medium ${exportFormat === 'csv' ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'}`}
             >
               CSV
             </button>
@@ -3327,7 +3327,7 @@ export function QualityAttributionDetailPage() {
                       type="button"
                       onClick={() => navigate({ pathname: location.pathname, search: buildSearch(location.search, { metric }) })}
                       className={`rounded-lg px-3 py-2 text-xs font-medium ${
-                        trendMetric === metric ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'
+                        trendMetric === metric ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'
                       }`}
                     >
                       {metric}

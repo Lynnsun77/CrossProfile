@@ -204,7 +204,7 @@ function SemanticTabs({ section }: { section: SemanticSection }) {
             to={{ pathname: tab.to, search: buildSearch(location.search, { view: currentView }) }}
             className={`rounded-xl border px-4 py-2 text-sm font-medium transition ${
               active
-                ? 'border-transparent bg-gray-900 text-white shadow-sm'
+                ? 'border-transparent bg-blue-600 text-white shadow-sm'
                 : 'border-border bg-white text-text-2 hover:border-gray-300 hover:text-text-1'
             }`}
           >
@@ -420,7 +420,7 @@ function LLMJudgeCreateModal({
             type="button"
             disabled={!featureId || !templateId || submitting}
             onClick={() => onSubmit({ featureId, templateId, judgeModel, sampleSize, triggerMode })}
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {submitting ? '提交中...' : '创建任务'}
           </button>
@@ -603,7 +603,7 @@ export function QualityLLMJudgePage() {
             type="button"
             disabled={!canCreate}
             onClick={() => setModalOpen(true)}
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             发起任务
           </button>
@@ -1155,7 +1155,7 @@ export function QualityLLMJudgeTemplatesPage() {
                       type="button"
                       disabled={!canManageTemplates || saving}
                       onClick={handleSave}
-                      className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+                      className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {saving ? '保存中...' : '保存新版本'}
                     </button>
@@ -1370,7 +1370,7 @@ function SurveyDispatchModal({
             type="button"
             disabled={!templateId || !featureId || submitting}
             onClick={() => onSubmit({ templateId, featureId, channel, sampleSize, scheduledAt, autoCreateTicket })}
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {submitting ? '提交中...' : '创建投放'}
           </button>
@@ -1524,7 +1524,7 @@ export function QualitySurveyPage() {
           type="button"
           disabled={!canCreateDispatch}
           onClick={() => setDispatchModalOpen(true)}
-          className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           发起投放
         </button>
@@ -1678,7 +1678,7 @@ export function QualitySurveyPage() {
                       type="button"
                       disabled={!canCreateTicket}
                       onClick={handleCreateTicket}
-                      className="rounded-lg bg-gray-900 px-3 py-2 text-xs font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+                      className="rounded-lg bg-blue-600 px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       一键生成治理工单
                     </button>

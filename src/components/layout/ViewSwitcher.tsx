@@ -15,7 +15,7 @@ function buttonState(option: ViewOption, selected: boolean) {
     return 'cursor-not-allowed border-border bg-bg text-text-3';
   }
   if (selected) {
-    return 'border-transparent bg-gray-900 text-white shadow-sm';
+    return 'border-transparent bg-blue-600 text-white shadow-sm';
   }
   return 'border-border bg-white text-text-2 hover:border-gray-300 hover:text-text-1';
 }

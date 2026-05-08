@@ -10,7 +10,6 @@ import { RecommendationErrorState } from './RecommendationErrorState';
 import { RecommendationHero } from './RecommendationHero';
 import { RecommendationSection } from './RecommendationSection';
 import { RecommendationSummaryPanel } from './RecommendationSummaryPanel';
-import { ResultLayerHint } from './ResultLayerHint';
 import { focusRecommendationHeroInput } from './heroInput';
 
 export function RecommendationHomePanel() {
@@ -44,7 +43,6 @@ export function RecommendationHomePanel() {
         <div ref={resultRef} className="space-y-4">
           <IntentSummaryPanel />
           <RecommendationSummaryPanel />
-          <ResultLayerHint />
           <RecommendationSection
             group="ready"
             cards={grouped.ready}

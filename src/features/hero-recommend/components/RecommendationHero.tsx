@@ -70,16 +70,8 @@ export function RecommendationHero() {
 
   return (
     <div id="recommendation-home-hero" className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 shadow-sm md:p-8">
-      <div className="mb-4 md:mb-6">
-        <h2 className="text-2xl font-semibold text-slate-900">描述你的需求，AI 帮你找到最佳方案</h2>
-        <p className="mt-1 text-sm text-slate-600">业务目标和业务场景均为单选，系统会结合你的输入自动理解诉求并输出推荐。</p>
-      </div>
-
-      <div className="mb-5 flex items-center gap-2">
-        <span className="inline-flex items-center rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white">智能推荐</span>
-        <span className="inline-flex cursor-not-allowed items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-400">
-          规则筛选（暂未开放）
-        </span>
+      <div className="mb-5 md:mb-6">
+        <h2 className="text-2xl font-semibold text-slate-900">描述你的需求或粘贴文档链接，我们帮你找到最佳方案</h2>
       </div>
 
       <div className="mb-4 space-y-3">
@@ -96,7 +88,7 @@ export function RecommendationHero() {
         rows={3}
         value={heroDraft.text}
         onChange={(event) => updateHeroText(event.target.value)}
-        placeholder="如：我想在生服用增场景提升订单量"
+        placeholder="试试这样问我：我想在生服用增场景提升订单量"
         className="w-full resize-none rounded-xl border border-slate-200 bg-white p-4 text-base focus:border-blue-400 focus:outline-none"
       />
 

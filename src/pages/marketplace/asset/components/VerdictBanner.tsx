@@ -40,7 +40,7 @@ export function VerdictBanner({ banner, loading, error, onPrimaryAction, onSecon
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button type="button" onClick={onPrimaryAction} className="rounded-lg bg-text-1 px-4 py-2 text-sm font-medium text-white">
+          <button type="button" onClick={onPrimaryAction} className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700">
             {banner.primaryAction}
           </button>
           <button type="button" onClick={onSecondaryAction} className="rounded-lg border border-current/20 bg-white/70 px-4 py-2 text-sm font-medium">

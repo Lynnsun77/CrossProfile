@@ -73,7 +73,7 @@ describe('MarketplacePage 单一推荐主链路', () => {
   it('页面仅保留 Hero 主入口并展示更多可浏览资产区', async () => {
     await renderPage();
 
-    expect(screen.getByText('描述你的需求，AI 帮你找到最佳方案')).toBeInTheDocument();
+    expect(screen.getByText('描述你的需求或粘贴文档链接，我们帮你找到最佳方案')).toBeInTheDocument();
     expect(screen.getByRole('textbox', { name: '需求输入' })).toBeInTheDocument();
     expect(screen.getByText('平台推荐')).toBeInTheDocument();
     expect(screen.getByRole('tablist', { name: '平台推荐来源 Tab' })).toBeInTheDocument();
@@ -90,7 +90,7 @@ describe('MarketplacePage 单一推荐主链路', () => {
   it('fallback 主按钮可打开缺口需求弹窗', async () => {
     await renderPage();
 
-    fireEvent.change(screen.getByPlaceholderText('如：我想在生服用增场景提升订单量'), {
+    fireEvent.change(screen.getByPlaceholderText('试试这样问我：我想在生服用增场景提升订单量'), {
       target: { value: '我需要海外直播冷启动素材诊断标签' },
     });
     fireEvent.click(screen.getByRole('button', { name: '生成推荐' }));

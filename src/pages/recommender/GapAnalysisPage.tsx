@@ -75,6 +75,26 @@ function sortLabel(sortBy: DemandGapSortBy) {
   return '按业务价值';
 }
 
+function getHeatmapCellStyle(cell: DemandHeatmapCell | undefined, maxDemandCount: number, active: boolean) {
+  if (!cell || cell.demandCount <= 0 || maxDemandCount <= 0) {
+    return {
+      backgroundColor: active ? 'rgba(16, 185, 129, 0.10)' : '#f8fafc',
+      color: '#0f172a',
+      boxShadow: active ? 'inset 0 0 0 1px rgba(5, 150, 105, 0.28)' : 'none',
+    };
+  }
+
+  const ratio = Math.max(0, Math.min(cell.demandCount / maxDemandCount, 1));
+  const alpha = 0.12 + ratio * 0.34;
+  const backgroundColor = `rgba(5, 150, 105, ${active ? Math.min(alpha + 0.08, 0.56) : alpha})`;
+
+  return {
+    backgroundColor,
+    color: ratio >= 0.55 ? '#ffffff' : '#0f172a',
+    boxShadow: active ? 'inset 0 0 0 2px rgba(5, 150, 105, 0.28)' : 'none',
+  };
+}
+
 function RestrictedPanel() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -199,6 +219,11 @@ export function GapAnalysisPage() {
     return cellMap;
   }, [heatmap]);
 
+  const maxHeatmapDemandCount = useMemo(
+    () => heatmap.reduce((max, cell) => Math.max(max, cell.demandCount), 0),
+    [heatmap],
+  );
+
   const reloadCurrentPage = async () => {
     const [heatmapRes, gapRes] = await Promise.all([
       getProducerDemandHeatmapApi(),
@@ -287,6 +312,7 @@ export function GapAnalysisPage() {
                     {FEATURE_DOMAINS.map((domainItem) => {
                       const cell = heatmapCells.get(`${scenarioItem}_${domainItem}`);
                       const active = scenario === scenarioItem && domain === domainItem;
+                      const cellStyle = getHeatmapCellStyle(cell, maxHeatmapDemandCount, active);
                       return (
                         <button
                           key={`${scenarioItem}_${domainItem}`}
@@ -302,14 +328,21 @@ export function GapAnalysisPage() {
                               }),
                             })
                           }
-                          className={`min-h-[98px] border-l border-border px-3 py-3 text-left transition ${
-                            active ? 'bg-module-dashboard/5' : 'hover:bg-bg'
-                          }`}
+                          className="min-h-[98px] border-l border-border px-3 py-3 text-left transition hover:brightness-[0.98]"
+                          style={cellStyle}
                         >
-                          <div className="text-lg font-semibold text-text-1">{formatNumber(cell?.demandCount ?? 0)}</div>
-                          <div className="mt-1 text-[11px] text-text-3">开放 {cell?.openGapCount ?? 0} / 认领中 {cell?.claimedGapCount ?? 0}</div>
-                          <div className="mt-2 text-[11px] text-text-3">价值 {(cell?.totalBusinessValue ?? 0).toFixed(0)} 万</div>
-                          <div className="mt-1 text-[11px] text-text-3">未匹配查询 {formatNumber(cell?.unmatchedQueryCount ?? 0)}</div>
+                          <div className="text-lg font-semibold" style={{ color: cellStyle.color }}>
+                            {formatNumber(cell?.demandCount ?? 0)}
+                          </div>
+                          <div className="mt-1 text-[11px]" style={{ color: cellStyle.color, opacity: 0.88 }}>
+                            开放 {cell?.openGapCount ?? 0} / 认领中 {cell?.claimedGapCount ?? 0}
+                          </div>
+                          <div className="mt-2 text-[11px]" style={{ color: cellStyle.color, opacity: 0.88 }}>
+                            价值 {(cell?.totalBusinessValue ?? 0).toFixed(0)} 万
+                          </div>
+                          <div className="mt-1 text-[11px]" style={{ color: cellStyle.color, opacity: 0.88 }}>
+                            未匹配查询 {formatNumber(cell?.unmatchedQueryCount ?? 0)}
+                          </div>
                         </button>
                       );
                     })}
@@ -385,7 +418,7 @@ export function GapAnalysisPage() {
                       placeholder="搜索缺口标题、查询词、提需团队"
                       className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm outline-none transition focus:border-gray-400"
                     />
-                    <button type="submit" className="rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white">
+                    <button type="submit" className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors">
                       搜索
                     </button>
                   </form>
@@ -488,7 +521,7 @@ export function GapAnalysisPage() {
                                     type="button"
                                     disabled={mutatingGapId === gap.id}
                                     onClick={() => void handleClaimToggle(gap)}
-                                    className="rounded-lg bg-gray-900 px-3 py-2 text-xs font-medium text-white disabled:opacity-50"
+                                    className="rounded-lg bg-blue-600 px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
                                   >
                                     {mutatingGapId === gap.id ? '处理中...' : canClaim ? '认领缺口' : '取消认领'}
                                   </button>

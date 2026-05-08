@@ -18,7 +18,6 @@ import { updateSearchParam } from '../../lib/view';
 import { mockKpis, mockOpportunities } from '../../mock';
 import { useGlobalState } from '../../store/globalState';
 import type {
-  AppView,
   FeatureDomain,
   ProducerDashboardPipelineOverview,
   ProducerDashboardSupplyCoverage,
@@ -28,12 +27,6 @@ import type {
   DemandGap,
 } from '../../types';
 import { FEATURE_DOMAINS } from '../../types';
-
-function labelOfView(view: AppView) {
-  if (view === 'consumer') return '消费视角';
-  if (view === 'producer') return '供给视角';
-  return '运营视角';
-}
 
 function domainLabel(domain: FeatureDomain) {
   if (domain === 'user_profile') return '用户画像';
@@ -187,27 +180,24 @@ export function DashboardHome() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
       <PageHeader
-        title={currentView === 'consumer' ? '大盘' : `${labelOfView(currentView)}大盘骨架`}
+        title={
+          currentView === 'consumer' ? '大盘' : currentView === 'producer' ? '供给方大盘' : '运营大盘'
+        }
         subtitle={
           currentView === 'consumer'
             ? '健康圆环 + 机会卡流 + 归因瀑布'
-            : 'dashboard 已接入多视角 query 规则，非消费视角先以路由骨架承接后续 Part 实现。'
+            : currentView === 'producer'
+              ? '覆盖率、流水线状态、健康度、收益与需求缺口概览。'
+              : '查看运营侧相关模块与核心入口。'
         }
         moduleTone="dashboard"
       />
-
-      <div className="mb-6 rounded-2xl border border-border bg-white px-4 py-3 text-sm text-text-2 shadow-sm">
-        当前为
-        <span className="mx-1 font-semibold text-text-1">{labelOfView(currentView)}</span>
-        ，顶导是唯一公开的视角切换入口。
-      </div>
 
       {currentView === 'producer' && (
         <>
           <div className="mb-6 flex flex-col gap-3 rounded-card border border-border bg-surface p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <div className="text-sm font-medium text-text-1">供给方筛选</div>
-              <div className="mt-1 text-xs text-text-3">时间与域筛选保留在 URL 中，可与 `?view=producer` 共存分享。</div>
+              <div className="text-sm font-medium text-text-1">筛选条件</div>
             </div>
             <div className="flex flex-wrap gap-2">
               {(['7d', '30d', '90d'] as const).map((window) => (
@@ -221,7 +211,7 @@ export function DashboardHome() {
                     })
                   }
                   className={`rounded-lg px-3 py-2 text-xs font-medium ${
-                    timeWindow === window ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'
+                    timeWindow === window ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'
                   }`}
                 >
                   近 {window.slice(0, -1)} 天
@@ -512,7 +502,7 @@ export function DashboardHome() {
                           search: buildSearch(location.search, { view: 'producer', domain: domainFilter === 'all' ? null : domainFilter }),
                         })
                       }
-                      className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white"
+                      className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
                     >
                       打开缺口分析
                     </button>
@@ -578,14 +568,9 @@ export function DashboardHome() {
 
       {currentView === 'operator' && (
         <div className="rounded-card border border-border bg-surface p-6 shadow-sm">
-          <div className="text-sm text-text-2">
-            当前路径: <span className="font-semibold text-text-1">{location.pathname}</span>
-          </div>
+          <div className="text-lg font-semibold text-text-1">运营视角内容建设中</div>
           <div className="mt-2 text-sm text-text-2">
-            当前 query: <span className="font-mono text-xs text-text-3">{location.search || '(empty)'}</span>
-          </div>
-          <div className="mt-4 rounded-2xl border border-dashed border-border bg-bg px-4 py-6 text-sm text-text-3">
-            运营视角继续复用统一多视角入口，当前只对 producer 视角补齐了真实大盘；运营视角先保留骨架，不影响既有 consumer 与 producer 路由。
+            你可以先前往资产目录、缺口分析或质量治理模块继续查看。
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
             <button
@@ -598,21 +583,21 @@ export function DashboardHome() {
               }}
               className="rounded-lg border border-border bg-white px-4 py-2 text-sm font-medium text-text-2 transition hover:border-module-dashboard/20 hover:text-module-dashboard"
             >
-              前往资产目录骨架
+              前往资产目录
             </button>
             <button
               type="button"
               onClick={() => navigate({ pathname: '/recommender/gap-analysis', search: updateSearchParam(location.search, 'view', currentView === 'operator' ? 'operator' : 'producer') })}
               className="rounded-lg border border-border bg-white px-4 py-2 text-sm font-medium text-text-2 transition hover:border-module-dashboard/20 hover:text-module-dashboard"
             >
-              前往缺口分析骨架
+              前往缺口分析
             </button>
             <button
               type="button"
               onClick={() => navigate({ pathname: '/quality/governance', search: updateSearchParam(location.search, 'view', currentView) })}
               className="rounded-lg border border-border bg-white px-4 py-2 text-sm font-medium text-text-2 transition hover:border-module-dashboard/20 hover:text-module-dashboard"
             >
-              前往质量治理骨架
+              前往质量治理
             </button>
           </div>
         </div>

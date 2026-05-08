@@ -258,7 +258,7 @@ export function DrilldownProducerPage() {
                     })
                   }
                   className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
-                    tab === item.key ? 'bg-gray-900 text-white' : 'border border-border bg-white text-text-2'
+                    tab === item.key ? 'bg-blue-600 text-white' : 'border border-border bg-white text-text-2'
                   }`}
                 >
                   {item.label}
@@ -473,7 +473,7 @@ export function DrilldownProducerPage() {
                               type="button"
                               disabled={runningEval}
                               onClick={() => void handleRunEvaluation()}
-                              className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+                              className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
                             >
                               {runningEval ? '测评中...' : '触发融合测评'}
                             </button>
