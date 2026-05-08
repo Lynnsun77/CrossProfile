@@ -32,10 +32,6 @@ function getBusinessValueScore(card: RecommendationCard): number {
   return primaryMetric ? parseMetricValue(primaryMetric.value) : 0;
 }
 
-function getPrimaryBusinessMetric(card: RecommendationCard) {
-  return card.metrics.find((metric) => !LOW_SIGNAL_METRICS.has(metric.label)) ?? null;
-}
-
 function getGoalAlignedMetric(card: RecommendationCard, goalId: string) {
   const preferredLabels = GOAL_METRIC_LABELS[goalId] ?? [];
   return card.metrics.find((metric) => preferredLabels.includes(metric.label)) ?? null;
