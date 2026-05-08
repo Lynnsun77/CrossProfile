@@ -28,11 +28,12 @@ const SCENE_KEYWORDS: Array<{ id: string; keywords: string[] }> = [
 ];
 
 const PREFERENCE_KEYWORDS: Array<{ keyword: string; label: string }> = [
-  { keyword: '高复用', label: '高复用' },
-  { keyword: '可快速落地', label: '可快速落地' },
-  { keyword: '快速落地', label: '可快速落地' },
-  { keyword: '低成本', label: '低改造成本' },
-  { keyword: '低改造', label: '低改造成本' },
+  { keyword: '优先可直接复用方案', label: '优先可直接复用方案' },
+  { keyword: '高复用', label: '优先可直接复用方案' },
+  { keyword: '可快速落地', label: '优先可直接复用方案' },
+  { keyword: '快速落地', label: '优先可直接复用方案' },
+  { keyword: '优先高匹配方案', label: '优先高匹配方案' },
+  { keyword: '优先高收益方案', label: '优先高收益方案' },
 ];
 
 const OBJECT_TYPE_MAP: Array<{ keyword: string; label: string }> = [

@@ -45,7 +45,7 @@ export function DeployConfigModal({
   ariaLabel = '一键配置',
   successToastText = '投放已提交',
   workbenchHrefBuilder,
-  systemFieldLabel = '目标系统',
+  systemFieldLabel = '下游应用系统',
   targetSystemOptions = DEFAULT_TARGET_SYSTEM_OPTIONS,
   workbenchLabel = '去工作台编辑 →',
 }: DeployConfigModalProps) {

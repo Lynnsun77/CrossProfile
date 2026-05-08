@@ -6,6 +6,36 @@ const BADGE_STYLES: Record<MatchLabel, string> = {
   中匹配: 'border border-blue-100 bg-blue-50 text-blue-600',
 };
 
+const HIGHLIGHT_TAG_STYLES = {
+  收益最优: 'border border-emerald-100 bg-emerald-50 text-emerald-700',
+  匹配度最高: 'border border-blue-100 bg-blue-50 text-blue-700',
+} as const;
+
+const SUPPORT_TAG_STYLES = {
+  收益最优: 'border border-emerald-100 bg-white text-emerald-700',
+  匹配度最高: 'border border-blue-100 bg-white text-blue-700',
+} as const;
+
+const LOW_SIGNAL_METRICS = new Set(['置信度', '人群规模', '覆盖门店', '覆盖用户', '覆盖触点', '标签数']);
+
+function getPrimaryBusinessMetric(card: CardType) {
+  return card.metrics.find((metric) => !LOW_SIGNAL_METRICS.has(metric.label)) ?? null;
+}
+
+function getSupportTagText(card: CardType) {
+  if (card.highlightDetail) {
+    return card.highlightDetail;
+  }
+  if (card.highlightTag === '收益最优') {
+    const metric = getPrimaryBusinessMetric(card);
+    return metric ? `历史收益${metric.label} ${metric.value}` : null;
+  }
+  if (card.highlightTag === '匹配度最高') {
+    return `高匹配 ${card.matchScore}%`;
+  }
+  return null;
+}
+
 interface Props {
   card: CardType;
   emphasized?: boolean;
@@ -45,6 +75,7 @@ export function RecommendationCard({
         : '建议结合当前诉求补充加工方向后使用。';
   const reasonActionLabel = detailSource === 'platform' ? '为什么值得看' : '为什么推荐';
   const compactPlatformHeader = detailSource === 'platform' && hideMatchBadge && !showDecisionTone;
+  const supportTagText = getSupportTagText(card);
 
   return (
     <article
@@ -62,15 +93,28 @@ export function RecommendationCard({
       }`}
     >
       {compactPlatformHeader ? (
-        <div className="mb-2 flex items-start justify-between gap-3">
+        <div className="mb-2">
           <h4 className="text-lg font-semibold leading-snug text-slate-900">{card.name}</h4>
-          <span className="shrink-0 pt-1 text-xs text-slate-400">{card.objectType}</span>
         </div>
       ) : (
         <>
-          <div className="mb-2 flex items-center justify-between">
+          <div className="mb-2">
             <div className="flex flex-wrap items-center gap-2">
-              {!hideMatchBadge ? (
+              {card.highlightTag ? (
+                <span
+                  className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${HIGHLIGHT_TAG_STYLES[card.highlightTag]}`}
+                >
+                  {card.highlightTag}
+                </span>
+              ) : null}
+              {card.highlightTag && supportTagText ? (
+                <span
+                  className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${SUPPORT_TAG_STYLES[card.highlightTag]}`}
+                >
+                  {supportTagText}
+                </span>
+              ) : null}
+              {!hideMatchBadge && !card.highlightTag ? (
                 <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${BADGE_STYLES[card.matchLabel]}`}>
                   {card.matchLabel} {card.matchScore}%
                 </span>
@@ -81,7 +125,6 @@ export function RecommendationCard({
                 </span>
               ) : null}
             </div>
-            <span className="text-xs text-slate-400">{card.objectType}</span>
           </div>
 
           <h4 className="text-lg font-semibold leading-snug text-slate-900">{card.name}</h4>

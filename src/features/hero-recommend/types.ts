@@ -8,6 +8,8 @@ export type ObjectType = '策略' | '人群' | '标签';
 
 export type MatchLabel = '高匹配' | '中匹配';
 
+export type RecommendationHighlightTag = '收益最优' | '匹配度最高';
+
 export interface TagItem {
   id: string;
   label: string;
@@ -39,6 +41,8 @@ export interface RecommendationCard {
   scenes: string[];
   preferenceTags: string[];
   reasons: string[];
+  highlightTag?: RecommendationHighlightTag;
+  highlightDetail?: string;
 }
 
 export interface GroupedRecommendations {

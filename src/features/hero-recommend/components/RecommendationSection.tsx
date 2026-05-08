@@ -35,8 +35,8 @@ export function RecommendationSection({ group, cards, emptyFallback, detailSourc
     <section className="mb-6">
       <div className="mb-4 rounded-2xl border border-blue-100 bg-gradient-to-r from-blue-50 via-sky-50 to-white px-5 py-4">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="text-base font-semibold text-slate-900">{meta.title}</h3>
           <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${meta.badgeClass}`}>{meta.badge}</span>
+          <h3 className="text-base font-semibold text-slate-900">{meta.title}</h3>
         </div>
         <div className="mt-3 text-sm text-slate-600">
           {meta.desc}

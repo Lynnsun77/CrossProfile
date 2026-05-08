@@ -59,6 +59,7 @@ export interface HeroRecommendActions {
   applyExampleChip: (text: string) => void;
   updateHeroText: (text: string) => void;
   submitHeroIntent: (opts?: { forceError?: boolean }) => void;
+  regenerateFromParsedEdit: (nextParsed: IntentParsedResult) => void;
   retryHero: () => void;
   addCandidate: (cardId: string) => void;
   removeCandidate: (cardId: string) => void;
@@ -85,6 +86,15 @@ function buildTextFromTags(goalIds: string[], sceneIds: string[]): string {
   if (goal) return `我想${goal.phrase}`;
   if (scene) return `我想在${scene.phrase}做相关运营`;
   return '';
+}
+
+function buildTextFromParsed(parsed: IntentParsedResult): string {
+  const goal = parsed.goalIds.length > 0 ? mockTags.goals.find((item) => item.id === parsed.goalIds[0]) : null;
+  const scene = parsed.sceneIds.length > 0 ? mockTags.scenes.find((item) => item.id === parsed.sceneIds[0]) : null;
+  const base = goal && scene ? `我想在${scene.phrase}${goal.phrase}` : buildTextFromTags(parsed.goalIds, parsed.sceneIds);
+  const objectTypeText = parsed.objectType ? `，推荐对象为${parsed.objectType}` : '';
+  const preferenceText = parsed.preference ? `，偏好${parsed.preference}` : '';
+  return `${base}${objectTypeText}${preferenceText}`;
 }
 
 const initialParsed = parseIntent({});
@@ -190,6 +200,55 @@ export const useHeroRecommendStore = create<Store>((set, get) => ({
 
         set({
           intentParsed: parsed,
+          grouped,
+          summaryText,
+          analysisPhase: nextPhase,
+        });
+      } catch {
+        set({ analysisPhase: 'error' });
+      }
+    }, stepDelay * 4 + 50);
+    timers.push(finalTimer);
+
+    set({ _timers: timers });
+  },
+
+  regenerateFromParsedEdit: (nextParsed) => {
+    const { _clearTimers } = get();
+    _clearTimers();
+
+    set({
+      heroDraft: {
+        goalIds: nextParsed.goalIds,
+        sceneIds: nextParsed.sceneIds,
+        text: buildTextFromParsed(nextParsed),
+      },
+      textLocked: true,
+      analysisPhase: 'analyzing',
+      analysisStep: 0,
+      intentParsed: null,
+      summaryText: '',
+    });
+
+    const timers: number[] = [];
+    const stepDelay = 450;
+
+    for (let step = 1; step <= 4; step += 1) {
+      const timerId = window.setTimeout(() => {
+        set({ analysisStep: step as 0 | 1 | 2 | 3 | 4 });
+      }, stepDelay * step);
+      timers.push(timerId);
+    }
+
+    const finalTimer = window.setTimeout(() => {
+      try {
+        const grouped = generateMockRecommendations(nextParsed);
+        const summaryText = buildSummaryText(nextParsed, grouped);
+        const total = grouped.ready.length + grouped.adaptable.length;
+        const nextPhase: AnalysisPhase = total === 0 && !grouped.fallback.show ? 'empty' : 'ready';
+
+        set({
+          intentParsed: nextParsed,
           grouped,
           summaryText,
           analysisPhase: nextPhase,
